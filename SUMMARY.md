@@ -1,4 +1,4 @@
 # Table of contents
 
-* [Initial page](README.md)
+* [Google Docs - create and edit documents online, for free.](README.md)
 
