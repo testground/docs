@@ -121,7 +121,7 @@ Open two terminals, one for the server and one for the client.
 --collect
 ```
 
-This will start a flurry of activity that will leave you wondering "what gives? isn't this a simple little hello world program?" Well, testground provides a few features that aren't aren't exercised by this example. Continue on with this tutorial to learn more about writing plans. In the mean time, here is a list of what you have just witnessed:
+This will start a flurry of activity that will leave you wondering "what gives? isn't this a simple little hello world program?" Well, testground provides a few features that aren't  exercised by this example. Continue on with this tutorial to learn more about writing plans. In the mean time, here is a list of what you have just witnessed:
 
 1. An isolated testground build network is created
 2. goproxy docker image is downloaded and a container is started
