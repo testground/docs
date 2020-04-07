@@ -6,6 +6,8 @@ description: Writing your first test plan
 
 ## Hello, Test Plans!
 
+In this quickstart tutorial you will get up and running with a simple test plan. Later tutoials will go into deeper into features of the plan SDK and how to use it to simulate P2P network environments. But for now, lets get your hands dirty writing your first test plan. Hello!
+
 ### create a plan manifest
 
 Create a manifest in the `manifests` directory. This file is used to inform the testground about your plan.   This file describes the location of the plan, options specific to particular runners/builders, and any parameters that should be passed to the plan to control execution.
