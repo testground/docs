@@ -6,6 +6,7 @@
 
 ## Test Plan SDK
 
-* [Quickstart](test-plan-sdk/quickstart/README.md)
-  * [Environment Variables](test-plan-sdk/quickstart/runtime.md)
+* [Quickstart](quickstart.md)
+* [Environment Variables](runtime.md)
+* [Paramaters and TestCases](paramaters-and-testcases.md)
 
