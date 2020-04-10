@@ -20,11 +20,15 @@ name = "quickstart"
 source_path = "file://${TESTGROUND_SRCDIR}/plans/quickstart"
 
 [defaults]
-builder = "docker:go"
+builder = "exec:go"
 runner = "local:docker"
 
 [build_strategies."docker:go"]
 enabled = true
+go_version = "1.13"
+module_path = "github.com/ipfs/testground/plans/example"
+exec_pkg = "."
+go_ipfs_version = "0.4.22"
 
 [run_strategies."local:docker"]
 enabled = true
@@ -34,6 +38,7 @@ name = "testcase1"
 instances = { min = 1, max = 200, default = 1 }
   [testcases.params]
   who = { type = "string", default="world" }
+
 
 ```
 {% endcode %}
@@ -73,10 +78,11 @@ You can enable multiple runners and builders in the same file!
 
 ```bash
 mkdir plans/quickstart
-cd plans/quickstart
+pushd plans/quickstart
 go mod init github.com/ipfs/testground/plans/quickstart
 go mod edit -require "github.com/ipfs/testground/sdk/runtime@v0.3.0"
 go mod edit -replace github.com/ipfs/testground/sdk/runtime=../../sdk/runtime
+popd
 ```
 
 ### write the plan
@@ -114,7 +120,7 @@ Open two terminals, one for the server and one for the client.
 ```
 
 ```go
-/testground run single quickstart/testcase1 \
+./testground run single quickstart/testcase1 \
 --builder docker:go \
 --runner local:docker \
 --instances 1
