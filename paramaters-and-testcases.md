@@ -26,6 +26,10 @@ name = "bigbrain"
 ```
 {% endcode %}
 
+{% hint style="info" %}
+Feel free to add your own galaxybrain test case as well!
+{% endhint %}
+
 We would like to test the effect of these two different cases. First, lets prepare our code. Open our quickstart plan program and deal with these parameters!
 
 {% code title="plans/quickstart/main.go" %}
