@@ -168,7 +168,7 @@ null
 "network initialisation successful"
 "Network initilization complete"
 "My sequence ID: 4"
-"I'm a follower. Signaling ready after 5 seconds"
+"I'm a follower. Signaling ready after 2 seconds"
 "Received Start"
 null
 "test run completed. waiting a few seconds for the metrics scraper."
