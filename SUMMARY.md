@@ -7,5 +7,5 @@
 ## Test Plan SDK
 
 * [Quickstart](test-plan-sdk/quickstart/README.md)
-  * [Runtime](test-plan-sdk/quickstart/runtime.md)
+  * [Environment Variables](test-plan-sdk/quickstart/runtime.md)
 

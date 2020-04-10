@@ -2,7 +2,7 @@
 description: Interacting with the environment.
 ---
 
-# Runtime
+# Environment Variables
 
 ## Getting information about the test run
 
@@ -61,8 +61,10 @@ case 1:
   // The lonliest number
 case 2:
   // It takes two to tango
+case 3:
+  // Do we have a quorum?
 default:
-  // Lets party!
+  // Now this is a party!
 }
 ```
 {% endcode %}
