@@ -1,4 +1,4 @@
-# Synchronization
+# Keeping instances in sync
 
 ## 
 

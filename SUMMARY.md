@@ -9,5 +9,5 @@
 * [Quickstart](quickstart.md)
 * [Environment Variables](runtime.md)
 * [Paramaters and TestCases](paramaters-and-testcases.md)
-* [Synchronization](synchronization.md)
+* [Keeping instances in sync](synchronization.md)
 
