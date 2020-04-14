@@ -1,7 +1,10 @@
 # Table of contents
 
-* [Google Docs - create and edit documents online, for free.](README.md)
 * [Testground Support Landing Page](testground-support-landing-page-1.md)
+
+## Executing plans
+* [Builders](builders.md)
+* [Runners](runners.md)
 
 ## Test Plan SDK
 
