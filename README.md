@@ -1,4 +1,4 @@
-# Google Docs - create and edit documents online, for free.
+# Introduction
 
 ##  One account. All of Google.
 

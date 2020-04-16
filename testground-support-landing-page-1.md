@@ -25,6 +25,6 @@ description: Draft 1
 * **Monitoring the execution environment** 
 * **Debugging** 
 
-**In the event that maybe we didn’t address your question and you’re still having some trouble, please let us know so that we can continue to improve our user experience. Feel free to reach out so us with your questions by commenting below or at xxx@xxx.ai**  
+**In the event that maybe we didn’t address your question or you’re still having some trouble, please remember that our work is never finished. If you see anything you think we can do better. file an issue or open a PR.**   
 
 
