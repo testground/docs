@@ -1,0 +1,2 @@
+# How tests are structured
+
