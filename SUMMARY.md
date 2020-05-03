@@ -23,7 +23,7 @@
   * [Launching a run](running-test-plans/launching-a-run/README.md)
     * [Composition runs](running-test-plans/launching-a-run/composition-runs.md)
     * [Single runs](running-test-plans/launching-a-run/single-runs.md)
-  * [Test parameters](running-test-plans/test-parameters.md)
+  * [Setting test parameters](running-test-plans/test-parameters.md)
 * [Network simulation](network-simulation.md)
 * [Analyzing the results](analyzing-the-results.md)
 * [Debugging test plans](debugging-test-plans.md)

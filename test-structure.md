@@ -56,7 +56,7 @@ The testground client CLI offers a series of simple commands to manage test plan
 
 While the unit of deployment in Testground is the test plan, **test plans nest** _**one or many test cases**_ **inside.**
 
-Think of a test plan as a family of tests that, together, exercises a given component or subsystem. Test cases evaluate concrete use cases that we wish to reproduce consistently, in order to capture variations in the observed behaviour, as the source of the component under test changes over time.
+Think of a test plan as a family of tests that, together, exercises a given component or subsystem. Test cases evaluate concrete use cases that we wish to reproduce consistently, in order to capture variations in the observed behaviour, as the source code of the relevant components evolve over time.
 
 Testground offers first-class support for dealing with test cases inside test plans:
 
@@ -76,7 +76,5 @@ Testground offers first-class support for dealing with test cases inside test pl
 
 ## Test runs
 
-**Every time we execute a test plan, we generate a test run.** And each test run is assigned a unique ID.
-
-That ID is used to identify the run when collecting outputs, or exploring results or diagnostics.
+**Every time we execute a test plan, we generate a test run.** And each test run is assigned a unique ID. That ID is used to identify the run when collecting outputs, or exploring results or diagnostics.
 

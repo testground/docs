@@ -1,2 +1,2 @@
-# Test parameters
+# Setting test parameters
 
