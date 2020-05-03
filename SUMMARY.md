@@ -2,10 +2,7 @@
 
 * [Welcome!](README.md)
 * [What is Testground?](what-is-testground.md)
-* [How tests are structured](test-structure/README.md)
-  * [Test plans](test-structure/test-plans.md)
-  * [Test cases](test-structure/test-cases.md)
-  * [Test run](test-structure/test-run.md)
+* [Test plans and test cases](test-structure.md)
 * [Concepts and architecture](concepts-and-architecture/README.md)
   * [Daemon and client](concepts-and-architecture/daemon-and-client.md)
   * [Sync service](concepts-and-architecture/sync-service.md)
