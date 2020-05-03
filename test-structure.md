@@ -4,7 +4,7 @@
 
 ### What is a test plan?
 
-A **test plan** is a collection of test cases that exercise, benchmark, or verify a particular component, subsystem, or API of the system under test. 
+A **test plan** is a collection of test cases that exercise, benchmark, or verify a particular component, subsystem, or API of the system under test.
 
 **Test plans are the unit of deployment that Testground deals with.**
 

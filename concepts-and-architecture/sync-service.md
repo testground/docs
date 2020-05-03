@@ -1,29 +1,29 @@
 # Synchronization service
 
+## Context
+
 In distributed testing workloads, instances need to perform actions around a scripted series of steps. We are essentially modelling a distributed state machine, spanning all workloads that participate in the test run.
 
 **To make this possible, test instances need to synchronize and coordinate around a choreography.**
 
-### What kinds of problems does synchronisation address?
-
 Some concrete coordination problems that may emerge in a 1000-instance run of, say, a peer-to-peer network, are:
 
-1. Role assignment. How do we determine which instances are bootstrappers, service providers, service consumers, seeds, leeches?
-2. Signalling that instances have arrived at a particular point in the test plan, and are now ready to advance to the next stage, once N instances are ready too.
-3. Communicating out-of-band information, such as endpoint addresses, identities, random content identifiers, secrets, etc.
+1. **Role assignment.** How do we determine which instances are bootstrappers, service providers, service consumers, seeds, leeches?
+2. **Signalling** that instances have arrived at a particular point in the test plan, and are now ready to advance to the next stage, once N instances are ready too.
+3. **Communicating out-of-band information,** such as endpoint addresses, identities, random content identifiers, secrets, etc.
 4. etc.
 
-### Possible solutions
+## Possible solutions
 
-There are various ways of implementing such coordination. Test plans could either:
+There are various ways of implementing such coordination. We could either adopt:
 
-1. **❌ a command-and-control model:** by deploying a centralised coordinator instance that acts like a "conductor", telling each instance participating in the run what it needs to do next.
+1. **❌ a command-and-control model:** by having test plans deploy a centralised coordinator instance that acts like a "conductor", telling each child instance participating in the run what it needs to do next.
    * this model performs poorly in terms of resiliency.
    * this model introduces a scheduling dependency: we need to deploy the coordinator first, obtain its address, and somehow communicate it to the children.
    * this model is complex in terms of design and development: test plan writers need to write the code that will run on the coordinator, as well as the state corresponding checkpoints in the children where an interaction with the coordinator must happen.
-2. **✅ a distributed coordination model:** by coordinating instances in a decentralised fashion. The same test plan runs on all machines, using an API that hits a common high-performance synchronisation store, and offers distributed synchronisation primitives like barriers, signals, pubsub, latches, semaphores, etc.
+2. **✅ a distributed coordination model:** by coordinating test instances in a decentralised fashion. The same test plan runs on all machines, using an API that hits a common high-performance synchronisation store, and offers distributed synchronisation primitives like barriers, signals, pubsub, latches, semaphores, etc.
 
-### Testground sync service
+## The Testground synchronisation service
 
 The Testground sync service is powered by a non-durable Redis instance. 
 
