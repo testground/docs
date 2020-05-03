@@ -8,7 +8,12 @@ Think of a test plan as a family of tests that, together, exercises a given comp
 
 Testground offers first-class support for dealing with test cases inside test plans:
 
-1. **When inspecting a test plan,** the testground CLI allows you to enumerate all test cases within all test plans: `testground plan list --testcases`
+1. **When inspecting a test plan,** the testground CLI allows you to enumerate all test cases within all test plans:
+
+   ```bash
+   testground plan list --testcases
+   ```
+
 2. **When scheduling a test run,** the testground CLI allows you to specify the test case out of a test plan that you want to run, e.g.:
 
    ```bash
