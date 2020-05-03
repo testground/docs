@@ -2,7 +2,7 @@
 
 Testground is a platform for testing, benchmarking, and simulating distributed and peer-to-peer systems at scale. It's designed to be multi-lingual and runtime-agnostic, scaling gracefully from 2 to 10k instances, only when needed.
 
-The Testground project was started at Protocol Labs because we didn't find a platform that would allow us to  , so we decided to invent it.
+The Testground project was started at Protocol Labs because we couldn't find a platform that would allow us to reliably and reproduceably test and measure how changes to the IPFS and libp2p codebases would impact the performance and health of large networks \(as well as individual nodes\), so we decided to invent it.
 
 ## How does it work?
 
