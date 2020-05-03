@@ -1,24 +1,22 @@
 # Table of contents
 
 * [Welcome!](README.md)
-* [What is Testground?](what-is-testground/README.md)
-  * [How does it work?](what-is-testground/how-does-it-work.md)
-  * [Features](what-is-testground/features.md)
+* [What is Testground?](what-is-testground.md)
 * [How tests are structured](test-structure/README.md)
   * [Test plans](test-structure/test-plans.md)
   * [Test cases](test-structure/test-cases.md)
   * [Test run](test-structure/test-run.md)
 * [Concepts and architecture](concepts-and-architecture/README.md)
-  * [Test plans, test cases, test runs](concepts-and-architecture/test-plans-and-test-cases.md)
+  * [Daemon and client](concepts-and-architecture/daemon-and-client.md)
   * [Sync service](concepts-and-architecture/sync-service.md)
   * [Sidecar](concepts-and-architecture/sidecar.md)
   * [Runners and builders](concepts-and-architecture/runners-and-builders.md)
   * [Runtime environment \(runenv\)](concepts-and-architecture/runtime-environment-runenv.md)
-  * [Daemon and client](concepts-and-architecture/daemon-and-client.md)
 * [Getting started](getting-started/README.md)
   * [Prerequisites](getting-started/prerequisites.md)
   * [Installation and setup](getting-started/installation-and-setup.md)
   * [Running an example](getting-started/running-an-example.md)
+  * [Configuration \(env.toml\)](getting-started/configuration-env.toml.md)
 * [Writing test plans](writing-test-plans/README.md)
   * [Test plan manifest](writing-test-plans/test-plan-manifest.md)
   * [Shimming](writing-test-plans/shimming.md)
@@ -36,8 +34,6 @@
 * [Sync service recipes](sync-service-recipes.md)
 * [Monitoring](monitoring.md)
 * [Troubleshooting](troubleshooting.md)
-
-## Running test plans <a id="running-test-plans-1"></a>
 
 ## Builder library
 
@@ -62,5 +58,5 @@
 * [Paramaters and TestCases](test-plan-sdk/paramaters-and-testcases.md)
 * [Keeping instances in sync](test-plan-sdk/synchronization.md)
 * [Communication between instances](test-plan-sdk/communication-between-instances.md)
-* [Testground Support Landing Page](testground-support-landing-page-1.md)
+* [Testground Support Landing Page](test-plan-sdk/testground-support-landing-page-1.md)
 
