@@ -1,7 +1,9 @@
 # Table of contents
 
 * [Welcome!](README.md)
-* [What is Testground?](what-is-testground.md)
+* [What is Testground?](what-is-testground/README.md)
+  * [How does it work?](what-is-testground/how-does-it-work.md)
+  * [Features](what-is-testground/features.md)
 * [Concepts and architecture](concepts-and-architecture/README.md)
   * [Test plans and test cases](concepts-and-architecture/test-plans-and-test-cases.md)
   * [Sync service](concepts-and-architecture/sync-service.md)
@@ -15,12 +17,20 @@
   * [Running an example](getting-started/running-an-example.md)
 * [Writing test plans](writing-test-plans.md)
 * [Running test plans](running-test-plans/README.md)
-  * [Composition files](running-test-plans/composition-files.md)
+  * [Picking a runner](running-test-plans/picking-a-runner.md)
+  * [Creating instance groups](running-test-plans/creating-instance-groups.md)
+  * [Launching a run](running-test-plans/launching-a-run/README.md)
+    * [Composition runs](running-test-plans/launching-a-run/composition-runs.md)
+    * [Single runs](running-test-plans/launching-a-run/single-runs.md)
+  * [Test parameters](running-test-plans/test-parameters.md)
+* [Network simulation](network-simulation.md)
 * [Analyzing the results](analyzing-the-results.md)
 * [Debugging test plans](debugging-test-plans.md)
 * [Sync service recipes](sync-service-recipes.md)
 * [Monitoring](monitoring.md)
 * [Troubleshooting](troubleshooting.md)
+
+## Running test plans <a id="running-test-plans-1"></a>
 
 ## Builder library
 
