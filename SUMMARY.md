@@ -1,7 +1,37 @@
 # Table of contents
 
-* [Introduction](README.md)
-* [Testground Support Landing Page](testground-support-landing-page-1.md)
+* [Welcome!](README.md)
+* [What is Testground?](what-is-testground.md)
+* [Concepts and architecture](concepts-and-architecture/README.md)
+  * [Test plans and test cases](concepts-and-architecture/test-plans-and-test-cases.md)
+  * [Sync service](concepts-and-architecture/sync-service.md)
+  * [Sidecar](concepts-and-architecture/sidecar.md)
+  * [Runners and builders](concepts-and-architecture/runners-and-builders.md)
+  * [Runtime environment \(runenv\)](concepts-and-architecture/runtime-environment-runenv.md)
+  * [Daemon and client](concepts-and-architecture/daemon-and-client.md)
+* [Getting started](getting-started/README.md)
+  * [Prerequisites](getting-started/prerequisites.md)
+  * [Installation and setup](getting-started/installation-and-setup.md)
+  * [Running an example](getting-started/running-an-example.md)
+* [Writing test plans](writing-test-plans.md)
+* [Running test plans](running-test-plans/README.md)
+  * [Composition files](running-test-plans/composition-files.md)
+* [Analyzing the results](analyzing-the-results.md)
+* [Debugging test plans](debugging-test-plans.md)
+* [Sync service recipes](sync-service-recipes.md)
+* [Monitoring](monitoring.md)
+* [Troubleshooting](troubleshooting.md)
+
+## Builder library
+
+* [exec:go builder](builder-library/exec-go-builder.md)
+* [docker:go builder](builder-library/docker-go-builder.md)
+
+## Runner library
+
+* [local:exec runner](runner-library/local-exec-runner.md)
+* [local:docker runner](runner-library/local-docker-runner.md)
+* [cluster:k8s runner](runner-library/cluster-k8s-runner.md)
 
 ## Executing plans
 
@@ -15,4 +45,5 @@
 * [Paramaters and TestCases](test-plan-sdk/paramaters-and-testcases.md)
 * [Keeping instances in sync](test-plan-sdk/synchronization.md)
 * [Communication between instances](test-plan-sdk/communication-between-instances.md)
+* [Testground Support Landing Page](testground-support-landing-page-1.md)
 

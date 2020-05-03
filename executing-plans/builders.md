@@ -28,32 +28,11 @@ The builder and runner accept flags on the commandline which can modify their be
 
 ### exec:go builder
 
-The exec:go builder uses the user's own go installation to compile and build a binary. Using this builder will use and alter the user's go pkg cache. None of these are required and need only be edited if the defaults do not work well in your environment.
 
-[github](https://github.com/ipfs/testground/blob/master/pkg/build/golang/exec.go#L28)
-
-| parameter | explanation |
-| :--- | :--- |
-| module\_path | use an alternative gomod path |
-| exec\_pkg | Specify the package name |
-| fresh\_gomod | Remove and recreate `go.mod` files |
 
 ### docker:go builder
 
-The docker:go builder uses the user's local docker daemon to construct a docker image. By default, the local:docker builder will leverage a goproxy container to speed up fetching go modules. Additionally, all builds are performed on an isolated docker network.
 
-[github](https://github.com/ipfs/testground/blob/master/pkg/build/golang/docker.go#L40)
-
-| parameter | explanation |
-| :--- | :--- |
-| go\_version | override the version of golang used to compile the plan |
-| module\_path | use an  alternative gomod path in the container |
-| exec\_pkg | Specify the package name |
-| fresh\_gomod | Remove and recreate `go.mod` files |
-| push\_registry | After build, push docker image to a remote registry |
-| registry\_type | must be set if push\_registry is true. Set to `aws` or `hub` |
-| go\_proxy\_mode | how to access go proxy. By default, use a local container. |
-| go\_proxy\_url | required if `go_proxy_mode` is custom. Use an custom go\_proxy instance. |
 
 ## examples
 
