@@ -4,7 +4,8 @@
 
 > \(🌕 = fully supported // 🌑 = planned\)
 
-* Experimental/iterative development 🌖 \(The team at Protocol Labs has used Testground extensively to evaluate protocol changes in large networks, simulate attacks, measure algorithmic improvements across network boundaries, etc.\)
+* Experimental/iterative development 🌖
+  * The team at Protocol Labs has used Testground extensively to evaluate protocol changes in large networks, simulate attacks, measure algorithmic improvements across network boundaries, etc.
 * Debugging 🌗
 * Comparative testing 🌖
 * Backwards/forward-compatibility testing 🌖
