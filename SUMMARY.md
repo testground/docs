@@ -5,7 +5,7 @@
 * [Test plans and test cases](test-structure.md)
 * [Concepts and architecture](concepts-and-architecture/README.md)
   * [Daemon and client](concepts-and-architecture/daemon-and-client.md)
-  * [Sync service](concepts-and-architecture/sync-service.md)
+  * [Synchronization service](concepts-and-architecture/sync-service.md)
   * [Sidecar](concepts-and-architecture/sidecar.md)
   * [Runners and builders](concepts-and-architecture/runners-and-builders.md)
   * [Runtime environment \(runenv\)](concepts-and-architecture/runtime-environment-runenv.md)
