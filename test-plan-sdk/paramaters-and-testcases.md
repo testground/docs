@@ -60,7 +60,7 @@ func run(runenv *runtime.RunEnv) error {
 Before we run this plan, we can see that the server has two test cases in the listing. We can select which test case we would like to test by runtime flag. With the Testground daemon running in another terminal, execute the following to see a list of the new test cases we have just created.
 
 ```text
-./testground list | grep quickstart
+$ testground list | grep quickstart
 quickstart/smallbrain
 quickstart/bigbrain
 ```
@@ -68,10 +68,12 @@ quickstart/bigbrain
 The time has come now to compare these test cases. Let's run it!
 
 ```text
-./testground run single quickstart/smallbrain \
-    --builder exec:go \
-    --runner local:exec \
-    --instances 1
+$ testground run single \
+    --plan=quickstart \
+    --testcase=smallbrain \
+    --builder=exec:go \
+    --runner=local:exec \
+    --instances=1
 ```
 
 {% hint style="info" %}

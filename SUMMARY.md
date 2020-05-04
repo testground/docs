@@ -31,28 +31,24 @@
 * [Monitoring](monitoring.md)
 * [Troubleshooting](troubleshooting.md)
 
-## Builder library
+## Builders
 
-* [exec:go builder](builder-library/exec-go-builder.md)
-* [docker:go builder](builder-library/docker-go-builder.md)
+* [What are Builders?](builders/builders.md)
+* [exec:go builder](builders/exec-go-builder.md)
+* [docker:go builder](builders/docker-go-builder.md)
 
-## Runner library
+## Runners
 
-* [local:exec runner](runner-library/local-exec-runner.md)
-* [local:docker runner](runner-library/local-docker-runner.md)
-* [cluster:k8s runner](runner-library/cluster-k8s-runner/README.md)
-  * [Understanding Testground performance on Kubernetes](runner-library/cluster-k8s-runner/understanding-testground-performance-on-kubernetes.md)
-
-## Executing plans
-
-* [Builders](executing-plans/builders.md)
-* [Runners](executing-plans/runners.md)
+* [What are Runners?](runners/runners.md)
+* [local:exec runner](runners/local-exec-runner.md)
+* [local:docker runner](runners/local-docker-runner.md)
+* [cluster:k8s runner](runners/cluster-k8s-runner/README.md)
+  * [Understanding Testground performance on Kubernetes](runners/cluster-k8s-runner/understanding-testground-performance-on-kubernetes.md)
 
 ## Test Plan SDK
 
 * [Quickstart](test-plan-sdk/quickstart.md)
 * [Parameters and test cases](test-plan-sdk/paramaters-and-testcases.md)
-* [Testground Support Landing Page](test-plan-sdk/testground-support-landing-page-1.md)
 
 ## Sync service recipes <a id="sync-service-recipes-1"></a>
 

@@ -1,17 +1,15 @@
 ---
-description: Running plans
+description: Running test plans
 ---
 
-# Runners
-
-## What are runners?
+# What are Runners?
 
 A runner is system which executes a number of instances of plans which have previously been compiled by the testground builder. Whereas the builder takes plan code as its input and produces the compiled unit of work as output, the work unit and executes it with the right number of duplicates to generate the test output.
 
 ```text
                                                         ☟
 -------------    -----------    ----------------    ----------    ---------------
-| plan code | -> | builder | -> | unit of work | -> | Runner | -> | test output |
+| plan code | -> | builder | -> | unit of work | -> | runner | -> | test output |
 -------------    -----------    ----------------    ----------    ---------------
 ```
 

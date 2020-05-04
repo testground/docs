@@ -1,17 +1,15 @@
 ---
-description: Building plans
+description: Building test plans
 ---
 
-# Builders
-
-## What are builders?
+# What are Builders?
 
 A builder is a process which compiles the code of your test plan into a work unit, ready to be used by the ground service. The build process will be different depending on the language of the plan and the kind of work unit being targeted.
 
 ```text
                       ☟
 -------------    -----------    ----------------    ----------    ---------------
-| plan code | -> | builder | -> | unit of work | -> | Runner | -> | test output |
+| plan code | -> | builder | -> | unit of work | -> | runner | -> | test output |
 -------------    -----------    ----------------    ----------    ---------------
 ```
 
