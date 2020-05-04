@@ -1,10 +1,14 @@
-# Understanding Testground performance on Kubernetes
+---
+description: >-
+  This document describes the expected performance when using Testground with
+  the cluster:k8s runner on a Kubernetes
+---
 
-Testground provides a platform for simulating distributed systems at various scale through its `runner` abstraction. This document describes the expected performance when using Testground with the `cluster:k8s` runner on a Kubernetes cloud environment, built using the playbooks from the [github.com/testground/infra](https://github.com/testground/infra) repo.
+# Understanding Testground performance on Kubernetes
 
 Within the Testground team, we use the `benchmarks` and the `storm` testplans to establish a performance baseline for the level of scale developers can expect when running testplans on Testground in different cluster configurations.
 
-## Testing environment
+## Infrastructure setup under test
 
 * 1 \* `c5.4xlarge` Kubernetes `master` node
 * 200 \* `c5.2xlarge` Kubernetes `worker` nodes \(`testplan` group\)
