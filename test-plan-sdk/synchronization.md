@@ -1,7 +1,5 @@
 # Keeping instances in sync
 
-## 
-
 Sometimes individual instances of a test plan need to coordinate what they are doing. For this, we use Barriers.
 
 The general concept is this -- as a plan reaches a phase of execution for which synchronization is required, it will signal the other instances that it has reached that phase. Then, wait until a certain number of other instances reach the same state before continuing.

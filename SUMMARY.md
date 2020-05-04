@@ -52,8 +52,8 @@
 ## Test Plan SDK
 
 * [Quickstart](test-plan-sdk/quickstart.md)
-* [Environment Variables](test-plan-sdk/runtime.md)
-* [Paramaters and Test cases](test-plan-sdk/paramaters-and-testcases.md)
+* [Environment variables](test-plan-sdk/runtime.md)
+* [Parameters and test cases](test-plan-sdk/paramaters-and-testcases.md)
 * [Keeping instances in sync](test-plan-sdk/synchronization.md)
 * [Communication between instances](test-plan-sdk/communication-between-instances.md)
 * [Testground Support Landing Page](test-plan-sdk/testground-support-landing-page-1.md)

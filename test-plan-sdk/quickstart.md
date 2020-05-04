@@ -6,11 +6,11 @@ description: Writing your first test plan
 
 ## Hello, Test Plans!
 
-In this quickstart tutorial you will get up and running with a simple test plan. Later tutoials will go into deeper into features of the plan SDK and how to use it to simulate P2P network environments. But for now, lets get your hands dirty writing your first test plan. Hello!
+In this quick start tutorial you will get up and running with a simple test plan. Later tutorials will go deeper into features of the plan SDK and how to use it to simulate P2P network environments. But for now, let's get your hands dirty writing your first test plan. Hello!
 
-### create a plan manifest
+### Create a plan manifest
 
-Create a manifest in the `manifests` directory. This file is used to inform the testground about your plan.   This file describes the location of the plan, options specific to particular runners/builders, and any parameters that should be passed to the plan to control execution.
+Create a manifest in the `manifests` directory. This file is used to inform Testground about your plan.  This file describes the location of the plan, options specific to particular runners/builders, and any parameters that should be passed to the plan to control execution.
 
 {% tabs %}
 {% tab title="local docker" %}
@@ -38,8 +38,6 @@ name = "testcase1"
 instances = { min = 1, max = 200, default = 1 }
   [testcases.params]
   who = { type = "string", default="world" }
-
-
 ```
 {% endcode %}
 {% endtab %}
@@ -74,10 +72,10 @@ instances = { min = 1, max = 200, default = 1 }
 You can enable multiple runners and builders in the same file! 
 {% endhint %}
 
-### create a new test plan module 
+### Create a new test plan module 
 
 ```bash
-mkdir plans/quickstart
+mkdir -p plans/quickstart
 pushd plans/quickstart
 go mod init github.com/ipfs/testground/plans/quickstart
 go mod edit -require "github.com/ipfs/testground/sdk/runtime@v0.3.0"
@@ -85,9 +83,9 @@ go mod edit -replace github.com/ipfs/testground/sdk/runtime=../../sdk/runtime
 popd
 ```
 
-### write the plan
+### Write the plan
 
-Fire up your favorite editor and input the following
+Fire up your favourite editor and input the following
 
 {% code title="plans/quickstart/main.go" %}
 ```go
@@ -109,36 +107,38 @@ func run(runenv *runtime.RunEnv) error {
 ```
 {% endcode %}
 
-### execute the plan
+### Execute the plan
 
 Now comes the fun part -- see your test plan compiled and executed!
 
 Open two terminals, one for the server and one for the client.
 
 ```go
-./testground daemon
+testground daemon
 ```
 
 ```go
-./testground run single quickstart/testcase1 \
---builder docker:go \
---runner local:docker \
---instances 1
+testground run single \
+--plan=quickstart \
+--testcase=testcase1 \
+--builder=docker:go \
+--runner=local:docker \
+--instances=1
 --collect
 ```
 
 This will start a flurry of activity that will leave you wondering "what gives? isn't this a simple little hello world program?" Well, testground provides a few features that aren't  exercised by this example. Continue on with this tutorial to learn more about writing plans. In the mean time, here is a list of what you have just witnessed:
 
-1. An isolated testground build network is created
-2. goproxy docker image is downloaded and a container is started
+1. An isolated `testground-build` network is created
+2. `goproxy` docker image is downloaded and a container is started
 3. Your code is copied into a new docker image
-4. Your code is compiled, and added to a new docker image.
+4. Your code is compiled, and added to a new docker image
 5. Several supporting containers are downloaded and started
-   1. testground sidecar
-   2. synchronization service \(redis\)
-   3. metrics \(prometheus\)
-   4. dashboards \(grafana\)
-6. A number of containers are created based on your image \( --instances controls this\)
-7. your code is executed in each of the containers
-8. The outputs of the plan run is collected for analysis.
+   1. `testground-sidecar`
+   2. `testground-redis` - synchronization service backend
+   3. metrics \(Prometheus\)
+   4. dashboards \(Grafana\)
+6. A number of containers are created based on your image \(`--instances` controls this\)
+7. Your code is executed in each of the containers
+8. The `outputs` of the plan run are collected for analysis
 

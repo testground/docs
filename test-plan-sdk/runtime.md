@@ -2,7 +2,7 @@
 description: Interacting with the environment.
 ---
 
-# Environment Variables
+# Environment variables
 
 ## Getting information about the test run
 

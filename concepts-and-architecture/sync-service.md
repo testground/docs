@@ -23,7 +23,7 @@ There are various ways of implementing such coordination. We could either adopt:
    * this model is complex in terms of design and development: test plan writers need to write the code that will run on the coordinator, as well as the state corresponding checkpoints in the children where an interaction with the coordinator must happen.
 2. **✅ a distributed coordination model:** by coordinating test instances in a decentralised fashion. The same test plan runs on all machines, using an API that hits a common high-performance synchronisation store, and offers distributed synchronisation primitives like barriers, signals, pubsub, latches, semaphores, etc.
 
-## The Testground synchronisation service
+## The Testground synchronization service
 
 The Testground sync service is powered by a non-durable Redis instance. 
 
