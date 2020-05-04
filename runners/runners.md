@@ -23,7 +23,7 @@ A `runner` is system which executes a number of instances of plans which have pr
 
 ## Runner flags
 
-The builder and runner accept flags on the commandline which can modify their behavior. The chart below shows available options for each runner.
+The builder and runner accept flags on the command-line which can modify their behaviour. The chart below shows available options for each runner.
 
 ### local:exec runner
 
@@ -37,11 +37,11 @@ This runner currently has no configuration options.
 
 | parameter | explanation |
 | :--- | :--- |
-| keep\_containers | Specify whether containers should be removed after execution |
-| log\_level | Specify the logginv verbosity |
-| no\_start | if set, containers will be created but not executed. |
-| background | if set, the output of containers will not be displayed. |
-| Ulimits | Override ulimits applied to docker containers. |
+| keep\_containers | specify whether containers should be removed after execution |
+| log\_level | specify the logging verbosity |
+| no\_start | if set, containers will be created but not executed |
+| background | if set, the output of containers will not be displayed |
+| ulimits | override ulimits applied to docker containers |
 
 ### cluster:k8s runner
 
@@ -49,24 +49,24 @@ This runner currently has no configuration options.
 
 | parameter | explanation |
 | :--- | :--- |
-| kubeConfigPath | The location of your kubernetes configuration file, if not in the defualt location |
-| namespace | The kubernetes namespace where plan pods will be scheduled |
+| kubeConfigPath | the location of your Kubernetes configuration file, if not in the default location |
+| namespace | the Kubernetes namespace where plan pods will be scheduled |
 
 ## Examples
 
-Build and run example/output with a single instance on the local:docker runner
+Build and run example/output with a single instance on the `local:docker` runner
 
 ```text
 $ testground run single --builder docker:go --runner local:docker example/output -i 1
 ```
 
-with the local:exec runner:
+with the `local:exec` runner:
 
 ```text
 $ testground run single --builder exec:go --runner local:exec example/output -i 1
 ```
 
-and on a kubernetes cluster \(and push the image to an aws container registry\)
+and on a Kubernetes cluster \(and push the image to an AWS ECR container registry\)
 
 ```text
 $ testground run single --builder docker:go --build-cfg push_registry=true --build-cfg registry_type=aws --runner cluster:k8s example/output -i 1

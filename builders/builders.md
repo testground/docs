@@ -22,7 +22,7 @@ A `builder` is a process which compiles the code of your test plan into a work u
 
 ## Builder flags
 
-The builder and runner accept flags on the commandline which can modify their behavior. Each builder has a different set of configurable options. The chart below shows options for each of the builders.
+The builder and runner accept flags on the command-line which can modify their behaviour. Each builder has a different set of configurable options. The chart below shows options for each of the builders.
 
 ### exec:go builder
 
@@ -34,7 +34,7 @@ The builder and runner accept flags on the commandline which can modify their be
 
 ## Examples
 
-Single build for a single test for the example/output plan using the exec:go builder. This command will produce a binary which you can find in `~/.testground/` on Linux and OSX systems.
+Single build for a single test for the example/output plan using the exec:go builder. This command will produce a binary which you can find in `~/testground/` on Linux and macOS systems.
 
 ```bash
 $ testground build single example/output --builder exec:go
