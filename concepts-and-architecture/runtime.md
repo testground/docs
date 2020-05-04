@@ -8,7 +8,7 @@ description: Interacting with the environment.
 
 Following the [https://12factor.net/config](https://12factor.net/config) methodology, variable information and configuration is stored in the environment. Information about the plan being run as well as any parameters passed just one `os.Getenv()` away. 
 
-Lets have a look at the information available to us as environment variables. Edit the quickstart plan so it looks like the following:
+Let's have a look at the information available to us as environment variables. Edit the `quickstart` plan so it looks like the following:
 
 ```go
 package main
@@ -31,7 +31,7 @@ func run(runenv *runtime.RunEnv) error {
 
 ```
 
-When this plan is executed \(on any runner\) you should notice that several environment variables are passed. Most of these should look familiar -- these variables represent the configuration we added to our toml manifest along with configuration specific to the test run and and test instance.
+When this plan is executed \(on any runner\) you should notice that several environment variables are passed. Most of these should look familiar -- these variables represent the configuration we added to our `toml` manifest along with configuration specific to the test run and and test instance.
 
 ```text
 TEST_GROUP_ID=single

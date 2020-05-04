@@ -1,6 +1,6 @@
 # Traffic shaping
 
-&lt;&lt; TODO - this is outdates; we need to update code examples according to latest sdk-go &gt;&gt;
+&lt;&lt; TODO - this is outdated; we need to update code examples according to latest sdk-go &gt;&gt;
 
 In Testground, a test instance can configure its own network \(IP address, jitter, latency, bandwidth, etc.\) by writing a `NetworkConfig` to the sync service, then waiting for the specified `State` to be set.
 

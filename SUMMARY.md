@@ -12,7 +12,7 @@
   * [Runtime environment \(runenv\)](concepts-and-architecture/runtime-environment-runenv.md)
 * [Getting started](getting-started/README.md)
   * [Installing Testground](getting-started/installing-testground.md)
-  * [Running an example testplan](getting-started/running-an-example.md)
+  * [Running an example test plan](getting-started/running-an-example.md)
   * [Configuration \(.env.toml\)](getting-started/configuration-env.toml.md)
 * [Writing test plans](writing-test-plans/README.md)
   * [Test plan manifest](writing-test-plans/test-plan-manifest.md)

@@ -4,11 +4,11 @@
 
 ### What is a test plan?
 
-A **test plan** is a collection of test cases that exercise, benchmark, or verify a particular component, subsystem, or API of the system under test.
+A test plan is a collection of test cases that exercise, benchmark, or verify a particular component, subsystem, or API of the system under test.
 
 **Test plans are the unit of deployment that Testground deals with.**
 
-Each test plan is a world of its own. ****In other words, **test plans are** _**opaque**_ **to Testground:** _****_**they behave like black boxes.**
+Each test plan is a world of its own. ****In other words, ****test plans are _opaque_ to Testground: __they behave like black boxes.
 
 {% hint style="info" %}
 Testground does not care what the test plan actually does, the language it's written in, nor the runtime it targets. As long as the source code is accessible, and a builder exists to compile that code into a runnable artefact, such as an executable or a Docker image, you're good to go 🚀 
@@ -21,7 +21,7 @@ At the time of writing, Testground offers two builders:
 
 ### The test plan &lt;&gt; Testground contract
 
-While test plans are opaque to the eyes of Testground, **test plans and Testground promise to satisfy a contract.** That contract is inspired by the [12-factor principles](https://12factor.net/), and facilitates deployment on cloud infrastructure when it's time to scale. The contract is as follows:
+While test plans are opaque to the eyes of Testground, test plans and Testground promise to satisfy a contract. That contract is inspired by the [12-factor principles](https://12factor.net/), and facilitates deployment on cloud infrastructure when it's time to scale. The contract is as follows:
 
 1. **Execution:** Test plans expose a single point of entry, i.e. a `main()` function.
 2. **Input:** Test plans consume a [formal, standardised runtime environment](concepts-and-architecture/runtime-environment-runenv.md), in the form of environment variables.
@@ -60,21 +60,21 @@ Think of a test plan as a family of tests that, together, exercises a given comp
 
 Testground offers first-class support for dealing with test cases inside test plans:
 
-1. **When inspecting a test plan,** the Testground CLI allows you to enumerate all test cases within all test plans:
+1. When inspecting a test plan, the Testground CLI allows you to enumerate all test cases within all test plans:
 
    ```bash
    testground plan list --testcases
    ```
 
-2. **When scheduling a test run,** the Testground CLI allows you to specify the test case out of a test plan that you want to run, e.g.:
+2. When scheduling a test run, the Testground CLI allows you to specify the test case out of a test plan that you want to run, e.g.:
 
    ```bash
    testground run single --plan libp2p/dht --testcase find-peers
    ```
 
-3. **When developing a test plan,** the Testground SDK allows you to select the test case that will run, based on an environment variable.
+3. When developing a test plan, the Testground SDK allows you to select the test case that will run, based on an environment variable.
 
 ## Test runs
 
-**Every time we execute a test plan, we generate a test run.** Each test run is assigned a unique ID. That ID is used to identify the run when collecting outputs, or exploring results or diagnostics.
+Every time we execute a test plan, we generate a test run. Each test run is assigned a unique ID. That ID is used to identify the run when collecting outputs, or exploring results or diagnostics.
 
