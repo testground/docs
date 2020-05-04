@@ -1,7 +1,6 @@
 # Table of contents
 
-* [Welcome!](README.md)
-* [What is Testground?](what-is-testground.md)
+* [What is Testground?](README.md)
 * [Test plans and test cases](test-structure.md)
 * [Concepts and architecture](concepts-and-architecture/README.md)
   * [Daemon and client](concepts-and-architecture/daemon-and-client.md)
