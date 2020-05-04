@@ -122,7 +122,7 @@ origin	git@github.com:libp2p/test-plans (push)
 
 As you can see from the commands above, we have the ability to create new plans which we will write ourselves or import existing plans or collections of plans. Lets show them all with the list command.
 
-```text
+```bash
 # Generate a list of all test plans, along with all test cases in each plan.
 # These are all the plans imported or created
 
@@ -160,7 +160,7 @@ myplans/verify     uses-data-network
 
 Finally, lets end by removing a plan we are no longer interested in.
 
-```text
+```bash
 # Examples? Who needs em!
 
 [~]↬ testground plan rm -p myplans/example
