@@ -4,7 +4,7 @@ description: Running test plans
 
 # What are Runners?
 
-A runner is system which executes a number of instances of plans which have previously been compiled by the testground builder. Whereas the builder takes plan code as its input and produces the compiled unit of work as output, the work unit and executes it with the right number of duplicates to generate the test output.
+A `runner` is system which executes a number of instances of plans which have previously been compiled by the testground builder. Whereas the builder takes plan code as its input and produces the compiled unit of work as output, the work unit and executes it with the right number of duplicates to generate the test output.
 
 ```text
                                                         ☟
@@ -52,23 +52,23 @@ This runner currently has no configuration options.
 | kubeConfigPath | The location of your kubernetes configuration file, if not in the defualt location |
 | namespace | The kubernetes namespace where plan pods will be scheduled |
 
-## examples
+## Examples
 
-build and run example/output with a single instance on the local:docker runner
+Build and run example/output with a single instance on the local:docker runner
 
 ```text
-./testground run single --builder docker:go --runner local:docker example/output -i 1
+$ testground run single --builder docker:go --runner local:docker example/output -i 1
 ```
 
 with the local:exec runner:
 
 ```text
-./testground run single --builder exec:go --runner local:exec example/output -i 1
+$ testground run single --builder exec:go --runner local:exec example/output -i 1
 ```
 
 and on a kubernetes cluster \(and push the image to an aws container registry\)
 
 ```text
-./testground run single --builder docker:go --build-cfg push_registry=true --build-cfg registry_type=aws --runner cluster:k8s example/output -i 1
+$ testground run single --builder docker:go --build-cfg push_registry=true --build-cfg registry_type=aws --runner cluster:k8s example/output -i 1
 ```
 
