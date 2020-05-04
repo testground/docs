@@ -6,6 +6,7 @@
 * [Concepts and architecture](concepts-and-architecture/README.md)
   * [Daemon and client](concepts-and-architecture/daemon-and-client.md)
   * [Synchronization service](concepts-and-architecture/sync-service.md)
+  * [Networking](concepts-and-architecture/networking.md)
   * [Sidecar](concepts-and-architecture/sidecar.md)
   * [Runners and builders](concepts-and-architecture/runners-and-builders.md)
   * [Runtime environment \(runenv\)](concepts-and-architecture/runtime-environment-runenv.md)
@@ -52,7 +53,7 @@
 
 * [Quickstart](test-plan-sdk/quickstart.md)
 * [Environment Variables](test-plan-sdk/runtime.md)
-* [Paramaters and TestCases](test-plan-sdk/paramaters-and-testcases.md)
+* [Paramaters and Test cases](test-plan-sdk/paramaters-and-testcases.md)
 * [Keeping instances in sync](test-plan-sdk/synchronization.md)
 * [Communication between instances](test-plan-sdk/communication-between-instances.md)
 * [Testground Support Landing Page](test-plan-sdk/testground-support-landing-page-1.md)

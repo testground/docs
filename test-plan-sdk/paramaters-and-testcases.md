@@ -1,8 +1,8 @@
-# Paramaters and TestCases
+# Paramaters and Test cases
 
-## Adding an additional TestCase
+## Adding an additional Test case
 
-Parameters and TestCases are defined in the come from the manifest toml file. Lets have a look once again at the quickstart toml file and add this to the bottom of the file. 
+Parameters and Test cases are defined in the come from the `manifest.toml` file. Let's have a look once again at the `quickstart.toml` file and add this to the bottom of the file. 
 
 {% code title="manifests/quickstart.toml" %}
 ```
@@ -27,10 +27,10 @@ name = "bigbrain"
 {% endcode %}
 
 {% hint style="info" %}
-Feel free to add your own galaxybrain test case as well!
+Feel free to add your own `galaxybrain` test case as well!
 {% endhint %}
 
-We would like to test the effect of these two different cases. First, lets prepare our code. Open our quickstart plan program and deal with these parameters!
+We would like to test the effect of these two different cases. First, let's prepare our code. Open our `quickstart` plan program and deal with these parameters!
 
 {% code title="plans/quickstart/main.go" %}
 ```bash
@@ -57,7 +57,7 @@ func run(runenv *runtime.RunEnv) error {
 ```
 {% endcode %}
 
-Before we run this plan, we can see that the server has two test cases in the listing. We can select which test case we would like to test by runtime flag. With the testground daemon running in another terminal, execute the following to see a list of the new test cases we have just created.
+Before we run this plan, we can see that the server has two test cases in the listing. We can select which test case we would like to test by runtime flag. With the Testground daemon running in another terminal, execute the following to see a list of the new test cases we have just created.
 
 ```text
 ./testground list | grep quickstart
@@ -65,7 +65,7 @@ quickstart/smallbrain
 quickstart/bigbrain
 ```
 
-The time has come now to compare these test cases. Lets run it!
+The time has come now to compare these test cases. Let's run it!
 
 ```text
 ./testground run single quickstart/smallbrain \
@@ -75,6 +75,6 @@ The time has come now to compare these test cases. Lets run it!
 ```
 
 {% hint style="info" %}
-Try using different runners. This command executes the plan with he local:exec runner and builder, but it works just as well using your local docker daemon or kubernetes!
+Try using different runners. This command executes the plan with the `local:exec` runner and `exec:go`builder, but it works just as well with the `local:docker` runner or the Kubernetes `cluster:k8s`runner!
 {% endhint %}
 
