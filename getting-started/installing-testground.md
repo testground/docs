@@ -14,10 +14,10 @@ $ git clone https://github.com/testground/testground.git
 
 $ cd testground
 
-# build testground and the Docker images, used by the local:docker runner.
+# compile Testground and all related dependencies
 $ make install
 
-# start the daemon listening on localhost:8042 by default.
+# start the Testground daemon, it listens on localhost:8042 by default
 $ testground daemon
 ```
 
