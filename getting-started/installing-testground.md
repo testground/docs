@@ -1,4 +1,4 @@
-# Installing testground
+# Installing Testground
 
 ## Prerequisites
 
