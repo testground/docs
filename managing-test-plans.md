@@ -1,8 +1,14 @@
 # Managing test plans
 
-The unit for testing in the testground is a `test plan` also referred to as simply a `plan`. This document explains the layout of test plans as well is tooling for managing local plans.
+The unit for testing in the testground is a `test plan` also referred to as simply a `plan`. This document explains the layout of test plans directory in the testground home, as well is tooling for managing local plans.
 
-### Where are testplans?
+### Anatomy of a test plan
+
+A test plan is a directory which contains the code to be executed during the test and a toml-formatted manifest flile which explains the plan to the testground system. Writing new test plans from scratch is covered elsewhere in this tutorial, for now, just know that a `test plan` is a directory with a test plan manifest and that each test plan may have one or more \`test casestestground provides some basic functionalit to assist importing and creating test plans.
+
+During execution, an archive of the plan is sent to the testground daemon, where it is built and executed. Any code or files inside the the plan directory will be available when the plan is built. 
+
+### Where are testground testplans?
 
 Test plans reside inside the testground home in a subdirectory called `plans`.  The location of the the testground home is governed by an envrionment variable `$TESTGROUND_HOME` and has some sane defaults if this variable is unset.
 
