@@ -9,6 +9,7 @@
   * [Networking](concepts-and-architecture/networking.md)
   * [Sidecar](concepts-and-architecture/sidecar.md)
   * [Runners and builders](concepts-and-architecture/runners-and-builders.md)
+  * [Environment variables](concepts-and-architecture/runtime.md)
   * [Runtime environment \(runenv\)](concepts-and-architecture/runtime-environment-runenv.md)
 * [Getting started](getting-started/README.md)
   * [Installing Testground](getting-started/installing-testground.md)
@@ -25,10 +26,9 @@
     * [Composition runs](running-test-plans/launching-a-run/composition-runs.md)
     * [Single runs](running-test-plans/launching-a-run/single-runs.md)
   * [Setting test parameters](running-test-plans/test-parameters.md)
-* [Network simulation](network-simulation.md)
+* [Traffic shaping](traffic-shaping.md)
 * [Analyzing the results](analyzing-the-results.md)
 * [Debugging test plans](debugging-test-plans.md)
-* [Sync service recipes](sync-service-recipes.md)
 * [Monitoring](monitoring.md)
 * [Troubleshooting](troubleshooting.md)
 
@@ -52,9 +52,11 @@
 ## Test Plan SDK
 
 * [Quickstart](test-plan-sdk/quickstart.md)
-* [Environment variables](test-plan-sdk/runtime.md)
 * [Parameters and test cases](test-plan-sdk/paramaters-and-testcases.md)
-* [Keeping instances in sync](test-plan-sdk/synchronization.md)
-* [Communication between instances](test-plan-sdk/communication-between-instances.md)
 * [Testground Support Landing Page](test-plan-sdk/testground-support-landing-page-1.md)
+
+## Sync service recipes <a id="sync-service-recipes-1"></a>
+
+* [Keeping instances in sync](sync-service-recipes-1/synchronization.md)
+* [Communication between instances](sync-service-recipes-1/communication-between-instances.md)
 
