@@ -46,6 +46,6 @@ All testplan run outputs and logs are stored at `$TESTGROUND_HOME/data/outputs/l
 You could also fetch them with the following command:
 
 ```
-testground collect --runner=local:docker 5222e5df793b
+$ testground collect --runner=local:docker 5222e5df793b
 ```
 

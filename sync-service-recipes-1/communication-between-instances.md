@@ -143,6 +143,6 @@ func run(runenv *runtime.RunEnv) error {
 Run with multiple instances, like this:
 
 ```text
-./testground run single quickstart/quickstart --builder exec:go --runner local:exec --instances 2
+$ testground run single quickstart/quickstart --builder exec:go --runner local:exec --instances 2
 ```
 

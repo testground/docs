@@ -75,12 +75,12 @@ You can enable multiple runners and builders in the same file!
 ### Create a new test plan module 
 
 ```bash
-mkdir -p plans/quickstart
-pushd plans/quickstart
-go mod init github.com/ipfs/testground/plans/quickstart
-go mod edit -require "github.com/ipfs/testground/sdk/runtime@v0.3.0"
-go mod edit -replace github.com/ipfs/testground/sdk/runtime=../../sdk/runtime
-popd
+$ mkdir -p plans/quickstart
+$ pushd plans/quickstart
+$ go mod init github.com/ipfs/testground/plans/quickstart
+$ go mod edit -require "github.com/ipfs/testground/sdk/runtime@v0.3.0"
+$ go mod edit -replace github.com/ipfs/testground/sdk/runtime=../../sdk/runtime
+$ popd
 ```
 
 ### Write the plan
@@ -114,17 +114,17 @@ Now comes the fun part -- see your test plan compiled and executed!
 Open two terminals, one for the server and one for the client.
 
 ```go
-testground daemon
+$ testground daemon
 ```
 
 ```go
-testground run single \
---plan=quickstart \
---testcase=testcase1 \
---builder=docker:go \
---runner=local:docker \
---instances=1
---collect
+$ testground run single \
+      --plan=quickstart \
+      --testcase=testcase1 \
+      --builder=docker:go \
+      --runner=local:docker \
+      --instances=1
+      --collect
 ```
 
 This will start a flurry of activity that will leave you wondering "what gives? isn't this a simple little hello world program?" Well, testground provides a few features that aren't  exercised by this example. Continue on with this tutorial to learn more about writing plans. In the mean time, here is a list of what you have just witnessed:
