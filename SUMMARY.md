@@ -40,7 +40,8 @@
 
 * [local:exec runner](runner-library/local-exec-runner.md)
 * [local:docker runner](runner-library/local-docker-runner.md)
-* [cluster:k8s runner](runner-library/cluster-k8s-runner.md)
+* [cluster:k8s runner](runner-library/cluster-k8s-runner/README.md)
+  * [Understanding Testground performance on Kubernetes](runner-library/cluster-k8s-runner/understanding-testground-performance-on-kubernetes.md)
 
 ## Executing plans
 
