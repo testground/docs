@@ -12,17 +12,17 @@ The [IPFS](https://ipfs.io/) and [libp2p](https://libp2p.io/) projects have used
 
 ### Kubernetes Operations \(kops\)
 
-Kubernetes Operations \(`kops`\) is a tool which helps to create, destroy, upgrade and maintain production-grade Kubernetes clusters from the command line. We use it to create a Kubernetes cluster on AWS.
+[Kubernetes Operations](https://github.com/kubernetes/kops) \(`kops`\) is a tool which helps to create, destroy, upgrade and maintain production-grade Kubernetes clusters from the command line. We use it to create a Kubernetes cluster on AWS.
 
 ### CoreOS Flannel
 
-We use CoreOS Flannel for networking on Kubernetes - for the default Kubernetes network, which in Testground terms is called the `control` network.
+We use [CoreOS Flannel](https://github.com/coreos/flannel) for networking on Kubernetes - for the default Kubernetes network, which in Testground terms is called the `control` network.
 
 `kops` uses 100.96.0.0/11 for pod CIDR range, so this is what we use for the `control` network.
 
 ### Weave Net
 
-We use Weave Net for the `data` plane on Testground - a secondary overlay network that we attach containers to on-demand.
+We use [Weave Net](https://github.com/weaveworks/weave) for the `data` plane on Testground - a secondary overlay network that we attach containers to on-demand.
 
 We configure Weave to use 16.0.0.0/4 as CIDR \(we want to test `libp2p` nodes with IPs in public ranges\), so this is the CIDR for the Testground `data` network. The `sidecar` component is responsible for setting up the `data` network for every testplan instance.
 
