@@ -22,9 +22,15 @@ By default the Testground infrastructure playbooks auto-provision a set of dashb
 
 As Testground matures, these dashboards are likely to change.
 
+### Cluster-wide resources utilisation
+
+You can view aggregated resources usage on the whole Cluster with the `USE Method / Cluster` dashboard.
+
+![](../.gitbook/assets/screenshot-2020-05-05-at-18.05.39.png)
+
 ### Worker node resources utilisation
 
-You can review CPU, memory, network and disk resource utilisation per node:
+You can view CPU, memory, network, disk utilisation per node at the `USE Method / Node`edashboard.
 
 ![](../.gitbook/assets/screenshot-2020-05-05-at-17.34.53.png)
 
@@ -37,7 +43,17 @@ In order to understand what your `test run` is doing, you can use Grafana and vi
 
 ![](../.gitbook/assets/screenshot-2020-05-05-at-17.39.53.png)
 
+## Redis monitoring
 
+Redis is an integral part of the `sync service` used to provide synchronisation and coordination between test plan instances. You can check it's utilisation on the `Redis` dashboard.
+
+![](../.gitbook/assets/screenshot-2020-05-05-at-18.03.09.png)
+
+## WeaveNet monitoring
+
+WeaveNet is used for the `data` plane in Testground - all test plan instances communicate with each other over WeaveNet. You can check statistics from the usage of the network at the `WeaveNet` dashboards.
+
+![](../.gitbook/assets/screenshot-2020-05-05-at-18.02.42.png)
 
 ### 
 
