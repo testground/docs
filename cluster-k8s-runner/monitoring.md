@@ -1,6 +1,10 @@
 # Monitoring and Observability
 
-## Access Grafana
+## Infrastructure monitoring
+
+In order to understand what your Kubernetes cluster is doing, you can use Grafana and check the dashboards.
+
+### Access Grafana
 
 Port forward the Grafana service to a local port. Then access Grafana on [http://localhost:3000](http://localhost:3000)
 
@@ -10,15 +14,11 @@ Default admin credentials are `username: admin` ; `password: admin`
 $ kubectl port-forward service/prometheus-operator-grafana 3000:80
 ```
 
-By default the Testground infrastructure playbooks auto-provision a set of dashboards that provide visibility into the Testground infrastructure as well as into Testground test runs.
+### Dashboards
 
-## Infrastructure monitoring
+By default the Testground infrastructure playbooks auto-provision a set of dashboards that provide visibility into the Testground infrastructure:
 
-In order to understand what your Kubernetes cluster is doing, you can use Grafana and view some of the charts.
-
-### Default dashboards
-
-![Currently provisioned default dashboards in Grafana](../.gitbook/assets/screenshot-2020-05-05-at-17.31.21.png)
+![Currently provisioned dashboards in Grafana](../.gitbook/assets/screenshot-2020-05-05-at-17.31.21.png)
 
 As Testground matures, these dashboards are likely to change.
 
@@ -37,7 +37,7 @@ In order to understand what your `test run` is doing, you can use Grafana and vi
 
 ![](../.gitbook/assets/screenshot-2020-05-05-at-17.39.53.png)
 
-You can create your own dashboards, tailored to your test plan and visualise stats as they are emitted from your test plan instances.
+
 
 ### 
 
