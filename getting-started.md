@@ -61,19 +61,13 @@ $TESTGROUND_HOME
 
 The first test plan that we will run is the `network` test plan and the `ping-pong` test case.
 
-The `ping-pong` test case starts 2 test plan instances: one that listens on a TCP socket and another that dials it. The test case exercises the synchronization service as well as the sidecar traffic shaping and IP allocation functionality.
+The `ping-pong` test case starts 2 test plan instances: one that listens on a TCP socket and another that dials it. The test case exercises the synchronization service as well as the traffic shaping and IP allocation functionality.
 
-Configure `$TESTGROUND_HOME` to a directory that would hold your test plan:
+Configure `$TESTGROUND_HOME` and copy the example `network` test plan into the `$TESTGROUND_HOME/plans` directory.
 
-```
-$ mkdir -p ~/testground
-
+```bash
 $ export TESTGROUND_HOME=~/testground
-```
 
-Copy the `network` test plan into the `$TESTGROUND_HOME` directory.
-
-```
 $ mkdir -p $TESTGROUND_HOME/plans
 
 $ cd $GOPATH/src/github.com/testground/testground
@@ -83,7 +77,11 @@ $ cp -r plans/network $TESTGROUND_HOME/plans
 
 Run the `network`testplan and the `ping-pong` test case with the `docker:go` builder and the `local:docker` runner.
 
-```
+{% hint style="info" %}
+Make sure you have `testground daemon` running in another terminal window.
+{% endhint %}
+
+```bash
 $ testground run single \
                  --plan=network \
                  --testcase=ping-pong \
@@ -92,7 +90,7 @@ $ testground run single \
                  --instances=2
 ```
 
-After the test plan run execution concludes, you should see the following message:
+After the test run execution concludes, you should see the following message:
 
 ```
 INFO run finished successfully {"req_id": "d570c53a", "plan": "network", "case": "ping-pong", "runner": "local:docker", "instances": 2}
@@ -100,11 +98,9 @@ INFO run finished successfully {"req_id": "d570c53a", "plan": "network", "case":
 INFO finished run with ID: 5222e5df793b
 ```
 
-All test plan run outputs and logs are stored at `$TESTGROUND_HOME/data/outputs/local_docker/network`
+All test plan run outputs and logs are stored at `$TESTGROUND_HOME/data`. You could also fetch them with the following command:
 
-You could also fetch them with the following command:
-
-```
+```bash
 $ testground collect --runner=local:docker 5222e5df793b
 ```
 
