@@ -42,7 +42,7 @@
 
 * [System overview](cluster-k8s-runner/system-overview.md)
 * [How to create a Kubernetes cluster for Testground](cluster-k8s-runner/how-to-create-a-kubernetes-cluster-for-testground.md)
-* [Monitoring](cluster-k8s-runner/monitoring.md)
+* [Monitoring and Observability](cluster-k8s-runner/monitoring.md)
 * [Troubleshooting](cluster-k8s-runner/troubleshooting.md)
 * [Understanding Testground performance on Kubernetes](cluster-k8s-runner/understanding-testground-performance-on-kubernetes.md)
 

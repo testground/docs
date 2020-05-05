@@ -124,14 +124,6 @@ Wait for nodes to come up and for `DaemonSets` to be `Running` on all new nodes
 $ watch 'kubectl get pods'
 ```
 
-## Observability
-
-Access to Grafana \(admin credentials are `username: admin` ; `password: admin`\):
-
-```text
-$ kubectl port-forward service/testground-infra-grafana 3000:80
-```
-
 ## Use a Kubernetes context for another cluster
 
 `kops` lets you download the entire Kubernetes context config.
