@@ -1,3 +1,7 @@
+---
+description: 'How to install Testground, and run your first test plan'
+---
+
 # Getting started
 
 ## Installing Testground
