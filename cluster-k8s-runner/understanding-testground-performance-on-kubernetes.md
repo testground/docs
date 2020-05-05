@@ -38,7 +38,7 @@ We use Weave for our data plane and Flannel for the control network. All test pl
 
 Limits for connections per host - based on the kernel parameters we set on individual worker nodes, we can sustain up to 100k open connections per host \(see [github.com/testground/infra/blob/master/k8s/cluster.yaml](https://github.com/testground/infra/blob/master/k8s/cluster.yaml#L113)\)
 
-Depending on the amount of data sent across the network, TCP dial latencies range between 50ms, and can go up to tens of seconds, so we suggest test plan developers monitor this closely.
+Depending on the amount of data sent across the network, TCP dial latencies range between 50ms, and can go up to tens of seconds if you have thousands of calls, so we suggest test plan developers monitor this closely.
 
 ## Related articles
 
