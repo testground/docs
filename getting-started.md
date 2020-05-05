@@ -22,7 +22,13 @@ $ cd testground
 
 # compile Testground and all related dependencies
 $ make install
+```
 
+## Running Testground
+
+In order to use Testground, you need to have a running Testground daemon.
+
+```bash
 # start the Testground daemon, it listens on localhost:8042 by default
 $ testground daemon
 ```
@@ -59,7 +65,7 @@ The `ping-pong` test case starts 2 test plan instances: one that listens on a TC
 Configure `$TESTGROUND_HOME` to a directory that would hold your test plan:
 
 ```
-$ mkdir -p ~/.testground
+$ mkdir -p ~/testground
 
 $ export TESTGROUND_HOME=~/testground
 ```
@@ -103,7 +109,7 @@ $ testground collect --runner=local:docker 5222e5df793b
 
 ## Configuration \(.env.toml\)
 
-`.env.toml`is a configuration file read by the Testground daemon and Testground client on startup.
+`.env.toml`is a configuration file read by the Testground daemon and the Testground client on startup.
 
 Testground tries to load this file from `$TESTGROUND_HOME/.env.toml`
 
@@ -132,9 +138,11 @@ region = "aws region, such as eu-central-1"
 ```
 {% endcode %}
 
+The AWS configuration is also used if you push Docker images to AWS ECR from the `docker:go` builder using the `--build-cfg push_registry=true` and `--build-cfg registry_type=aws` flags.
+
 ### DockerHub integration
 
-If you want to push Docker images from the `docker:go` builder to a remote registry, you can configure it.
+If you want to push Docker images from the `docker:go` builder to a DockerHub registry, you can configure it.
 
 {% code title=".env.toml" %}
 ```text
