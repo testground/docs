@@ -1,6 +1,8 @@
 # Runner flags
 
-The `local:docker`runner accepts flags on the command-line which can modify its behaviour. The chart below shows available options:
+The `local:docker`runner accepts flags on the command-line which can modify its behavior. The chart below shows available options:
+
+In order to pass a command-line flag, add the option `--run-cfg` followed by one of the following options
 
 [github](https://github.com/ipfs/testground/blob/master/pkg/runner/local_docker.go#L49)
 
