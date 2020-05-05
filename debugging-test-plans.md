@@ -189,9 +189,9 @@ All Go test plans have profiling enabled by default. For information about using
 {% tabs %}
 {% tab title="local:exec" %}
 ```bash
-# plans in the local:exec runner operate in the default namespace.
+# Plans in the local:exec runner operate in the default namespace.
 # the first plan will grab port 6060 and the any additional will listen
-# on a random port
+# on a random port.
 
 $ echo "top" | go tool pprof http://localhost:6060/debug/pprof/heap
 
@@ -227,7 +227,7 @@ Entering interactive mode (type "help" for commands, "o" for options)
 # Find out the port assignment using `docker ps` and then profile the
 # appropriate port. For example, in this case I have three plans running
 # in different containers. To profile one of these, I can point pprof tool
-# to a port in the host namespace
+# to a port in the host namespace.
 
 $ docker ps -f 'name=tg-' --format "{{.Ports}}"
 0.0.0.0:33279->6060/tcp
@@ -262,10 +262,10 @@ Showing top 10 nodes out of 11
 
 {% tab title="cluster:k8s" %}
 ```bash
-# When using the Kubernetes runner, each container runs in a separate pod.
-# Access the profiling port throught the Kubernetes API using a port forward or
-# kubectl proxy. The following example sets up a port forward to a sidecar pod
-# and then runs a profiler against it.
+# When using the Kubernetes cluster:k8s runner, each container runs in a
+# separate pod. Access the profiling port throught the Kubernetes API using
+# a port forward or kubectl proxy. The following example sets up a port
+# forward to a sidecar pod and then runs a profiler against it.
 
 $ kubectl port-forward testground-sidecar 6060:6060
 
