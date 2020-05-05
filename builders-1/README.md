@@ -40,13 +40,13 @@ Single build for a single test for the example/output plan using the exec:go bui
 $ testground build single --plan=example --builder=exec:go
 ```
 
-Same, using the docker:go builder. This command will produce a docker image.
+Same, using the `docker:go` builder. This command will produce a docker image.
 
 ```bash
 $ testground build single --plan=example --builder=docker:go
 ```
 
-Use the docker builder to build an image and then upload the image to docker hub
+Use the `docker:go` builder to build an image and then upload the image to DockerHub.
 
 ```bash
 $ testground build single --plan=example --builder=docker:go \
@@ -57,6 +57,7 @@ $ testground build single --plan=example --builder=docker:go \
 Build a composition defined in `barrier-local.toml`. Note that the composition file will contain the builder and runner so specifying the builder on the command-line is not used in this example.
 
 ```bash
-$ testground build composition -f compositions/barrier-local.toml --write-artifacts
+$ testground build composition --file=compositions/barrier-local.toml \
+                               --write-artifacts
 ```
 
