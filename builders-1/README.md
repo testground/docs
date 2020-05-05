@@ -1,8 +1,8 @@
 ---
-description: Building test plans
+description: What are Testground builders?
 ---
 
-# What are builders?
+# Builders
 
 A `builder` is a process which compiles the code of your test plan into a work unit, ready to be used by the ground service. The build process will be different depending on the language of the plan and the kind of work unit being targeted.
 

@@ -25,18 +25,15 @@
     * [Composition runs](running-test-plans/launching-a-run/composition-runs.md)
     * [Single runs](running-test-plans/launching-a-run/single-runs.md)
   * [Setting test parameters](running-test-plans/test-parameters.md)
-* [What are runners?](runners-1.md)
+* [Runners](runners.md)
+* [Builders](builders-1/README.md)
+  * [docker:go builder](builders-1/docker-go-builder.md)
+  * [exec:go builder](builders-1/exec-go-builder.md)
 * [Traffic shaping](traffic-shaping.md)
 * [Analyzing the results](analyzing-the-results.md)
 * [Debugging test plans](debugging-test-plans.md)
 * [Monitoring](monitoring.md)
 * [Troubleshooting](troubleshooting.md)
-
-## Builders
-
-* [What are builders?](builders/builders.md)
-* [exec:go builder](builders/exec-go-builder.md)
-* [docker:go builder](builders/docker-go-builder.md)
 
 ## local:exec runner
 
