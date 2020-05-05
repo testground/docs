@@ -78,7 +78,7 @@ $ helm repo update
 
 ## Configure the Testground client
 
-Create a `.env.toml` file in your `$TESTGROUND_HOME` and add your AWS region to the `[aws]` section.
+Create a `.env.toml` file in your `$TESTGROUND_HOME` and add your AWS region to the `["aws"]` section.
 
 ## Create cloud resources for the Kubernetes cluster
 
