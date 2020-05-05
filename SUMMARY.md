@@ -36,11 +36,11 @@
   * [Runner flags](runner-library/local-docker/runner-flags.md)
   * [System overview](runner-library/local-docker/system-overview.md)
 * [cluster:k8s](runner-library/cluster-k8s/README.md)
+  * [System overview](runner-library/cluster-k8s/system-overview.md)
+  * [How to create a Kubernetes cluster for Testground](runner-library/cluster-k8s/how-to-create-a-kubernetes-cluster-for-testground.md)
+  * [Monitoring and Observability](runner-library/cluster-k8s/monitoring.md)
   * [Understanding Testground performance on Kubernetes](runner-library/cluster-k8s/understanding-testground-performance-on-kubernetes.md)
   * [Troubleshooting](runner-library/cluster-k8s/troubleshooting.md)
-  * [Monitoring and Observability](runner-library/cluster-k8s/monitoring.md)
-  * [How to create a Kubernetes cluster for Testground](runner-library/cluster-k8s/how-to-create-a-kubernetes-cluster-for-testground.md)
-  * [System overview](runner-library/cluster-k8s/system-overview.md)
 
 ## Test Plan SDK
 
