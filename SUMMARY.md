@@ -29,7 +29,9 @@
 * [Analyzing the results](analyzing-the-results.md)
 * [Debugging test plans](debugging-test-plans.md)
 * [Monitoring](monitoring.md)
-* [Troubleshooting](troubleshooting.md)
+* [Troubleshooting](troubleshooting/README.md)
+  * [local:docker and local:exec](troubleshooting/local-docker-and-local-exec.md)
+  * [cluster:k8s](troubleshooting/cluster-k8s.md)
 
 ## Builders
 
@@ -43,6 +45,8 @@
 * [local:exec runner](runners/local-exec-runner.md)
 * [local:docker runner](runners/local-docker-runner.md)
 * [cluster:k8s runner](runners/cluster-k8s-runner/README.md)
+  * [System overview](runners/cluster-k8s-runner/system-overview.md)
+  * [How to create a Kubernetes cluster for Testground](runners/cluster-k8s-runner/how-to-create-a-kubernetes-cluster-for-testground.md)
   * [Understanding Testground performance on Kubernetes](runners/cluster-k8s-runner/understanding-testground-performance-on-kubernetes.md)
 
 ## Test Plan SDK
