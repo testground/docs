@@ -9,7 +9,7 @@ Configure `$TESTGROUND_HOME` to a directory that would hold your test plan:
 ```
 $ mkdir -p ~/.testground
 
-$ export TESTGROUND_HOME=~/.testground
+$ export TESTGROUND_HOME=~/testground
 ```
 
 Copy the `network` test plan into the `$TESTGROUND_HOME` directory.

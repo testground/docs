@@ -32,8 +32,6 @@
 * [Traffic shaping](traffic-shaping.md)
 * [Analyzing the results](analyzing-the-results.md)
 * [Debugging test plans](debugging-test-plans.md)
-* [Monitoring](monitoring.md)
-* [Troubleshooting](troubleshooting.md)
 
 ## local:exec runner
 
@@ -42,11 +40,14 @@
 ## local:docker runner
 
 * [System overview](local-docker-runner/system-overview.md)
+* [Monitoring](local-docker-runner/monitoring.md)
+* [Troubleshooting](local-docker-runner/troubleshooting.md)
 
 ## cluster:k8s runner
 
 * [System overview](cluster-k8s-runner/system-overview.md)
 * [How to create a Kubernetes cluster for Testground](cluster-k8s-runner/how-to-create-a-kubernetes-cluster-for-testground.md)
+* [Monitoring](cluster-k8s-runner/monitoring.md)
 * [Troubleshooting](cluster-k8s-runner/troubleshooting.md)
 * [Understanding Testground performance on Kubernetes](cluster-k8s-runner/understanding-testground-performance-on-kubernetes.md)
 
