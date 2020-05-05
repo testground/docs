@@ -1,2 +1,0 @@
-# local:docker runner
-

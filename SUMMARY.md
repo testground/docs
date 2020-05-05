@@ -25,6 +25,7 @@
     * [Composition runs](running-test-plans/launching-a-run/composition-runs.md)
     * [Single runs](running-test-plans/launching-a-run/single-runs.md)
   * [Setting test parameters](running-test-plans/test-parameters.md)
+* [What are runners?](runners-1.md)
 * [Traffic shaping](traffic-shaping.md)
 * [Analyzing the results](analyzing-the-results.md)
 * [Debugging test plans](debugging-test-plans.md)
@@ -37,16 +38,12 @@
 * [exec:go builder](builders/exec-go-builder.md)
 * [docker:go builder](builders/docker-go-builder.md)
 
-## Runners
+## cluster:k8s runner
 
-* [What are Runners?](runners/runners.md)
-* [local:exec runner](runners/local-exec-runner.md)
-* [local:docker runner](runners/local-docker-runner.md)
-* [cluster:k8s runner](runners/cluster-k8s-runner/README.md)
-  * [System overview](runners/cluster-k8s-runner/system-overview.md)
-  * [How to create a Kubernetes cluster for Testground](runners/cluster-k8s-runner/how-to-create-a-kubernetes-cluster-for-testground.md)
-  * [Troubleshooting](runners/cluster-k8s-runner/troubleshooting.md)
-  * [Understanding Testground performance on Kubernetes](runners/cluster-k8s-runner/understanding-testground-performance-on-kubernetes.md)
+* [System overview](cluster-k8s-runner/system-overview.md)
+* [How to create a Kubernetes cluster for Testground](cluster-k8s-runner/how-to-create-a-kubernetes-cluster-for-testground.md)
+* [Troubleshooting](cluster-k8s-runner/troubleshooting.md)
+* [Understanding Testground performance on Kubernetes](cluster-k8s-runner/understanding-testground-performance-on-kubernetes.md)
 
 ## Test Plan SDK
 
