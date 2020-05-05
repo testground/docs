@@ -165,7 +165,7 @@ func run(runenv *runtime.RunEnv) error {
 ```
 {% endtab %}
 
-{% tab title="answer" %}
+{% tab title="Solution" %}
 ```
 Line 24.
 Ron puts down his left fork, but forgets to put down his right fork!
@@ -184,7 +184,11 @@ For more information about this, see [Analyzing the results](https://app.gitbook
 
 ### Accessing profile data
 
-All Go test plans have profiling enabled by default. For information about using Go's `pprof` and generating graphs and reports, I recommend you start [here.](https://golang.org/pkg/net/http/pprof/) On Testground gaining access to the `pprof` port can sometimes be non-obvious. Allow me to explain how to get access to port 6060 on each of our runners
+All Go test plans have profiling enabled by default.
+
+For information about using Go's `pprof` and generating graphs and reports, I recommend you [start here](https://golang.org/pkg/net/http/pprof/).
+
+On Testground gaining access to the `pprof` port can sometimes be non-obvious. Allow me to explain how to get access to port 6060 on each of our runners:
 
 {% tabs %}
 {% tab title="local:exec" %}
