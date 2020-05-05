@@ -43,7 +43,9 @@ This runner currently has no configuration options.
 | background | if set, the output of containers will not be displayed |
 | ulimits | override ulimits applied to docker containers |
 
-### cluster:k8s runner
+### cluster:k8s runner - TODO: this is wrong
+
+This is not the runner config for cluster:k8s - what is mentioned below is KubernetesConfig.
 
 [github](https://github.com/ipfs/testground/blob/master/pkg/runner/cluster_k8s.go#L120)
 
