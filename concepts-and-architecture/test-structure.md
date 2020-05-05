@@ -24,7 +24,7 @@ At the time of writing, Testground offers two builders:
 While test plans are opaque to the eyes of Testground, test plans and Testground promise to satisfy a contract. That contract is inspired by the [12-factor principles](https://12factor.net/), and facilitates deployment on cloud infrastructure when it's time to scale. The contract is as follows:
 
 1. **Execution:** Test plans expose a single point of entry, i.e. a `main()` function.
-2. **Input:** Test plans consume a [formal, standardised runtime environment](concepts-and-architecture/runtime-environment-runenv.md), in the form of environment variables.
+2. **Input:** Test plans consume a [formal, standardised runtime environment](runtime-environment-runenv.md), in the form of environment variables.
 3. **Output:** Test plans record events, results, and optional diagnostics in a predefined JSON schema on stdout and specific files. Any additional output assets they want harvested \(e.g. event trails, traces, generated files, etc.\) are written to a path received in the runtime environment.
 
 {% hint style="success" %}
@@ -42,7 +42,7 @@ Every test plan must contain a `manifest.toml` file at its root. This is a speci
 
 The `manifest.toml` is used by tools such as the **Testground CLI,** or the upcoming Jupyter Notebooks integration, to enable a better user experience.  Without this manifest file, it would be impossible to know the contents and behaviour of a test plan without inspecting its source.
 
-For more information on the format of the manifest, see [Writing test plans &gt; Test plan manifest](writing-test-plans/test-plan-manifest.md).
+For more information on the format of the manifest, see [Writing test plans &gt; Test plan manifest](../writing-test-plans/test-plan-manifest.md).
 
 ### Where do test plans live?
 
@@ -50,7 +50,7 @@ Test plans can be hosted and version anywhere—either on the local filesystem, 
 
 What's important is that **the source is available to the Testground client during runtime**, under the `$TESTGROUND_HOME/plans` directory, where `$TESTGROUND_HOME` defaults to `$HOME/testground` if not set.
 
-The Testground client CLI offers a series of simple commands to manage test plan sources. Refer to the [Managing test plans](managing-test-plans.md) section for more information.
+The Testground client CLI offers a series of simple commands to manage test plan sources. Refer to the [Managing test plans](../managing-test-plans.md) section for more information.
 
 ## Test cases
 
@@ -63,13 +63,18 @@ Testground offers first-class support for dealing with test cases inside test pl
 1. When inspecting a test plan, the Testground CLI allows you to enumerate all test cases within all test plans:
 
    ```bash
-   testground plan list --testcases
+   $ testground plan list --testcases
    ```
 
 2. When scheduling a test run, the Testground CLI allows you to specify the test case out of a test plan that you want to run, e.g.:
 
    ```bash
-   testground run single --plan libp2p/dht --testcase find-peers
+   $ testground run single \
+                    --plan=network \
+                    --testcase=ping-pong \
+                    --builder=docker:go \
+                    --runner=local:docker \
+                    --instances=2
    ```
 
 3. When developing a test plan, the Testground SDK allows you to select the test case that will run, based on an environment variable.

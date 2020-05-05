@@ -1,8 +1,8 @@
 # Table of contents
 
 * [What is Testground?](README.md)
-* [Test plans and test cases](test-structure.md)
 * [Concepts and architecture](concepts-and-architecture/README.md)
+  * [Test plans and test cases](concepts-and-architecture/test-structure.md)
   * [Daemon and client](concepts-and-architecture/daemon-and-client.md)
   * [Synchronization service](concepts-and-architecture/sync-service.md)
   * [Networking](concepts-and-architecture/networking.md)
