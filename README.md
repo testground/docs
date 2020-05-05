@@ -8,6 +8,8 @@ Testground is a platform for testing, benchmarking, and simulating distributed a
 
 The Testground project was started at Protocol Labs because we couldn't find a platform that would allow us to reliably and reproducibly test and measure how changes to the IPFS and libp2p codebases would impact the performance and health of large networks \(as well as individual nodes\), so we decided to invent it.
 
+![](.gitbook/assets/testground-demo.gif)
+
 ## How does it work?
 
 ### 1. **You develop distributed test plans as if you were writing unit tests against local APIs**
