@@ -82,7 +82,29 @@ I can't claim that build errors will always be as easy to diagnose as this one, 
 
 ## Debugging with message output
 
-The next technique is useful for plans which build correctly and you want to observe the behaviour for debugging. To see how this works, let's use [ron swanson's classic dilemma](http://adit.io/posts/2013-05-11-The-Dining-Philosophers-Problem-With-Ron-Swanson.html).
+The next technique is useful for plans which build correctly and you want to observe the behavior for debugging. If you have ever debugged a program by adding logging or printing to the screen, you know exactly what I'm talking about. On Testground, plans can emit events and messages.
+
+```text
+...
+runenv.RecordEvent("this is a message")
+...
+```
+
+ Another thing which might be useful for debugging is events.  Just like messages, events can be used as a point-in-time caputre of the current state. Events are included in the outputs collection. They are recorded in the order they occur for each plan instance. We created R\(\) and D\(\) metrics collectors \(results and debugging\).  The difference between these two is that debugging is sent to the metrics pipeline fairly quickly whereas results are collected at the end of a test run.
+
+```go
+...
+var things int
+for {
+  // work work work...
+  things++
+  runenv.D().RecordPoint("how_many_things", things)
+}
+runenv.R().RecordPoint("total_things", things)
+...
+```
+
+To see how this works, let's use [ron swanson's classic dilemma](http://adit.io/posts/2013-05-11-The-Dining-Philosophers-Problem-With-Ron-Swanson.html).
 
 In the following plan, five ~~philosophers~~ Ron Swansons sit at a table with five forks between them. Unfortunately, there is an implementation bug and these Ron Swansons will be be here forever. Add some debugging messages using `runenv.RecordMessage` to see if you can straighten this whole thing out \(hint: answer is in the second tab\)
 
@@ -111,7 +133,8 @@ type Swanson struct {
 func (ron *Swanson) Feast(runenv *runtime.RunEnv) {
 	ron.leftFork.m.Lock()
 	ron.rightFork.m.Lock()
-
+	r.D().RecordPoint("eats", 1)
+	
 	ron.leftFork.m.Unlock()
 
 	ron.meals = ron.meals - 1
