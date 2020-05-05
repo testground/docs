@@ -146,10 +146,10 @@ func run(runenv *runtime.RunEnv) error {
 	// Each ron swanson has has a fork to his left and right
 	rons := make([]*Swanson, countRons)
 	wg.Add(countRons)
-	for i := 0; i < countRons; i++ {
+	for i := 0; i <= countRons; i++ {
 		rons[i] = &Swanson{
 			id:        i,
-			leftFork:  forks[i],
+			leftFork:  forks[i%countRons],
 			rightFork: forks[(i+1)%countRons],
 			meals:     countMeals,
 			wg:        &wg,
@@ -170,6 +170,10 @@ func run(runenv *runtime.RunEnv) error {
 Line 24.
 Ron puts down his left fork, but forgets to put down his right fork!
 Add another line to unlick the rigtFork mutex to fix this problem.
+
+Line 58.
+We think there are an equal number of Rons and forks, but we are off
+by one. Two Rons are sharing the same seat! this will not do.
 ```
 {% endtab %}
 {% endtabs %}
