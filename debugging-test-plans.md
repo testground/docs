@@ -127,6 +127,7 @@ func main() {
 }
 
 func run(runenv *runtime.RunEnv) error {
+  // Five hungry rons eat 10 plates of food each.
 	countRons := 5
 	countMeals := 10
 	wg := sync.WaitGroup{}
