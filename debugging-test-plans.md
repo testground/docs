@@ -80,7 +80,7 @@ Now that output is much more readable!
 
 I can't claim that build errors will always be as easy to diagnose as this one, but this feature enables plan writers to employ traditional debugging techniques or other debugging tools which they are already familiar.
 
-### Debugging with message output
+## Debugging with message output
 
 The next technique is useful for plans which build correctly and you want to observe the behaviour for debugging. To see how this works, let's use [ron swanson's classic dilemma](http://adit.io/posts/2013-05-11-The-Dining-Philosophers-Problem-With-Ron-Swanson.html).
 
@@ -176,13 +176,13 @@ Add another line to unlick the rigtFork mutex to fix this problem.
 
 If you can successfully debug this code, you will see each ron finish his meals and finally the  end message "**all rons have eaten**"
 
-#### Collecting outputs vs viewing messages in the terminal
+### Collecting outputs vs viewing messages in the terminal
 
 When using the local runners, with a relatively small number of plan instances it is fairly easy to view outputs in the terminal runner. I recommend troubleshooting the plan with a small number of instances. The same messages you can see in your terminal are also available in outputs collections.
 
 For more information about this, see [Analyzing the results](https://app.gitbook.com/@protocol-labs/s/testground/~/drafts/-M6X2x7PG-JL0LAa-bnw/analyzing-the-results).
 
-### Accessing profile data
+## Accessing profile data
 
 All Go test plans have profiling enabled by default.
 
