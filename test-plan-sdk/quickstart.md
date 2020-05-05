@@ -13,7 +13,7 @@ In this quick start tutorial you will get up and running with a simple test plan
 Create a manifest in the `manifests` directory. This file is used to inform Testground about your plan.  This file describes the location of the plan, options specific to particular runners/builders, and any parameters that should be passed to the plan to control execution.
 
 {% tabs %}
-{% tab title="local docker" %}
+{% tab title="local:docker" %}
 {% code title="manifests/quickstart.toml" %}
 ```yaml
 name = "quickstart"
@@ -42,7 +42,7 @@ instances = { min = 1, max = 200, default = 1 }
 {% endcode %}
 {% endtab %}
 
-{% tab title="local exec" %}
+{% tab title="local:exec" %}
 {% code title="manifests/quickstart.toml" %}
 ```
 name = "quickstart"
