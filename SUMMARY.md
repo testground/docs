@@ -47,6 +47,7 @@
 * [cluster:k8s runner](runners/cluster-k8s-runner/README.md)
   * [System overview](runners/cluster-k8s-runner/system-overview.md)
   * [How to create a Kubernetes cluster for Testground](runners/cluster-k8s-runner/how-to-create-a-kubernetes-cluster-for-testground.md)
+  * [Troubleshooting](runners/cluster-k8s-runner/troubleshooting.md)
   * [Understanding Testground performance on Kubernetes](runners/cluster-k8s-runner/understanding-testground-performance-on-kubernetes.md)
 
 ## Test Plan SDK

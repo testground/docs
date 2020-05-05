@@ -126,49 +126,6 @@ Access to Grafana \(admin credentials are `username: admin` ; `password: admin`\
 $ kubectl port-forward service/testground-infra-grafana 3000:80
 ```
 
-## Cleanup after Testground and other useful commands
-
-Testground is still in early stage of development.
-
-It is possible that it crashes, or doesn't properly clean-up after a testplan run. Here are a few commands that could be helpful for you to inspect the state of your Kubernetes cluster and clean up after Testground.
-
-* Delete all pods that have the `testground.plan=dht` label \(in case you used the `--run-cfg keep_service=true` setting on Testground.
-
-```text
-$ kubectl delete pods -l testground.plan=dht --grace-period=0 --force
-```
-
-* Restart the `sidecar` daemon which manages networks for all testplans
-
-```text
-$ kubectl delete pods -l name=testground-sidecar --grace-period=0 --force
-```
-
-* Review all running pods
-
-```text
-$ kubectl get pods -o wide
-```
-
-* Get logs from a given pod
-
-```text
-$ kubectl logs <pod-id, e.g. tg-dht-c95b5>
-```
-
-* Check on the monitoring infrastructure \(it runs in the monitoring namespace\)
-
-```text
-$ kubectl get pods --namespace monitoring
-```
-
-* Get access to the Redis shell
-
-```text
-$ kubectl port-forward svc/testground-infra-redis-master 6379:6379 &
-$ redis-cli -h localhost -p 6379
-```
-
 ## Use a Kubernetes context for another cluster
 
 `kops` lets you download the entire Kubernetes context config.
