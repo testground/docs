@@ -29,7 +29,8 @@ $ make install
 In order to use Testground, you need to have a running Testground daemon.
 
 ```bash
-# start the Testground daemon, it listens on localhost:8042 by default
+# start the Testground daemon, it listens for commands from the
+# testground client on localhost:8042 by default
 $ testground daemon
 ```
 
