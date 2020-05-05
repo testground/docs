@@ -1,3 +1,9 @@
+---
+description: >-
+  The synchronization service offers simple, but powerful and composable
+  primitives to coordinate and choreograph distributed test workloads.
+---
+
 # Synchronization service
 
 ## Context
@@ -11,7 +17,6 @@ Some concrete coordination problems that may emerge in a 1000-instance run of, s
 1. **Role assignment.** How do we determine which instances are bootstrappers, service providers, service consumers, seeds, leeches?
 2. **Signalling** that instances have arrived at a particular point in the test plan, and are now ready to advance to the next stage, once N instances are ready too.
 3. **Communicating out-of-band information,** such as endpoint addresses, identities, random content identifiers, secrets, etc.
-4. etc.
 
 ## Possible solutions
 
@@ -23,64 +28,60 @@ There are various ways of implementing such coordination. We could either adopt:
    * this model is complex in terms of design and development: test plan writers need to write the code that will run on the coordinator, as well as the state corresponding checkpoints in the children where an interaction with the coordinator must happen.
 2. **✅ a distributed coordination model:** by coordinating test instances in a decentralised fashion. The same test plan runs on all machines, using an API that hits a common high-performance synchronisation store, and offers distributed synchronisation primitives like barriers, signals, pubsub, latches, semaphores, etc.
 
-## The Testground synchronization service
+## Testground sync API
 
-The Testground sync service is powered by a non-durable Redis instance. 
+In Testground, test plans hit the APIs of the components under test directly, and whenever they need to synchronise with other participants in the run, they call out to **the sync API.**
 
-This coordination is facilitated by the synchronization service.
+Our **sync API** is extensively inspired by Apache ZooKeeper and the Apache Curator recipes, but we have chosen a non-durable, memory-only Redis instance for simplicity and performance reasons. Therefore, the **sync API** is a lightweight wrapper around a Redis client. All Testground runners deploy a Redis instance \(as a Docker container, or as a k8s pod\), and inject the address into test workloads.
 
-Essentially, we conceive test plans as distributed state machines.
+The **sync API** offers simple, but powerful and composable synchronisation primitives to coordinate and choreograph distributed test workloads. 
 
-```text
-// The sync package contains the distributed coordination and choreography
-// facility of Testground.
-//
-// The sync service is lightweight, and uses Redis recipes to implement
-// coordination primitives like barriers, signalling, and pubsub. Additional
-// primitives like locks, semaphores, etc. are in scope, and may be added in the
-// future.
-//
-// Constructing sync.Clients
-//
-// To use the sync service, test plan writers must create a sync.Client via the
-// sync.NewBoundClient constructor, passing a context that governs the lifetime
-// of the sync.Client, as well as a runtime.RunEnv to bind to. All sync
-// operations will be automatically scoped/namespaced to the runtime.RunEnv.
-//
-// Infrastructure services, such as sidecar instances, can create generic
-// sync.Clients via the sync.NewGenericClient constructor. Such clients are not
-// bound/constrained to a runtime.RunEnv, and instead are required to pass in
-// runtime.RunParams in the context.Context to all operations. See WithRunParams
-// for more info.
-//
-// Recommendations for test plan writers
-//
-// All constructors and methods on sync.Client have Must* versions, which panic
-// if an error occurs. Using these methods in combination with runtime.Invoke
-// is safe, as the runner captures panics and records them as test crashes. The
-// resulting code will be less pedantic.
-//
-// We have added sugar methods that compose basic primitives into frequently
-// used katas, such as client.PublishSubscribe, client.SignalAndWait,
-// client.PublishAndWait, etc. These katas also have Must* variations. We
-// encourage developers to adopt them in order to streamline their code.
-//
-// Garbage collection
-//
-// The sync service is decentralised: it has no centralised actor, dispatcher,
-// or coordinator that supervises the lifetime of a test. All participants in a
-// test hit Redis directly, using its operations to implement the sync
-// primitives. As a result, keys from past runs can accumulate.
-//
-// Sync clients can participate in collaborative garbage collection by enabling
-// background GC:
-//
-//   client.EnableBackgroundGC(ch) // see method godoc for info on ch
-//
-// GC uses SCAN and OBJECT IDLETIME operations to find keys to purge, and its
-// configuration is controlled by the GC* variables.
-//
-// In the standard testground architecture, only sidecar processes are
-// participate in GC:
+We have implemented the following primitives so far, and more are to come, such as locks, semaphores, leader election, etc. Take a look at the [Apache Curator recipes](https://curator.apache.org/curator-recipes/index.html) and the [Redisson project](https://github.com/redisson/redisson/wiki/8.-distributed-locks-and-synchronizers) to understand where our thinking is.
+
+**Supported synchronisation primitives**
+
+* **State signalling and barriers:** instances can signal **entry into states**, and can **await** until N instances enter that state. Example use cases: wait until all instances have started, wait until instances in group "adders" have added a file to their repo, wait until all nodes have bootstrapped, etc.
+
+```go
+bootstrapped := sync.State("bootstrapped")
+
+// once they've bootstrapped, instances signal on the "bootstrapped" state
+seq := client.MustSignalEntry(bootstrapped)
+
+fmt.Printf("I am instance number %d entering the 'bootstrapped' state\n", seq)
+
+// then they wait for all other instances to have bootstrapped
+client.MustBarrier(bootstrapped, runenv.TestInstanceCount)
+
+fmt.Println("All instances have entered the 'bootstrapped' state")
 ```
+
+* **Topic publishing and subscribing:** instances can emit arbitrary data on topics, and can subscribe to consume that data. Example use cases: communicating endpoint addresses, communicating unique identifiers, etc.
+
+```go
+// topic 'addresses', of type string (we infer the type from the 2nd arg)
+addresses := sync.NewTopic("addresses", "")
+
+// listen on an random port
+listener, _ := net.Listen("tcp", "0.0.0.0:0")
+
+// instances publish their endpoint addresses on the 'addresses' topic
+seq := client.MustPublish(ctx, addresses, listener.Addr().String())
+
+fmt.Printf("I am instance number %d publishing to the 'addresses' topic\n", seq)
+
+// consume all addresses from all peers
+ch := make(chan string)
+sub := client.MustSubscribe(ctx, topic, ch)
+
+for i := 0; i < runenv.TestInstanceCount; i++ {
+    addr := <-ch
+    fmt.Println("received addr:", addr)
+}
+
+// we cancel the context we passed to the subscription
+cancel()
+```
+
+For more information, refer to the [godocs for the sync package of the Go SDK](https://pkg.go.dev/github.com/testground/sdk-go@v0.2.1/sync?tab=doc).
 

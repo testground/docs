@@ -1,27 +1,22 @@
 # Traffic shaping
 
-&lt;&lt; TODO - this is outdated; we need to update code examples according to latest sdk-go &gt;&gt;
+In Testground, a test instance can configure its own network \(IP address, jitter, latency, bandwidth, etc.\) using a network client. See the [network package of the Go SDK](https://pkg.go.dev/github.com/testground/sdk-go@v0.2.1/network?tab=doc) for more information.
 
-In Testground, a test instance can configure its own network \(IP address, jitter, latency, bandwidth, etc.\) by writing a `NetworkConfig` to the sync service, then waiting for the specified `State` to be set.
-
-### Worked Example
-
-#### Imports
+### Imports
 
 For this example, you'll need the following packages:
 
 ```go
 import (
     "net"
-    "os"
-    "reflect"
 
+    "github.com/testground/sdk-go/network"
     "github.com/testground/sdk-go/runtime"
     "github.com/testground/sdk-go/sync"
 )
 ```
 
-#### Pre-Check
+### Pre-check and preparation
 
 First, check to make sure the sidecar is even available. At the moment, it's only available on docker-based runners. If it's not available, just skip any networking config code and proceed.
 
@@ -30,81 +25,58 @@ First, check to make sure the sidecar is even available. At the moment, it's onl
 if !runenv.TestSidecar {
     return
 }
+
+// client is the *sync.Client
+netclient := network.NewClient(client, runenv)
 ```
 
-#### Initialization
+### Initialization
 
-First, wait for the sidecar to initialize the network.
+First, wait for the sidecar to initialize the network. See the [Networking](concepts-and-architecture/networking.md) section for more details.
 
 ```go
-if err := sync.WaitNetworkInitialized(ctx, runenv, watcher); err != nil {
-    runenv.Abort(err)
-    return
-}
+netclient.MustWaitNetworkInitialized(ctx)
 ```
 
 If you don't want to customize the network \(set IP addresses, latency, etc.\), you can stop here.
 
-#### Hostname
+### Configure traffic shaping
 
-The sidecar identifies test instances by their hostname.
-
-```go
-hostname, err := os.Hostname()
-if err != nil {
-    runenv.Abort(err)
-    return
-}
-```
-
-#### Configure: Create
-
-Once the network is ready, you'll need to actually _configure_ your network.
+Once the network is ready, you'll need to actually _configure_ your network. To "shape" traffic, set the `Default` `LinkShape`. You can use this to set latency, bandwidth, jitter, etc.
 
 ```go
-config := sync.NetworkConfig{
+config := network.Config{
     // Control the "default" network. At the moment, this is the only network.
     Network: "default",
 
     // Enable this network. Setting this to false will disconnect this test
     // instance from this network. You probably don't want to do that.
     Enable:  true,
-}
-```
-
-**Traffic Shaping**
-
-To "shape" traffic, set the `Default` `LinkShape`. You can use this to set latency, bandwidth, jitter, etc.
-
-```go
-config.Default = sync.LinkShape{
-    Latency:   100 * time.Millisecond,
-    Bandwidth: 1 << 20, // 1Mib
+    
+    // Set the traffic shaping characteristics.
+    Default: network.LinkShape{
+        Latency:   100 * time.Millisecond,
+        Bandwidth: 1 << 20, // 1Mib
+    },
+    
+    // Set what state the sidecar should signal back to you when it's done.
+    CallbackState: "network-configured",
 }
 ```
 
 NOTE: This sets _egress_ \(outbound\) properties on the link. These settings must be symmetric \(applied on both sides of the connection\) to work properly \(unless asymmetric bandwidth/latency/etc. is desired\).
 
-NOTE: Per-subnet traffic shaping is a desired but unimplemented feature. The sidecar will reject configs with per-subnet rules set in `NetworkConfig.Rules`.
+NOTE: Per-subnet traffic shaping is a desired but unimplemented feature. The sidecar will reject configs with per-subnet rules set in `network.Config.Rules`.
 
-**IP Addresses**
+### **\(Optional\) Changing your IP Addresses**
 
 If you don't specify an IPv4 address when configuring your network, your test instance will keep the default assignment. However, if desired, a test instance can change its IP address at any time.
 
 First, you'll need some kind of unique sequence number to ensure you don't pick conflicting addresses. If you don't already have some form of unique sequence number at this point in your tests, use the sync service to get one:
 
 ```go
-seq, err := writer.Write(&sync.Subtree{
-    GroupKey:    "ip-allocation",
-    PayloadType: reflect.TypeOf(""),
-    KeyFunc: func(val interface{}) string {
-        return val.(string)
-    },
-}, hostname)
-if err != nil {
-    runenv.Abort(err)
-    return
-}
+topic := sync.NewTopic("ip-allocation", "")
+seq := sync.MustPublish(ctx, topic, "")
 ```
 
 Once you have a sequence number, you can set your IP address from one of the available subnets:
@@ -123,45 +95,25 @@ config.IPv4.IP = append(config.IPv4.IP[0:2:2], ipC, ipD)
 
 NOTE: You cannot currently set an IPv6 address.
 
-#### Configure: Apply
+### Apply the configuration
 
-Network configurations are applied as follows:
+Applying the network configuration will post the configuration to the sync service, from where the appropriate instance of sidecar will consume it to apply the rules via netlink. Once it is done, it will signal back on the `CallbackState`.
 
-1. The test instance sets a "state" that should be signaled when the new
-
-   configuration has been applied.
-
-```go
-config.State = "network-configured"
-```
-
-1. The test instance writes the new network configuration to the sync service.
+{% hint style="info" %}
+The network API will, by default, wait for `runenv.TestInstanceCount` instances to have signalled on the `CallbackState`. If you want to wait for a different number of instances, such as if only a subset of instances actually apply traffic shaping rules, you can set the `CallbackTarget` value in the configuration.
+{% endhint %}
 
 ```go
-_, err = writer.Write(sync.NetworkSubtree(hostname), &config)
+err := netclient.ConfigureNetwork(ctx, config)
 if err != nil {
     runenv.Abort(err)
     return
 }
 ```
 
-1. The test instance _waits_ on the specified "state" \(barrier\). Note: the
-
-   following example will wait for _all_ test instances to finish configuring
-
-   their networks.
-
-```go
-err = <-watcher.Barrier(ctx, config.State, int64(runenv.TestInstanceCount))
-if err != nil {
-    runenv.Abort(err)
-    return
-}
-```
-
-The sidecar follows the complementary steps:
+### Appendix: What the sidecar does
 
 1. The sidecar reads the network configuration from the sync service.
 2. The sidecar applies the network configuration.
-3. The sidecar signals the configured "state".
+3. The sidecar signals the configured "CallbackState".
 

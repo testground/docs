@@ -1,57 +1,66 @@
 ---
-description: What are Testground builders?
+description: Building plans
 ---
 
 # Builders
 
-A `builder` is a process which compiles the code of your test plan into a work unit, ready to be used by the ground service. The build process will be different depending on the language of the plan and the kind of work unit being targeted.
+A builder is a component that takes a plan source code, and optionally the SDK's source code, and compiles it into a _**build artifact**_, ready to be used by compatible [Runners](runners.md) to schedule test workloads on Testground.
+
+The build process is different depending on the language of the plan, and the kind of build artifact being targeted. Here's a simple diagram to understand how builders and runners relate to one another.
 
 ```text
                       ☟
--------------    -----------    ----------------    ----------    ---------------
-| plan code | -> | builder | -> | unit of work | -> | runner | -> | test output |
--------------    -----------    ----------------    ----------    ---------------
+-------------    -----------    ------------------    ----------    ---------------
+| plan code | -> | builder | -> | build artifact | -> | runner | -> | test output |
+-------------    -----------    ------------------    ----------    ---------------
 ```
 
-### Supported builders
+## Supported builders
+
+Builder names follow the format: `<build artifact type>:<language>`
 
 | builder | input language | output type | compatible runners |
 | :--- | :--- | :--- | :--- |
-| exec:go | go | os-specific executable | local:exec |
-| docker:go | go | docker image | local:docker, cluster:k8s |
+| `exec:go` | go | os-specific executable | `local:exec` |
+| `docker:go` | go | docker image | `local:docker`, `cluster:k8s` |
 
-## Builder flags
+## Builder configuration options
 
-The builders accept flags on the command-line which can modify their behaviour. Each builder has a different set of configurable options. The chart below shows options for each of the builders.
+The builders accept options on the command-line which can customize their behaviour. Each builder has a different set of configurable options. This section lists the configuration options supported by each.
+
+Builder configuration options can be provided by various means, in the following order of precedence \(highest precedence to lowest precedence\):
+
+1. CLI `--build-cfg` flags for `single` commands, and in the composition file for `composition` commands.
+2.  .env.toml: `[builders]` section.
+3. Test plan manifest.
+4. Builder defaults \(applied by the runner\).
 
 ### exec:go builder
 
-The `exec:go` builder uses the user's own go installation to compile and build a binary. Using this builder will use and alter the user's go pkg cache. None of these are required and need only be edited if the defaults do not work well in your environment.‌
+The `exec:go` builder uses the machine's own Go installation to compile and build a binary. Below are the options this builder supports. None of these are required and need only be edited if the defaults do not work well in your environment.‌
 
-​[github](https://github.com/ipfs/testground/blob/master/pkg/build/golang/exec.go#L28)​
-
-| parameter | explanation |
+| options | explanation |
 | :--- | :--- |
-| module\_path | use an alternative gomod path |
-| exec\_pkg | specify the package name |
-| fresh\_gomod | remove and recreate `go.mod` files |
+| `module_path` | gomod path with `fresh_gomod` |
+| `exec_pkg` | specify the package to build |
+| `fresh_gomod` | remove and recreate `go.mod` files |
 
 ### docker:go builder
 
 The `docker:go` builder uses the user's local Docker daemon to construct a Docker image. By default, the `docker:go` builder will leverage a `goproxy` container to speed up fetching of Go modules. Additionally, all builds are performed on an isolated Docker network.‌
 
-​[github](https://github.com/ipfs/testground/blob/master/pkg/build/golang/docker.go#L40)​
+None of these options are required and need only be edited if the defaults do not work well in your environment.‌
 
-| parameter | explanation |
+| option | explanation |
 | :--- | :--- |
-| go\_version | override the version of Go used to compile the plan |
-| module\_path | use an alternative gomod path in the container |
-| exec\_pkg | specify the package name |
-| fresh\_gomod | remove and recreate `go.mod` files |
-| push\_registry | after build, push docker image to a remote registry |
-| registry\_type | must be set if push\_registry is true. Set to `aws` or `dockerhub` |
-| go\_proxy\_mode | how to access go proxy. By default, use a local container. |
-| go\_proxy\_url | required if `go_proxy_mode` is custom. Use a custom go\_proxy instance. |
+| `go_version` | override the version of Go used to compile the plan |
+| `module_path` | gomod path with `fresh_gomod` |
+| `exec_pkg` | specify the package to build |
+| `fresh_gomod` | remove and recreate `go.mod` files |
+| `push_registry` | after build, push docker image to a remote registry |
+| `registry_type` | must be set if push\_registry is true. Set to `aws` or `dockerhub` |
+| `go_proxy_mode` | how to access go proxy. By default, use a local container. |
+| `go_proxy_url` | required if `go_proxy_mode` is custom. Use a custom go\_proxy instance. |
 
 ## Examples
 
@@ -67,7 +76,7 @@ Same, using the `docker:go` builder. This command will produce a docker image.
 $ testground build single --plan=example --builder=docker:go
 ```
 
-Use the `docker:go` builder to build an image and then upload the image to DockerHub.
+Use the `docker:go` builder to build an image and then upload the image to DockerHub \(configure credentials in [env.toml file](../getting-started.md)\).
 
 ```bash
 $ testground build single --plan=example --builder=docker:go \

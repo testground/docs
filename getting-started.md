@@ -9,7 +9,7 @@ description: 'How to install Testground, and run your first test plan'
 ### Prerequisites
 
 * [Docker](https://www.docker.com/products/docker-desktop)
-* [Go 1.14](https://golang.org/) or higher
+* [Go 1.14](https://golang.org/), or higher
 
 ### Installation
 
@@ -34,9 +34,7 @@ In order to use Testground, you need to have a running Testground daemon.
 $ testground daemon
 ```
 
-**`$TESTGROUND_HOME`** is an important directory. If not explicitly set, Testground uses `$HOME/testground` as a default.
-
-The layout of **`$TESTGROUND_HOME`** is as follows:
+**`$TESTGROUND_HOME`** is an important directory. If not explicitly set, Testground uses `$HOME/testground` as a default. The layout of **`$TESTGROUND_HOME`** is as follows:
 
 ```text
 $TESTGROUND_HOME
@@ -61,18 +59,21 @@ $TESTGROUND_HOME
 
 The first test plan that we will run is the `network` test plan and the `ping-pong` test case.
 
-The `ping-pong` test case starts 2 test plan instances: one that listens on a TCP socket and another that dials it. The test case exercises the synchronization service as well as the traffic shaping and IP allocation functionality.
+The `ping-pong` test case starts 2 test plan instances: one that listens on a TCP socket and another that dials it. The test case exercises the [sync service](concepts-and-architecture/sync-service.md) as well as the [traffic shaping](traffic-shaping.md) and IP allocation functionality.
 
 Configure `$TESTGROUND_HOME` and copy the example `network` test plan into the `$TESTGROUND_HOME/plans` directory.
 
 ```bash
-$ export TESTGROUND_HOME=~/testground
-
-$ mkdir -p $TESTGROUND_HOME/plans
-
-$ cd $GOPATH/src/github.com/testground/testground
-
-$ cp -r plans/network $TESTGROUND_HOME/plans
+# assuming you already started your Testground daemon (as instructed above)
+# there should be a `testground` directory in your home folder, i.e. `~/testground`
+#
+# from your testground/testground Git checkout, run:
+$ testground plan import --from ./plans/network
+...
+created symlink /Users/raul/testground/plans/network -> ./plans/network
+imported plans:
+network ping-pong
+$
 ```
 
 Run the `network`testplan and the `ping-pong` test case with the `docker:go` builder and the `local:docker` runner.
@@ -83,34 +84,50 @@ Make sure you have `testground daemon` running in another terminal window.
 
 ```bash
 $ testground run single \
-                 --plan=network \
-                 --testcase=ping-pong \
-                 --builder=docker:go \
-                 --runner=local:docker \
-                 --instances=2
+         --plan=network \
+         --testcase=ping-pong \
+         --builder=docker:go \
+         --runner=local:docker \
+         --instances=2
 ```
 
-After the test run execution concludes, you should see the following message:
+{% hint style="info" %}
+The first run as the Testground daemon sets up the builder and runner environments. **Subsequent runs will be faster.**
+{% endhint %}
+
+You should see a flurry of activity, including measurements, messages, and runtime events. When the execution concludes, you will see something like:
 
 ```
+[...]
 INFO run finished successfully {"req_id": "d570c53a", "plan": "network", "case": "ping-pong", "runner": "local:docker", "instances": 2}
+
+>>> Result:
 
 INFO finished run with ID: 5222e5df793b
 ```
 
-All test plan run outputs and logs are stored at `$TESTGROUND_HOME/data`. You could also fetch them with the following command:
+In the local runners, all test plan run outputs and logs are stored at `$TESTGROUND_HOME/data`.  Collect them into a bundle with the following command \(replacing `5222e5df793b` with the corresponding run ID\):
 
 ```bash
 $ testground collect --runner=local:docker 5222e5df793b
+[...]
+
+>>> Result:
+
+INFO	created file: 5222e5df793b.tgz
 ```
+
+Open the bundle and you will find the outputs from the test in there:
+
+![](.gitbook/assets/image%20%281%29.png)
 
 ## Configuration \(.env.toml\)
 
 `.env.toml`is a configuration file read by the Testground daemon and the Testground client on startup.
 
-Testground tries to load this file from `$TESTGROUND_HOME/.env.toml`
+Testground tries to load this file from `$TESTGROUND_HOME/.env.toml`, where `$TESTGROUND_HOME` defaults to `$HOME/testground` by default.
 
-### Changing default bind addresses
+### Changing default daemon bind addresses
 
 You can change the default bind addresses by configuring `daemon.listen` and `client.endpoint`
 
