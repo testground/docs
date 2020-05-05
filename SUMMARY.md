@@ -7,7 +7,8 @@
   * [Synchronization service](concepts-and-architecture/sync-service.md)
   * [Networking](concepts-and-architecture/networking.md)
   * [Sidecar](concepts-and-architecture/sidecar.md)
-  * [Runners and builders](concepts-and-architecture/runners-and-builders.md)
+  * [Runners](concepts-and-architecture/runners.md)
+  * [Builders](concepts-and-architecture/builders-1.md)
   * [Environment variables](concepts-and-architecture/runtime.md)
   * [Runtime environment \(runenv\)](concepts-and-architecture/runtime-environment-runenv.md)
 * [Getting started](getting-started.md)
@@ -22,10 +23,6 @@
     * [Composition runs](running-test-plans/launching-a-run/composition-runs.md)
     * [Single runs](running-test-plans/launching-a-run/single-runs.md)
   * [Setting test parameters](running-test-plans/test-parameters.md)
-* [Runners](runners.md)
-* [Builders](builders-1/README.md)
-  * [docker:go builder](builders-1/docker-go-builder.md)
-  * [exec:go builder](builders-1/exec-go-builder.md)
 * [Traffic shaping](traffic-shaping.md)
 * [Analyzing the results](analyzing-the-results.md)
 * [Debugging test plans](debugging-test-plans.md)
@@ -37,6 +34,7 @@
 ## local:docker runner
 
 * [System overview](local-docker-runner/system-overview.md)
+* [Runner flags](local-docker-runner/runner-flags.md)
 * [Monitoring](local-docker-runner/monitoring.md)
 * [Troubleshooting](local-docker-runner/troubleshooting.md)
 
