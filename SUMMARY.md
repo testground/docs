@@ -26,24 +26,21 @@
 * [Analyzing the results](analyzing-the-results.md)
 * [Debugging test plans](debugging-test-plans.md)
 
-## local:exec runner
+## Runner library
 
-* [System overview](local-exec-runner/system-overview.md)
-
-## local:docker runner
-
-* [System overview](local-docker-runner/system-overview.md)
-* [Runner flags](local-docker-runner/runner-flags.md)
-* [Monitoring](local-docker-runner/monitoring.md)
-* [Troubleshooting](local-docker-runner/troubleshooting.md)
-
-## cluster:k8s runner
-
-* [System overview](cluster-k8s-runner/system-overview.md)
-* [How to create a Kubernetes cluster for Testground](cluster-k8s-runner/how-to-create-a-kubernetes-cluster-for-testground.md)
-* [Monitoring and Observability](cluster-k8s-runner/monitoring.md)
-* [Troubleshooting](cluster-k8s-runner/troubleshooting.md)
-* [Understanding Testground performance on Kubernetes](cluster-k8s-runner/understanding-testground-performance-on-kubernetes.md)
+* [local:exec](runner-library/local-exec/README.md)
+  * [System overview](runner-library/local-exec/system-overview.md)
+* [local:docker](runner-library/local-docker/README.md)
+  * [Troubleshooting](runner-library/local-docker/troubleshooting.md)
+  * [Monitoring](runner-library/local-docker/monitoring.md)
+  * [Runner flags](runner-library/local-docker/runner-flags.md)
+  * [System overview](runner-library/local-docker/system-overview.md)
+* [cluster:k8s](runner-library/cluster-k8s/README.md)
+  * [Understanding Testground performance on Kubernetes](runner-library/cluster-k8s/understanding-testground-performance-on-kubernetes.md)
+  * [Troubleshooting](runner-library/cluster-k8s/troubleshooting.md)
+  * [Monitoring and Observability](runner-library/cluster-k8s/monitoring.md)
+  * [How to create a Kubernetes cluster for Testground](runner-library/cluster-k8s/how-to-create-a-kubernetes-cluster-for-testground.md)
+  * [System overview](runner-library/cluster-k8s/system-overview.md)
 
 ## Test Plan SDK
 
