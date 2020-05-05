@@ -57,9 +57,6 @@
 
 * [Quickstart](test-plan-sdk/quickstart.md)
 * [Parameters and test cases](test-plan-sdk/paramaters-and-testcases.md)
-
-## Sync service recipes <a id="sync-service-recipes-1"></a>
-
-* [Keeping instances in sync](sync-service-recipes-1/synchronization.md)
-* [Communication between instances](sync-service-recipes-1/communication-between-instances.md)
+* [Keeping instances in sync](test-plan-sdk/synchronization.md)
+* [Communication between instances](test-plan-sdk/communication-between-instances.md)
 
