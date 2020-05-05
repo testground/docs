@@ -1,5 +1,7 @@
 # How to create a Kubernetes cluster for Testground
 
+Testground is not coupled with AWS, but the infrastructure playbooks described in this section are targeted at AWS.
+
 ## Requirements
 
 First and foremost, you need an AWS account with API access.
