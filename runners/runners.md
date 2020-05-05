@@ -57,18 +57,32 @@ This runner currently has no configuration options.
 Build and run example/output with a single instance on the `local:docker` runner
 
 ```text
-$ testground run single --builder docker:go --runner local:docker example/output -i 1
+$ testground run single --builder=docker:go \
+                        --runner=local:docker \
+                        --plan=example \
+                        --testcase=output \
+                        --instances=1
 ```
 
 with the `local:exec` runner:
 
 ```text
-$ testground run single --builder exec:go --runner local:exec example/output -i 1
+$ testground run single --builder=exec:go \
+                        --runner=local:exec \
+                        --plan=example \
+                        --testcase=output \
+                        --instances=1
 ```
 
 and on a Kubernetes cluster \(and push the image to an AWS ECR container registry\)
 
 ```text
-$ testground run single --builder docker:go --build-cfg push_registry=true --build-cfg registry_type=aws --runner cluster:k8s example/output -i 1
+$ testground run single --builder=docker:go \
+                        --build-cfg push_registry=true \
+                        --build-cfg registry_type=aws \
+                        --runner=cluster:k8s \
+                        --plan=example \
+                        --testcase=output \
+                        --instances=1
 ```
 
