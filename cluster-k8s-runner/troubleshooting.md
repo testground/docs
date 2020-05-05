@@ -1,12 +1,10 @@
 # Troubleshooting
 
-Testground is still in early stage of development.
-
-It is possible that:
+Testground is still in early stage of development, so it is possible that:
 
 * Testground crashes
 * One of the underlying systems that Testground uses crashes \(`Kubernetes`, `weave` , `redis`, etc.\)
-* Testground doesn't properly clean-up after a testplan run
+* Testground doesn't properly clean-up after a test run
 * etc.
 
 Here are a few commands that could be helpful for you to inspect the state of your Kubernetes cluster and clean up after Testground:

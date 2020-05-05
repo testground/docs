@@ -1,6 +1,10 @@
-# How to create a Kubernetes cluster for Testground
+---
+description: >-
+  Testground is not coupled with AWS, but the infrastructure playbooks described
+  in this section are targeted at AWS.
+---
 
-Testground is not coupled with AWS, but the infrastructure playbooks described in this section are targeted at AWS.
+# How to create a Kubernetes cluster for Testground
 
 ## Requirements
 
