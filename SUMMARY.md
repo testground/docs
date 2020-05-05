@@ -29,9 +29,7 @@
 * [Analyzing the results](analyzing-the-results.md)
 * [Debugging test plans](debugging-test-plans.md)
 * [Monitoring](monitoring.md)
-* [Troubleshooting](troubleshooting/README.md)
-  * [local:docker and local:exec](troubleshooting/local-docker-and-local-exec.md)
-  * [cluster:k8s](troubleshooting/cluster-k8s.md)
+* [Troubleshooting](troubleshooting.md)
 
 ## Builders
 
