@@ -87,7 +87,7 @@ The next technique is useful for plans which build correctly and you want to obs
 In the following plan, five ~~philosophers~~ Ron Swansons sit at a table with five forks between them. Unfortunately, there is an implementation bug and these Ron Swansons will be be here forever. Add some debugging messages using `runenv.RecordMessage` to see if you can straighten this whole thing out \(hint: answer is in the second tab\)
 
 {% tabs %}
-{% tab title="Problem" %}
+{% tab title="exercise" %}
 ```go
 package main
 
