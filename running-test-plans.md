@@ -28,7 +28,7 @@ A `composition` run, is one in which multiple versions of the same software can 
 
 To define a composition run, a manifest for the __`single` plan must already exist. Indeed, a composition run is just multiple single runs being executed simultaneously with different versions of code being imported.
 
-Here is how we go about creating a composition test run. The following is a simple example. For a more complete example used by the libp2p project, I recommend you have a look at [this one](https://github.com/libp2p/test-plans/blob/master/dht/compositions/find-peers.example.toml).
+Here is how we go about creating a composition test run. The following is a simple example. For a more complete example used by the libp2p project, I recommend you have a look at [this one](https://github.com/libp2p/test-plans/tree/master/dht/compositions).
 
 #### when to use a composition run
 
