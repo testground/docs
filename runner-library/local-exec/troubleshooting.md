@@ -1,6 +1,6 @@
 # Troubleshooting
 
-Because many of the infrastructure provided by testground are common with the `local:docker` runner, many of the troubleshooting steps in the troubleshooting section of that runner are applicable here as well. 
+Many of the infrastructure pieces provided by Testground are common with the `local:docker` runner, therefore the troubleshooting steps of the `local:docker` runner are applicable here as well.
 
 
 
