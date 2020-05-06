@@ -12,8 +12,11 @@
   * [Runtime environment \(runenv\)](concepts-and-architecture/runtime.md)
 * [Getting started](getting-started.md)
 * [Writing test plans](writing-test-plans/README.md)
+  * [Quickstart](writing-test-plans/quickstart.md)
+  * [Parameters and test cases](writing-test-plans/paramaters-and-testcases.md)
+  * [Keeping instances in sync](writing-test-plans/synchronization.md)
+  * [Communication between instances](writing-test-plans/communication-between-instances.md)
   * [Test plan manifest](writing-test-plans/test-plan-manifest.md)
-  * [Shimming](writing-test-plans/shimming.md)
 * [Managing test plans](managing-test-plans.md)
 * [Running test plans](running-test-plans/README.md)
   * [Picking a runner](running-test-plans/picking-a-runner.md)
@@ -43,9 +46,4 @@
   * [Troubleshooting](runner-library/cluster-k8s/troubleshooting.md)
 
 ## Test Plan SDK
-
-* [Quickstart](test-plan-sdk/quickstart.md)
-* [Parameters and test cases](test-plan-sdk/paramaters-and-testcases.md)
-* [Keeping instances in sync](test-plan-sdk/synchronization.md)
-* [Communication between instances](test-plan-sdk/communication-between-instances.md)
 
