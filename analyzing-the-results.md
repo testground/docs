@@ -35,7 +35,7 @@ The logic for `outputs` collection is runner-dependent, e.g.
 ```text
 $ testground collect --runner=local:docker <run-id>
 
-$ tar -xzvvf <run-id>.tgz
+$ tar -xzvf <run-id>.tgz
 ```
 
 Testground also supports automatic outputs collection after a testplan run completes, with the `--collect` flag, which instructs the Testground client to download the outputs in the current working directory after the run concludes.
