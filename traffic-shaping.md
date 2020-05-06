@@ -18,7 +18,7 @@ import (
 
 ### Pre-check and preparation
 
-First, check to make sure the sidecar is even available. At the moment, it's only available on docker-based runners. If it's not available, just skip any networking config code and proceed.
+First, check to make sure the sidecar is available. At the moment, it's only available on docker-based runners. If it's not available, just skip any networking config code and return.
 
 ```go
 // runenv is the test instances run environment (runtime.RunEnv).
@@ -30,9 +30,9 @@ if !runenv.TestSidecar {
 netclient := network.NewClient(client, runenv)
 ```
 
-### Initialization
+### Network initialization
 
-First, wait for the sidecar to initialize the network. See the [Networking](concepts-and-architecture/networking.md) section for more details.
+Wait for the sidecar to initialize the network for this test plan instance. See the [Networking](concepts-and-architecture/networking.md) section for more details.
 
 ```go
 netclient.MustWaitNetworkInitialized(ctx)
@@ -64,15 +64,19 @@ config := network.Config{
 }
 ```
 
-NOTE: This sets _egress_ \(outbound\) properties on the link. These settings must be symmetric \(applied on both sides of the connection\) to work properly \(unless asymmetric bandwidth/latency/etc. is desired\).
+{% hint style="info" %}
+This sets _egress_ \(outbound\) properties on the link. These settings must be symmetric \(applied on both sides of the connection\) to work properly \(unless asymmetric bandwidth/latency/etc. is desired\).
+{% endhint %}
 
-NOTE: Per-subnet traffic shaping is a desired but unimplemented feature. The sidecar will reject configs with per-subnet rules set in `network.Config.Rules`.
+{% hint style="info" %}
+Per-subnet traffic shaping is a desired but unimplemented feature. The sidecar will reject configs with per-subnet rules set in `network.Config.Rules`
+{% endhint %}
 
-### **\(Optional\) Changing your IP Addresses**
+### **\(Optional\) Changing your IP address**
 
 If you don't specify an IPv4 address when configuring your network, your test instance will keep the default assignment. However, if desired, a test instance can change its IP address at any time.
 
-First, you'll need some kind of unique sequence number to ensure you don't pick conflicting addresses. If you don't already have some form of unique sequence number at this point in your tests, use the sync service to get one:
+First, you'll need some kind of unique sequence number to ensure you don't pick conflicting IP addresses. If you don't already have some form of unique sequence number at this point in your tests, use the sync service to get one:
 
 ```go
 topic := sync.NewTopic("ip-allocation", "")
@@ -93,11 +97,11 @@ ipD := byte(seq)
 config.IPv4.IP = append(config.IPv4.IP[0:2:2], ipC, ipD)
 ```
 
-NOTE: You cannot currently set an IPv6 address.
+You cannot currently set an IPv6 address.
 
 ### Apply the configuration
 
-Applying the network configuration will post the configuration to the sync service, from where the appropriate instance of sidecar will consume it to apply the rules via netlink. Once it is done, it will signal back on the `CallbackState`.
+Applying the network configuration will post the configuration to the sync service, from where the appropriate instance of sidecar will consume it to apply the rules via Netlink. Once it is done, it will signal back on the `CallbackState`.
 
 {% hint style="info" %}
 The network API will, by default, wait for `runenv.TestInstanceCount` instances to have signalled on the `CallbackState`. If you want to wait for a different number of instances, such as if only a subset of instances actually apply traffic shaping rules, you can set the `CallbackTarget` value in the configuration.
@@ -114,6 +118,6 @@ if err != nil {
 ### Appendix: What the sidecar does
 
 1. The sidecar reads the network configuration from the sync service.
-2. The sidecar applies the network configuration.
-3. The sidecar signals the configured "CallbackState".
+2. The sidecar applies network configurations requested by test plan instances.
+3. The sidecar signals the configured `CallbackState` when done.
 
