@@ -71,5 +71,5 @@ default:
 
 Additionally a `logger` is initialised as part of the `RunEnv` run environment, so that every time you call `runenv.RecordMessage("my message")` in your test plan, messages include additional metadata such as the current run identifier, group, timestamp, etc.
 
-For more information, check the &lt;&lt; PAGE &gt;&gt;.
+For more information, check the [Observability, assets and metrics](../writing-test-plans/observability-assets-and-metrics.md).
 
