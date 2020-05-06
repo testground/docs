@@ -87,13 +87,13 @@ $ testground plan import --git --from https://github.com/libp2p/test-plans
 With the plan imported \(including this composition file\), we can now build the composition. Note that this will create multiple Docker images if you're using the `local:docker` runner.
 
 ```text
-$ testground build -f find-peers.toml -w
+$ testground build composition -f find-peers.toml -w
 ```
 
 ### Executing a composition
 
 ```text
-$ testground run -f find-peers.toml
+$ testground run composition -f find-peers.toml
 ```
 
 
