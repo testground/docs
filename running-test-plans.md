@@ -48,11 +48,11 @@ case    = "quickstart"
 builder = "docker:go"
 runner  = "local:docker"
 
-total_instances = 30
+total_instances = 5
 
 [[groups]]
 id = "group1"
-instances = { count = 20 }
+instances = { count = 2 }
 
   [groups.build]
   selectors = ["foo"]
@@ -65,7 +65,7 @@ instances = { count = 20 }
 
 [[groups]]
 id = "group2"
-instances = { count = 10 }
+instances = { count = 3 }
 
   [groups.run]
   test_params = { }
