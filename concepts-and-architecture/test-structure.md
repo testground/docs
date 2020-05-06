@@ -1,8 +1,6 @@
 # Test plans and test cases
 
-## Test plans
-
-### What is a test plan?
+## What is a test plan?
 
 A test plan is a collection of test cases that exercise, benchmark, or verify a particular component, subsystem, or API of the system under test.
 
@@ -19,7 +17,7 @@ At the time of writing, Testground offers two builders:
 * **`docker:go`** compiles a Go test plan into a Docker image.
 {% endhint %}
 
-### The test plan &lt;&gt; Testground contract
+## The test plan &lt;&gt; Testground contract
 
 While test plans are opaque to the eyes of Testground, test plans and Testground promise to satisfy a contract. That contract is inspired by the [12-factor principles](https://12factor.net/), and facilitates deployment on cloud infrastructure when it's time to scale. The contract is as follows:
 
@@ -31,7 +29,7 @@ While test plans are opaque to the eyes of Testground, test plans and Testground
 The Testground community offers SDKs that make it easy for user-written test plans to adhere to the test plan contract, as well as facilitating interactions with the sync service and the emission of metrics.
 {% endhint %}
 
-### Test plan manifest
+## Test plan manifest
 
 Every test plan must contain a `manifest.toml` file at its root. This is a specification file that declares:
 
@@ -44,7 +42,7 @@ The `manifest.toml` is used by tools such as the **Testground CLI,** or the upco
 
 For more information on the format of the manifest, see [Writing test plans &gt; Test plan manifest](../writing-test-plans/test-plan-manifest.md).
 
-### Where do test plans live?
+## Where do test plans live?
 
 Test plans can be hosted and version anywhere—either on the local filesystem, or on public or private Git repositories: Testground does not care.
 
