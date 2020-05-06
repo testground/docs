@@ -23,7 +23,7 @@ Testground stores plans in the `$TESTGROUND_HOME` directory. This directory is c
 export TESTGROUND_HOME=/path/to/testground/home
 
 # create your first test plan
-testground plan create -p quickstart
+testground plan create --plan=quickstart
 ```
 
 ### 3. Start the Testground daemon
@@ -44,7 +44,7 @@ testground run single --plan=quickstart \
 
 ### You did it!
 
-This will start a flurry of activity that will leave you wondering "what gives? isn't this a simple little hello world program?". Well, Testground provides a few features that aren't exercised by this example. Continue on with this tutorial to learn more about writing test plans.
+This will start a flurry of activity that will leave you wondering _"what gives? isn't this a simple little hello world program?"_. Well, Testground provides a few features that aren't exercised by this example. Continue with this tutorial to learn more about writing test plans.
 
 Here is a list of what you have just witnessed:
 

@@ -2,7 +2,7 @@
 
 ## Adding an additional test case
 
-Parameters and Test cases are defined in the come from the `manifest.toml` file. Let's have a look once again at the `quickstart.toml` file and add this to the bottom of the file. 
+Parameters and test cases are defined in the `manifest.toml` file. Let's have a look once again at the `quickstart.toml` file and add this to the bottom of the file. 
 
 {% code title="manifests/quickstart.toml" %}
 ```
