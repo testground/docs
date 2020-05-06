@@ -22,10 +22,10 @@ Although the plan binaries are compiled for the host system, all the auxiliary i
 When Testground runs its first plan, several additional containers will be started. Here is an overview of everything Testground adds to your system
 
 * Docker containers:
-  * Redis
+  * `redis`
     * This is the backend database of the Testground sync service.
-  * Grafana
+  * `grafana`
     * Visualisation software that Testground uses for its dashboards.
-  * InfluxDB
+  * `influxdb`
     * Time-series database that Testground uses for various diagnostics and events.
 
