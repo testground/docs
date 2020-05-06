@@ -1,6 +1,12 @@
+---
+description: >-
+  This document explains a few options available for finding bugs in test plans
+  and troubleshooting failures
+---
+
 # Debugging test plans
 
-While writing a test plan, there are a few ways to troubleshoot. This document explains a few options available for finding bugs in test plans and troubleshooting failures. On this page, I will introduce bugs intentionally so we can see how the system behaves and troubleshoot it.
+While writing a test plan, there are a few ways to troubleshoot. On this page I will introduce bugs intentionally so we can see how the system behaves and troubleshoot it.
 
 ## Build errors
 
