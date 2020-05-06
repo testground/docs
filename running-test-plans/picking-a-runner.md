@@ -9,7 +9,7 @@ It is a common practice when developing a plan to use a local runner to iterate 
 |  runner | quick iteration | high instance count | network containment | quick setup |
 | :--- | :--- | :--- | :--- | :--- |
 | **local:exec** | ✅ | ❌ | ❌ | ✅ |
-| **local:docker** | ❌ | ❌ | ✅ | ✅ |
+| **local:docker** | ✅ | ❌ | ✅ | ✅ |
 | **cluster:k8s** | ❌ | ✅ | ✅ | ❌ |
 
 
