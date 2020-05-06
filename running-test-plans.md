@@ -83,11 +83,14 @@ Before we can execute this example, make sure we have a test plan we want to run
 $ testground plan create -p mycomposition
 ```
 
-Copy the file above and into a file called `composition.toml`. Because of the way this file is written, plans will use the `local:docker` runner. Be aware that the composition file will be overwritten to include the names of built artifacts!!
+Copy the file above and into a file called `composition.toml`. Because of the way this file is written, plans will use the `local:docker` runner. Be aware that the composition file will be overwritten to include the names of built artifacts!
 
-```text
-$ testground build composition -f find-peers.toml -w
-$ cat composition.toml # look at the difference
+```bash
+# build the artifacts and update the composition file
+$ testground build composition -f composition.toml -w
+
+# check the difference
+$ cat composition.toml
 ```
 
 ### Executing a composition
