@@ -1,64 +1,61 @@
 ---
-description: Interacting with the environment.
+description: Interacting with the test plan runtime environment
 ---
 
 # Runtime environment \(runenv\)
 
-{% hint style="warning" %}
-Content in this section needs to be reviewed. The `os.Getenv()` snippet is confusing, as the user will never have to do this. Replace by a table of the environment variables that are injected, and how they're used. Also let users know that the SDK deserialises the environment variables into a struct for convenient access.
-{% endhint %}
+Information about the test plan being run is sent to every test instance and available through the `runtime.RunEnv` value - the **runtime environment**.
 
-## Getting information about the test run
-
-Following the [https://12factor.net/config](https://12factor.net/config) methodology, variable information and configuration is stored in the environment. Information about the plan being run as well as any parameters passed just one `os.Getenv()` away. 
-
-Let's have a look at the information available to us as environment variables. Edit the `quickstart` plan so it looks like the following:
+Let's have a look at the information available to us via the runtime environment:
 
 ```go
-package main
+// RunEnv encapsulates the context for this test run.
+type RunEnv struct {
+	RunParams
+	*logger
 
-import (
-	"github.com/ipfs/testground/sdk/runtime"
-	"os"
-)
-
-func main() {
-	runtime.Invoke(run)
+  ...
 }
 
-func run(runenv *runtime.RunEnv) error {
-	for _, env := range os.Environ() {
-		runenv.RecordMessage(env)
-	}
-	return nil
+// RunParams encapsulates the runtime parameters for this test.
+type RunParams struct {
+	TestPlan string `json:"plan"`
+	TestCase string `json:"case"`
+	TestRun  string `json:"run"`
+
+	TestRepo   string `json:"repo,omitempty"`
+	TestCommit string `json:"commit,omitempty"`
+	TestBranch string `json:"branch,omitempty"`
+	TestTag    string `json:"tag,omitempty"`
+
+	TestOutputsPath string `json:"outputs_path,omitempty"`
+
+	TestInstanceCount  int               `json:"instances"`
+	TestInstanceRole   string            `json:"role,omitempty"`
+	TestInstanceParams map[string]string `json:"params,omitempty"`
+
+	TestGroupID            string `json:"group,omitempty"`
+	TestGroupInstanceCount int    `json:"group_instances,omitempty"`
+
+	// true if the test has access to the sidecar.
+	TestSidecar bool `json:"test_sidecar,omitempty"`
+
+	// The subnet on which this test is running.
+	//
+	// The test instance can use this to pick an IP address and/or determine
+	// the "data" network interface.
+	TestSubnet    *IPNet    `json:"network,omitempty"`
+	TestStartTime time.Time `json:"start_time,omitempty"`
 }
 
 ```
 
-When this plan is executed \(on any runner\) you should notice that several environment variables are passed. Most of these should look familiar -- these variables represent the configuration we added to our `toml` manifest along with configuration specific to the test run and and test instance.
+The runtime environment is propagated on any runner to the test instances via environment variables and then deserialised in the `runtime` package of the SDK upon start.
 
-```text
-TEST_GROUP_ID=single
-TEST_INSTANCE_COUNT=1
-TEST_RUN=442fe7759bf8
-TEST_BRANCH=
-TEST_CASE_SEQ=0
-TEST_SIDECAR=false
-TEST_PLAN=quickstart
-TEST_START_TIME=2020-04-09T17:45:31-07:00
-TEST_GROUP_INSTANCE_COUNT=1
-TEST_OUTPUTS_PATH=/some/path/outputs/quickstart/442fe7759bf8/single/0
-TEST_INSTANCE_ROLE=
-TEST_REPO=
-TEST_SUBNET=127.1.0.0/16
-TEST_TAG=
-TEST_CASE=testcase1
-TEST_INSTANCE_PARAMS=who="world"
-```
+Most of these fields should look familiar -- they represent the configuration we added to our `manifest.toml` file along with configuration specific to the test run and the test instance, such as `TestRun`, or `TestSubnet`.
 
-As a convenience, these environment variables are added to the RunParams struct, For example, if you want to find out how many instances of a plan are running, it's as easy as this:
+If you want to find out how many instances of a test plan are running, it's as easy as this:
 
-{% code title="" %}
 ```go
 select runenv.TestInstanceCount {
 case 1:
@@ -71,9 +68,8 @@ default:
   // Now this is a party!
 }
 ```
-{% endcode %}
 
-To see what else is in there, have a look at [this struct](https://github.com/ipfs/testground/blob/master/sdk/runtime/runenv.go#L66)
+Additionally a `logger` is initialised as part of the `RunEnv` run environment, so that every time you call `runenv.RecordMessage("my message")` in your test plan, messages include additional metadata such as the current run identifier, group, timestamp, etc.
 
-
+For more information, check the &lt;&lt; PAGE &gt;&gt;.
 
