@@ -17,10 +17,11 @@
   * [Parameters and test cases](writing-test-plans/paramaters-and-testcases.md)
   * [Keeping instances in sync](writing-test-plans/synchronization.md)
   * [Communication between instances](writing-test-plans/communication-between-instances.md)
+  * [Observability, assets and metrics](writing-test-plans/observability-assets-and-metrics.md)
 * [Managing test plans](managing-test-plans.md)
 * [Running test plans](running-test-plans.md)
 * [Traffic shaping](traffic-shaping.md)
-* [Analyzing the results](analyzing-the-results.md)
+* [Analyzing test run results](analyzing-the-results.md)
 * [Debugging test plans](debugging-test-plans.md)
 
 ## Runner library

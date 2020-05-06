@@ -1,8 +1,8 @@
-# Analyzing the results
+# Analyzing test run results
 
 ## **Testground outputs structure**
 
-Testground testplans emit `outputs` that you can collect and analyse after the testplan run concludes.
+Testground test plans emit `outputs` that you can collect and analyse after the test run concludes.
 
 The outputs structure is as follows:
 
@@ -64,7 +64,7 @@ INFO    created file: 975b9bc15b3b.tgz
 
 At the moment Testground doesn't provide any tools for post-processing of outputs. You are free to submit ideas and pull requests and contribute to this feature.
 
-One way to review all messages sent to `stdout` by testplan instances, is with the following command:
+One way to review all messages sent to `stdout` by test plan instances, is with the following command:
 
 ```text
 $ cd <run-id>
