@@ -92,7 +92,11 @@ This will take about 10-15 minutes to complete.
 
 Once you run this command, take some time to walk the dog, clean up around the office, or go get yourself some coffee! When you return, your shiny new Kubernetes cluster will be ready to run Testground plans.
 
-```text
+```bash
+$ git clone https://github.com/testground/infra
+
+$ cd infra
+
 $ ./k8s/install.sh ./k8s/cluster.yaml
 ```
 
