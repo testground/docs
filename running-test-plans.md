@@ -32,7 +32,7 @@ Here is how we go about creating a composition test run. The following is a simp
 
 #### when to use a composition run
 
-Composition test runs allow tests where compatibility with existing applications and software. Where single runs allow you the performance of a single version of code, compositions allow you to test compatability of your new feature with the existing network. This feature has been used heavily during libp2p DHT development.
+Composition test runs allow tests where compatibility with existing applications and software. Where single runs allow you the performance of a single version of code, compositions allow you to test the way new developments interact with the existing network. This feature has been used heavily during libp2p DHT development.
 
 ### Example composition
 
