@@ -4,6 +4,10 @@ description: Interacting with the environment.
 
 # Runtime environment \(runenv\)
 
+{% hint style="warning" %}
+Content in this section needs to be reviewed. The `os.Getenv()` snippet is confusing, as the user will never have to do this. Replace by a table of the environment variables that are injected, and how they're used. Also let users know that the SDK deserialises the environment variables into a struct for convenient access.
+{% endhint %}
+
 ## Getting information about the test run
 
 Following the [https://12factor.net/config](https://12factor.net/config) methodology, variable information and configuration is stored in the environment. Information about the plan being run as well as any parameters passed just one `os.Getenv()` away. 

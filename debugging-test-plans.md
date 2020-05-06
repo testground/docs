@@ -223,6 +223,18 @@ On Testground gaining access to the `pprof` port can sometimes be non-obvious. A
 # Plans in the local:exec runner operate in the default namespace.
 # the first plan will grab port 6060 and the any additional will listen
 # on a random port.
+#
+# look for the following messages in the test run output to figure out
+# the URL where to access the pprof endpoint of each instance:
+#
+# May  6 14:32:10.146239	INFO	0.0174s    MESSAGE << instance   1 >>
+# registering default http handler at: http://[::]:6060/
+# (pprof: http://[::]:6060/debug/pprof/)
+#
+# May  6 14:32:10.146535	INFO	0.0179s    MESSAGE << instance   2 >>
+# registering default http handler at: http://[::]:64912/
+# (pprof: http://[::]:64912/debug/pprof/)
+
 
 $ echo "top" | go tool pprof http://localhost:6060/debug/pprof/heap
 
