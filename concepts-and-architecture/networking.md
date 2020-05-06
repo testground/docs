@@ -1,25 +1,27 @@
 # Networking
 
-All Testground runners _except_ for the `local:exec` runner have two networks: **a `control` and a `data` network.**
+All Testground runners _except_ for the `local:exec` runner have two networks: a **`control`** and a **`data`** network.
 
-* Test plan instances communicate with each other over the **`data`** network.
-* Test plan instances communicate with infrastructure services such as the [sync service](sync-service.md) and **InfluxDB** over the control network.
+* Test plan instances communicate with each other over the `data`network.
+* Test plan instances communicate with infrastructure services such as the [sync service](sync-service.md) and InfluxDB over the `control` network.
 
 {% hint style="info" %}
 This separation allows test instances to simulate disconnected scenarios; intermittent, failing connectivity; or high-latency scenarios without affecting other infrastructural comms.
 {% endhint %}
 
 {% hint style="warning" %}
-The `local:exec` runner will use your machine's local network interfaces. **For now, this runner doesn't support traffic shaping.**
+The `local:exec` runner will use your machine's local network interfaces.
+
+**For now, this runner doesn't support traffic shaping.**
 {% endhint %}
 
 ### Control Network
 
-The `control` network is used to be communicate with Testground services, such as the [sync service](sync-service.md) or **InfluxDB**. You don't need to do anything special to configure or use this network: the [sidecar](sidecar.md) will do it for you automatically.
+The `control` network is used to be communicate with Testground services, such as the [sync service](sync-service.md) or InfluxDB. You don't need to do anything special to configure or use this network: the [sidecar](sidecar.md) will do it for you automatically.
 
 After the [sidecar](sidecar.md) is finished _initializing the network_, it should be impossible to use the `control` network to communicate with other test plan instances.
 
-However, a good test plan should avoid listening on and/or announcing the `control` network _anyways_ to ensure that it doesn't interfere with the test. **Your test plan should always communicate via the data network; continue reading.**
+However, a good test plan should avoid listening on and/or announcing the `control` network _anyways_ to ensure that it doesn't interfere with the test. **Your test plan should always communicate with other test instances via the data network.**
 
 ### Data Network
 
