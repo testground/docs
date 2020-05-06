@@ -1,21 +1,12 @@
 # Picking a runner
 
-Plans which run on one runner will run on them all. The following describes the features of different runners. 
+Plans which run on one runner generally should run be runnable on all other runners as well. The following table describes the features of different runners.
 
-It is a common practice when developing a plan to use a local runner to iterate quickly and then move to the kubernetes runner when the time comes to run a larger test.
-
-
+It is common practice when developing a test plan to use a local runner \(`local:exec` or `local:docker`\) in order to iterate quickly and then move to the Kubernetes `cluster:k8s` runner when you want to run your test plan with many more test instances.
 
 |  runner | quick iteration | high instance count | network containment | quick setup |
 | :--- | :--- | :--- | :--- | :--- |
 | **local:exec** | ✅ | ❌ | ❌ | ✅ |
 | **local:docker** | ✅ | ❌ | ✅ | ✅ |
 | **cluster:k8s** | ❌ | ✅ | ✅ | ❌ |
-
-
-
-#### future development:
-
-* Integration with CI/CD
-* Automated analysis pipelines
 
