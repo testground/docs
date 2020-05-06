@@ -63,11 +63,10 @@ instances = { count = 2 }
 id = "group2"
 instances = { count = 3 }
 
+  [groups.build]
+  
   [groups.run]
   test_params = { }
-
-  [groups.build]
-
 ```
 {% endcode %}
 
