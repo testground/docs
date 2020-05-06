@@ -2,9 +2,9 @@
 
 ## Adding an additional test case
 
-Parameters and test cases are defined in the `manifest.toml` file. Let's have a look once again at the `quickstart.toml` file and add this to the bottom of the file. 
+Parameters and test cases are defined in the `manifest.toml` file. Let's have a look once again at the `quickstart/manifest.toml` file and add two test cases to the bottom of the file:
 
-{% code title="manifests/quickstart.toml" %}
+{% code title="plans/quickstart/manifest.toml" %}
 ```
 ...
 
@@ -53,14 +53,13 @@ func run(runenv *runtime.RunEnv) error {
 	}
 	return nil
 }
-
 ```
 {% endcode %}
 
 Before we run this plan, we can see that the server has two test cases in the listing. We can select which test case we would like to test by runtime flag. With the Testground daemon running in another terminal, execute the following to see a list of the new test cases we have just created.
 
 ```text
-$ testground list | grep quickstart
+$ testground plan list --testcases | grep quickstart
 quickstart    smallbrain
 quickstart    bigbrain
 ```
