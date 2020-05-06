@@ -70,7 +70,7 @@ For more examples and ideas, visit:
 
 ### Healthchecks
 
-Testground comes equipt with system healthchecks that have \*some\* self-fixing features. These healthchecks are able to fix any containers that are added by testground, but it cannot fix anything related to your user account or with installing the docker daemon itself.
+Testground comes equipped with system healthchecks that have \*some\* self-fixing features. These healthchecks are able to fix any containers that are added by testground, but it cannot fix anything related to your user account or with installing the docker daemon itself.
 
 To view current healthcheck status, and issue automatic remediation, use the following commands. Under normal circumstances, this is unnecessary since they will be started automatically if a problem is detected.
 
