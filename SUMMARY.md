@@ -12,11 +12,11 @@
   * [Runtime environment \(runenv\)](concepts-and-architecture/runtime.md)
 * [Getting started](getting-started.md)
 * [Writing test plans](writing-test-plans/README.md)
-  * [Quickstart](writing-test-plans/quickstart.md)
+  * [Plan Writing Quickstart](writing-test-plans/quickstart.md)
+  * [Understanding the test plan manifest](writing-test-plans/test-plan-manifest.md)
   * [Parameters and test cases](writing-test-plans/paramaters-and-testcases.md)
   * [Keeping instances in sync](writing-test-plans/synchronization.md)
   * [Communication between instances](writing-test-plans/communication-between-instances.md)
-  * [Test plan manifest](writing-test-plans/test-plan-manifest.md)
 * [Managing test plans](managing-test-plans.md)
 * [Running test plans](running-test-plans/README.md)
   * [Picking a runner](running-test-plans/picking-a-runner.md)
@@ -44,6 +44,4 @@
   * [Monitoring and Observability](runner-library/cluster-k8s/monitoring.md)
   * [Understanding Testground performance on Kubernetes](runner-library/cluster-k8s/understanding-testground-performance-on-kubernetes.md)
   * [Troubleshooting](runner-library/cluster-k8s/troubleshooting.md)
-
-## Test Plan SDK
 

@@ -2,7 +2,7 @@
 description: Writing your first test plan
 ---
 
-# Quickstart
+# Plan Writing Quickstart
 
 ## Hello, Test Plans!
 

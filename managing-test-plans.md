@@ -6,7 +6,7 @@ The unit for testing in Testground is a `test plan` also referred to as simply a
 
 A test plan is a directory which contains the code to be executed during the test and a `toml`-formatted manifest file, which explains the plan to the Testground system.
 
-Writing new test plans from scratch is covered elsewhere in this tutorial, for now, just know that a `test plan` is a directory with a test plan manifest and that each test plan may have one or more `test case`s.
+Writing new test plans from scratch is covered elsewhere in this tutorial, for now, just know that a `test plan` is a directory with a test plan manifest and that each test plan may have one or more `test cases`.
 
 Testground provides some basic functionality to assist importing and creating of test plans.
 
