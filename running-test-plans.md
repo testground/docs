@@ -81,7 +81,7 @@ instances = { count = 49 }
 Before we can execute this example, make sure the plans are imported
 
 ```text
-$ testground plan import --git --source https://github.com/libp2p/test-plans
+$ testground plan import --git --from https://github.com/libp2p/test-plans
 ```
 
 With the plan imported \(including this composition file\), we can now build the composition. Note that this will create multiple Docker images if you're using the `local:docker` runner.
