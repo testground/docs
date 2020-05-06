@@ -113,6 +113,8 @@ Create tailored test runs by composing scenarios declaratively, with different g
 
 Emit and collect/export/download test outputs \(logs, assets, event trails, run events, etc.\) from all participants in a run.
 
+## Documentation issues
+
 {% hint style="warning" %}
 **This docs site is work-in-progress!** You're bound to find dragons 🐉 in some sections, so please bear with us! If something looks wrong, please [open a docs issue](https://github.com/testground/testground/issues/new?assignees=&labels=docs&template=DOCS.md&title=docs%20site:%20%3Cdescribe%20the%20problem%3E) on our main repo.
 {% endhint %}
