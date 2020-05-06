@@ -1,4 +1,4 @@
-# System overview
+# local:exec
 
 ## Background
 
@@ -8,7 +8,7 @@ This runner is the only one which does not use a sidecar to modify the networkin
 
 ## Dependencies
 
-Although the plan binaries are compiled for the host system, all the auxiliary infrastructure is provided by Docker. This configuration enables easy installation of the sync service and monitoring infrastructure while maintaining quick build-execute cycle which is the advantage of this runner.
+Although the plan binaries are compiled for the host system, all the auxiliary infrastructure is provided by Docker. This configuration enables easy installation of the sync service and monitoring infrastructure while maintaining quick build-execute iteration cycle which is the advantage of this runner.
 
 * A laptop or desktop with reasonable hardware specs. If your computer is newer than 5 or 6 years old, it will probably be just fine. To be able run simulations of a reasonable size, we recommend at least the following:
   * 8GB memory
@@ -28,4 +28,8 @@ When Testground runs its first plan, several additional containers will be start
     * Visualisation software that Testground uses for its dashboards.
   * `influxdb`
     * Time-series database that Testground uses for various diagnostics and events.
+
+## Troubleshooting
+
+Many of the infrastructure pieces provided by Testground are common with the `local:docker` runner, therefore the troubleshooting steps of the `local:docker` runner are applicable here as well.
 

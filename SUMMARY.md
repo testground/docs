@@ -25,9 +25,7 @@
 
 ## Runner library
 
-* [local:exec](runner-library/local-exec/README.md)
-  * [System overview](runner-library/local-exec/system-overview.md)
-  * [Troubleshooting](runner-library/local-exec/troubleshooting.md)
+* [local:exec](runner-library/local-exec.md)
 * [local:docker](runner-library/local-docker/README.md)
   * [System overview](runner-library/local-docker/system-overview.md)
   * [Runner flags](runner-library/local-docker/runner-flags.md)
