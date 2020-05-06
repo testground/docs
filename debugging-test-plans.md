@@ -85,7 +85,7 @@ I can't claim that build errors will always be as easy to diagnose as this one, 
 
 The next technique is useful for plans which build correctly and you want to observe the behaviour for debugging. If you have ever debugged a program by adding logging or printing to the screen, you know exactly what I'm talking about. On Testground plans can emit events and messages.
 
-```text
+```go
 runenv.RecordEvent("this is a message")
 ```
 
