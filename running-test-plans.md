@@ -39,7 +39,7 @@ name    = "find-peers-01"
 author  = "raulk"
 
 [global]
-plan    = "dht"
+plan    = "test-plans/dht"
 case    = "find-peers"
 builder = "exec:go"
 runner  = "local:exec"
