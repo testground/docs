@@ -92,7 +92,6 @@ runenv.RecordEvent("this is a message")
  Another thing which might be useful for debugging is events.  Just like messages, events can be used as a point-in-time caputre of the current state. Events are included in the outputs collection. They are recorded in the order they occur for each plan instance. We created R\(\) and D\(\) metrics collectors \(results and debugging\).  The difference between these two is that debugging is sent to the metrics pipeline fairly quickly whereas results are collected at the end of a test run.
 
 ```go
-...
 var things int
 for {
   // work work work...
@@ -100,7 +99,6 @@ for {
   runenv.D().RecordPoint("how_many_things", things)
 }
 runenv.R().RecordPoint("total_things", things)
-...
 ```
 
 To see how this works, let's use [ron swanson's classic dilemma](http://adit.io/posts/2013-05-11-The-Dining-Philosophers-Problem-With-Ron-Swanson.html).
