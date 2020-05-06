@@ -4,7 +4,7 @@ description: Building plans
 
 # Builders
 
-A builder is a component that takes a plan source code, and optionally the SDK's source code, and compiles it into a _**build artifact**_, ready to be used by compatible [Runners](runners.md) to schedule test workloads on Testground.
+A **builder** is a component that takes a plan source code, and optionally the SDK's source code, and compiles it into a _**build artifact**_, ready to be used by compatible [Runners](runners.md) to schedule test workloads on Testground.
 
 The build process is different depending on the language of the plan, and the kind of build artifact being targeted. Here's a simple diagram to understand how builders and runners relate to one another.
 
@@ -21,8 +21,8 @@ Builder names follow the format: `<build artifact type>:<language>`
 
 | builder | input language | output type | compatible runners |
 | :--- | :--- | :--- | :--- |
-| `exec:go` | go | os-specific executable | `local:exec` |
-| `docker:go` | go | docker image | `local:docker`, `cluster:k8s` |
+| `exec:go` | Go | os-specific executable | `local:exec` |
+| `docker:go` | Go | Docker image | `local:docker`, `cluster:k8s` |
 
 ## Builder configuration options
 
@@ -31,7 +31,7 @@ The builders accept options on the command-line which can customize their behavi
 Builder configuration options can be provided by various means, in the following order of precedence \(highest precedence to lowest precedence\):
 
 1. CLI `--build-cfg` flags for `single` commands, and in the composition file for `composition` commands.
-2.  .env.toml: `[builders]` section.
+2.  `.env.toml`: `[builders]` section.
 3. Test plan manifest.
 4. Builder defaults \(applied by the runner\).
 
@@ -70,13 +70,13 @@ Single build for a single test for the example/output plan using the exec:go bui
 $ testground build single --plan=example --builder=exec:go
 ```
 
-Same, using the `docker:go` builder. This command will produce a docker image.
+Same, using the `docker:go` builder. This command will produce a Docker image.
 
 ```bash
 $ testground build single --plan=example --builder=docker:go
 ```
 
-Use the `docker:go` builder to build an image and then upload the image to DockerHub \(configure credentials in [env.toml file](../getting-started.md)\).
+Use the `docker:go` builder to build an image and then push the image to DockerHub \(configure credentials in [env.toml file](../getting-started.md)\).
 
 ```bash
 $ testground build single --plan=example --builder=docker:go \
