@@ -8,7 +8,7 @@ description: Writing your first test plan
 
 In this quick start tutorial you will get up and running with a simple test plan. Later tutorials will go deeper into features of the plan SDK and how to use it to simulate P2P network environments. But for now, let's get your hands dirty writing your first test plan. Hello!
 
-Following this steps will create a test plan allong with all supporing files. Lets dive right in, and and I'll explain as we go.
+Following this steps will create a test plan along with all supporting files. Lets dive right in, and and I'll explain as we go.
 
 ### 1. Install testground \(if you haven't already\)
 
@@ -20,11 +20,11 @@ make install
 
 ### 2. Create a plan
 
-testground stores plans in a directory called the `TESTGROUND_HOME`. Typically this is created for you in your home directory, but if you prefer to store plans in another location, you can adjust the location using this environment variable.
+testground stores plans in a directory called the `TESTGROUND_HOME`. Typically this is created for you in your home directory, but if you prefer to store plans in another location, you can adjust the location using this environment variable. After you run this command, have a look inside the 
 
 ```bash
 export TESTGROUND_HOME=/path/to/testground/home #optional
-testground plan create -p newplan
+testground plan create -p quickstart
 ```
 
 ### 3. Start testground daemon
@@ -36,7 +36,7 @@ testground daemon
 ### 4. Run the plan!
 
 ```text
-testground run single -p newplan -t quickstart -r local:docker -b docker:go -i 1
+testground run single -p quickstart -t quickstart -r local:docker -b docker:go -i 1
 ```
 
 ### You did it!

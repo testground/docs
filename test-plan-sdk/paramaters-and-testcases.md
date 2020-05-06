@@ -61,19 +61,14 @@ Before we run this plan, we can see that the server has two test cases in the li
 
 ```text
 $ testground list | grep quickstart
-quickstart/smallbrain
-quickstart/bigbrain
+quickstart    smallbrain
+quickstart    bigbrain
 ```
 
 The time has come now to compare these test cases. Let's run it!
 
 ```text
-$ testground run single \
-    --plan=quickstart \
-    --testcase=smallbrain \
-    --builder=exec:go \
-    --runner=local:exec \
-    --instances=1
+$ testground run single -p quickstart -t smallbrain -b exec:go -r local:exec -i 1
 ```
 
 {% hint style="info" %}

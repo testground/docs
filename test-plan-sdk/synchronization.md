@@ -8,7 +8,7 @@ The general concept is this -- as a plan reaches a phase of execution for which 
 Internally, this is a simple counter backed by a redis database. To wait for a signal barrier means to wait until the counter reaches the specified number.
 {% endhint %}
 
-Lets have a look at a plan that waits for others! The plan displayed here is out of the [example plans](https://github.com/ipfs/testground/tree/master/plans/example). Notice the use of `writer.SignalEntry` to designate the entry the synchronized portion of the plan and the use of `watcher.Barrier` to wait for others to reach the same state. In this test case, the first plan to create a writer will act as th coordinator and all the others will follow.
+Lets have a look at a plan that waits for others! The plan displayed here is out of the [example plans](https://github.com/ipfs/testground/tree/master/plans/example). Notice the use of `writer.SignalEntry` to designate the entry the synchronized portion of the plan and the use of `watcher.Barrier` to wait for others to reach the same state. In this test case, the first plan to create a writer will act as the coordinator and all the others will follow.
 
 ```go
 func ExampleSync(runenv *runtime.RunEnv) error {
@@ -177,5 +177,5 @@ null
 {% endtab %}
 {% endtabs %}
 
-Synchronization bariers are curcial for many complex test plans and for any test plan which has distinct initialization and test phases, this is a crucial component. 
+Synchronization bariers are crucial for many complex test plans and for any test plan which has distinct initialization and test phases, this is a crucial component. 
 

@@ -140,9 +140,13 @@ func run(runenv *runtime.RunEnv) error {
 }
 ```
 
-Run with multiple instances, like this:
+Run with multiple instances, like this: 
 
 ```text
-$ testground run single quickstart/quickstart --builder exec:go --runner local:exec --instances 2
+$ testground run single -p quickstart -t quickstart -b exec:go -r local:exec -i 2
 ```
+
+{% hint style="info" %}
+Notice that instances is set to 2. Two instances will run at the same time.
+{% endhint %}
 
