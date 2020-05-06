@@ -1,6 +1,6 @@
 # Troubleshooting
 
-### Verify docker is working correctly:
+## Verify that Docker is working correctly
 
 The following command, if it runs successfully, will verify that docker if running correctly.
 
@@ -34,16 +34,16 @@ For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 ```
 
-### Docker error messages
+## Docker error messages
 
 | Message | Cause | Fix |
 | :--- | :--- | :--- |
-| engine build error: docker build failed: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running? | Docker daemon is not running.  | `sudo systemctl start docker` |
-| read tcp xxx.xxx.xxx.xxx:443 i/o timeout | cannot connect to hub | this is a frequent and probably transient issue. Try again. |
+| `engine build error: docker build failed: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?` | Docker daemon is not running.  | Restart the Docker daemon |
+| `read tcp xxx.xxx.xxx.xxx:443 i/o timeout` | Cannot connect to remote repository | This is a frequent and probably transient error. Try again. |
 
-### Troubleshooting issues:
+## Troubleshooting
 
-* Plans fail to finish before context expires
+* Test plans fail to finish before context expires
 
   This may be caused by high load on the host machine. Try to reduce the load using the following:
 
@@ -51,9 +51,9 @@ For more examples and ideas, visit:
   * terminate old test plan containers \(if any\) with `testground terminate`
   * close applications which may cause enough load to interfere with the test
 
-*  Plans fail while wating on a barrier
+*  Test plans fail while waiting on a barrier
 
-  This may indicate a problem with the sync service. Investigate and try again
+  This may indicate a problem with the sync service or the sidecar. Investigate and try again.
 
   * `docker logs testground-redis`
   * `docker kill testground-redis`
@@ -66,17 +66,16 @@ For more examples and ideas, visit:
   * `docker logs <suspicious_container>`
   * `docker stats`
 
-### 
+## Healthchecks
 
-### Healthchecks
+Testground comes equipped with `healthchecks` that have _some_ self-fixing features. These healthchecks are able to fix any container that is added by Testground, but it cannot fix anything related to your user account or host system.
 
-Testground comes equipped with system healthchecks that have \*some\* self-fixing features. These healthchecks are able to fix any containers that are added by testground, but it cannot fix anything related to your user account or with installing the docker daemon itself.
+To view current `healthcheck` status, and issue automatic remediation, use the following commands. Under normal circumstances, this is unnecessary since they will be started automatically if a problem is detected.
 
-To view current healthcheck status, and issue automatic remediation, use the following commands. Under normal circumstances, this is unnecessary since they will be started automatically if a problem is detected.
-
-```text
-# view the status
+```bash
+# view the healthcheck status
 $ testground healthcheck --runner local:docker
+
 finished checking runner local:docker
 Checks:
 - local-outputs-dir: ok; directory exists.
@@ -93,7 +92,7 @@ Fixes:
 - sidecar-container: omitted; 
 
 
-# Fix the problems automatically
+# fix the problems automatically
 $ testground healthcheck --runner local:docker --fix
 
 ... a few seconds later
