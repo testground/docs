@@ -14,7 +14,7 @@ While writing a test plan, there are a few ways to troubleshoot. On this page I 
 $ testground plan create --plan planbuggy
 ```
 
-The command above will create a default `quickstart` test cases. Unfortunately, for our purposes, the plan has no bugs. Edit `main.go` so it contains the following buggier code.
+The command above will create a default `quickstart` test cases. Unfortunately, for our purposes, the plan has no bugs. Edit `main.go` so it contains the following buggier code:
 
 {% code title="main.go" %}
 ```go
