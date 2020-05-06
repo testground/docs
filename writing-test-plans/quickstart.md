@@ -2,25 +2,21 @@
 description: Writing your first test plan
 ---
 
-# Plan Writing Quickstart
+# Quick start
 
 ## Hello, Test Plans!
 
-In this quick start tutorial you will get up and running with a simple test plan. Later tutorials will go deeper into features of the plan SDK and how to use it to simulate P2P network environments. But for now, let's get your hands dirty writing your first test plan. Hello!
+In this quick start tutorial you will get up and running with a simple test plan. Later tutorials will go deeper into features of the Testground SDK and how to use it to simulate P2P network environments. For now, let's get your hands dirty writing your first test plan.
 
-Following this steps will create a test plan along with all supporting files. Lets dive right in, and and I'll explain as we go.
+Following these steps you will create a test plan along with all supporting files.
 
-### 1. Install testground \(if you haven't already\)
+Let's dive right in, and I'll explain as we go.
 
-```bash
-go get github.com/testground/testground
-cd $GOPATH/src/github.com/testground/testground
-make install
-```
+### 1. [Install Testground \(if you haven't already\)](../getting-started.md)
 
-### 2. Create a plan
+### 2. Create a test plan
 
-testground stores plans in a directory called the `TESTGROUND_HOME`. Typically this is created for you in your home directory, but if you prefer to store plans in another location, you can adjust the location using this environment variable. After you run this command, have a look inside the 
+Testground stores plans in the `$TESTGROUND_HOME` directory. This directory is created for you in your `home` directory, but if you prefer to store plans in another location, you can adjust the location using the environment variable.
 
 ```bash
 export TESTGROUND_HOME=/path/to/testground/home #optional

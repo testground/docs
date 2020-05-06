@@ -92,7 +92,7 @@ $ testground run single \
 ```
 
 {% hint style="info" %}
-The first run as the Testground daemon sets up the builder and runner environments. **Subsequent runs will be faster.**
+During the first run the Testground daemon sets up the builder and runner environments. Subsequent runs will be faster.
 {% endhint %}
 
 You should see a flurry of activity, including measurements, messages, and runtime events. When the execution concludes, you will see something like:

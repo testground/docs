@@ -12,7 +12,7 @@
   * [Runtime environment \(runenv\)](concepts-and-architecture/runtime.md)
 * [Getting started](getting-started.md)
 * [Writing test plans](writing-test-plans/README.md)
-  * [Plan Writing Quickstart](writing-test-plans/quickstart.md)
+  * [Quick start](writing-test-plans/quickstart.md)
   * [Understanding the test plan manifest](writing-test-plans/test-plan-manifest.md)
   * [Parameters and test cases](writing-test-plans/paramaters-and-testcases.md)
   * [Keeping instances in sync](writing-test-plans/synchronization.md)
