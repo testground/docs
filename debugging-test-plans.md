@@ -28,7 +28,7 @@ func run(runenv *runtime.RunEnv) error {
 ```
 {% endcode %}
 
-#### How it looks in terminal output
+### How it looks in terminal output
 
 When this plan runs, the code is sent to the daemon to be built. Of course, this will fail. Notice that the output comes in several sections.  The section labeled `Server output` shows us the error encountered by our builder.
 
@@ -61,7 +61,7 @@ engine build error: failed to run the build; exit status 2
 
 In this case, the error is pretty straightforward, but in a more complex plan, this output can be difficult to parse. So what can you do?
 
-#### Using standard debugging tools
+### Using standard debugging tools
 
 Test plans are regular executables which accept configuration through environment variables. Because of this, you can test by compiling, testing, and running code. Except for the sync service, the code can be tested outside of Testground. Let's test the code this time without sending it to the Testground daemon. Let's see what the same code looks like testing locally.
 
@@ -83,12 +83,10 @@ I can't claim that build errors will always be as easy to diagnose as this one, 
 
 ## Debugging with message output
 
-The next technique is useful for plans which build correctly and you want to observe the behavior for debugging. If you have ever debugged a program by adding logging or printing to the screen, you know exactly what I'm talking about. On Testground, plans can emit events and messages.
+The next technique is useful for plans which build correctly and you want to observe the behaviour for debugging. If you have ever debugged a program by adding logging or printing to the screen, you know exactly what I'm talking about. On Testground plans can emit events and messages.
 
 ```text
-...
 runenv.RecordEvent("this is a message")
-...
 ```
 
  Another thing which might be useful for debugging is events.  Just like messages, events can be used as a point-in-time caputre of the current state. Events are included in the outputs collection. They are recorded in the order they occur for each plan instance. We created R\(\) and D\(\) metrics collectors \(results and debugging\).  The difference between these two is that debugging is sent to the metrics pipeline fairly quickly whereas results are collected at the end of a test run.
