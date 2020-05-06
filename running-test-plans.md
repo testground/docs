@@ -24,15 +24,11 @@ A single test run can be used to benchmark, validate, or observe the behaviour o
 
 ## Composition runs
 
-A `composition` run, is one in which multiple versions of the same software can be tested simultaneously. 
+A `composition` run, is one in which multiple versions of the same software can be tested simultaneously.  Where single runs allow you the performance of a single version of code, compositions allow you to test the way new developments interact with the existing network. This feature has been used heavily during libp2p DHT development.
 
 To define a composition run, a manifest for the __`single` plan must already exist. Indeed, a composition run is just multiple single runs being executed simultaneously with different versions of code being imported.
 
 Here is how we go about creating a composition test run. The following is a simple example. For a more complete example used by the libp2p project, I recommend you have a look at [libp2p compositions](https://github.com/libp2p/test-plans/tree/master/dht/compositions).
-
-#### when to use a composition run
-
-Composition test runs allow tests where compatibility with existing applications and software. Where single runs allow you the performance of a single version of code, compositions allow you to test the way new developments interact with the existing network. This feature has been used heavily during libp2p DHT development.
 
 ### Example composition
 
