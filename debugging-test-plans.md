@@ -14,7 +14,7 @@ The command above will create a default `quickstart` test cases. Unfortunately, 
 ```go
 package main
 
-import "github.com/testground/testground/sdk/runtime"
+import "github.com/testground/sdk-go/runtime"
 
 func main() {
 	runtime.Invoke(run)
@@ -114,7 +114,7 @@ In the following plan, five ~~philosophers~~ Ron Swansons sit at a table with fi
 package main
 
 import (
-	"github.com/ipfs/testground/sdk/runtime"
+	"github.com/testground/sdk-go/runtime"
 	"sync"
 )
 
