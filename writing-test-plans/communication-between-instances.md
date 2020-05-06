@@ -1,14 +1,14 @@
 # Communication between instances
 
-For some test plans, it is useful to pass information from one instance to anther. In addition to direct network connectivity, test plans can pass information between instances using the testground sync service. In this tutorial, we will explore typed typed message passing through the testground sync service.
+For some test plans, it is useful to pass information from one instance to another. In addition to direct network connectivity, test plans can pass information between instances using the Testground `sync service`.
 
-Under the covers, communication between instances happens through a redis server using `XADD` and `XREAD` to to stream json-encoded objects. The producer of the data writes to the stream, and the receiver subscribes to it.
+In this tutorial, we will explore typed message passing through the Testground sync service.
 
-Lets create a plan in which one of the plans produces a structure which is re-constructed on the distant end.  First, I'll show short snipits with the relevent informaiton, and the whole test plan will be shown at the end.
+Lets create a plan in which one of the plans produces a `struct` which is re-constructed on the distant end. First, I'll show short snippets with the relevant information, and the whole test plan will be shown at the end.
 
-#### Setting up the subtree
+### Setting up the`topic`
 
-This is the kind of object we will be transferring.
+`Transferrable` is the value type we will be transferring. 
 
 ```go
 type Transferrable struct {
@@ -18,50 +18,43 @@ type Transferrable struct {
 }
 ```
 
-The object will be transferred over a subtree. Think of the subtree as a named and typed channel for transferring objects between plan instances. This subtree is named `transfer-key` and the type of object I expect to get out of it is `pointer to Transferrable`.
+The value will be transferred over a `topic`. Think of the `topic` as a named and typed channel for transferring values between plan instances. This topic is named `transfer-key` and the value type I expect to get out of it is `pointer to Transferrable`.
 
 ```go
-	st := sync.Subtree{
-		GroupKey:    "transfer-key",
-		PayloadType: reflect.TypeOf(&Transferrable{}),
-	}
+st := sync.NewTopic("transfer-key", &Transferrable{})
 ```
 
-#### Writing to the subtree
+### Publishing to a `topic`
 
-To write to the subtree, create a `sync.Writer` and use it to write to the subtree we have just defined. Notice that the type of the object we are writing must match the type of the subtree.
+To write to a topic, create a bounded client and use it to publish to the topic we have just defined.
 
 ```go
 	ctx := context.Background()
+	
+	client := sync.MustBoundClient(ctx, runenv)
+	defer client.Close()
 
-	writer, err := sync.NewWriter(ctx, runenv)
-	if err != nil {
-		return err
-	}
-	writer.Write(ctx, &st, &Transferrable{"Guy#1", 1, false})
-
+	client.Publish(ctx, st, &Transferrable{"Guy#1", 1, false})
 ```
 
-#### Reading from the subtree
+### Reading from a `topic`
 
-Subscribe to the subtree we created earlier by creating a watcher and setting up a channel to receive the received interfaces.
+Subscribe to the topic we created earlier and set up a channel to receive the values.
 
 ```go
 	tch := make(chan *Transferrable)
-	watcher, err := sync.NewWatcher(ctx, runenv)
+	
+	_, err = client.Subscribe(ctx, st, tch)
 	if err != nil {
-		return err
+		panic(err)
 	}
-	watcher.Subscribe(ctx, &st, tch)
 ```
 
-#### But who subscribes and who publishes?
+### Who subscribes and who publishes?
 
-This question is left up to the plan writer, and certainly different situations will call for different implementations. In this example, all the plans will publish and all will subscribe, but there are some scenarios where this is inappropriate.
+This question is left up to the plan writer, and certainly different situations will call for different implementations. In this example, all the plans will publish and all will subscribe, but there are scenarios where this is inappropriate.
 
-
-
-#### Full Example
+### Full Example
 
 ```go
 package main
@@ -70,10 +63,10 @@ import (
 	"context"
 	"fmt"
 	"math/rand"
-	"reflect"
+	"time"
 
-	"github.com/ipfs/testground/sdk/runtime"
-	"github.com/ipfs/testground/sdk/sync"
+	"github.com/testground/sdk-go/runtime"
+	"github.com/testground/sdk-go/sync"
 )
 
 type Sport int
@@ -86,7 +79,7 @@ const (
 )
 
 func (s Sport) String() string {
-	return [...]string{"football", "basketball", "baseball", "hockey"}[s]
+	return [...]string{"football", "tennis", "hockey", "golf"}[s]
 }
 
 type Transferrable struct {
@@ -108,28 +101,30 @@ func main() {
 }
 
 func run(runenv *runtime.RunEnv) error {
+	rand.Seed(time.Now().UnixNano())
+
 	ctx := context.Background()
-	watcher, writer := sync.MustWatcherWriter(ctx, runenv)
-	st := sync.Subtree{
-		GroupKey:    "transfer-key",
-		PayloadType: reflect.TypeOf(&Transferrable{}),
-	}
+	client := sync.MustBoundClient(ctx, runenv)
+	defer client.Close()
+	
+	st := sync.NewTopic("transfer-key", &Transferrable{})
 
 	// Configure the test
 	myName := fmt.Sprintf("Guy#%d", rand.Int()%100)
 	mySport := Sport(rand.Int() % 4)
 	howMany := runenv.TestInstanceCount
 
-	// Publisher
-	writer.Write(ctx, &st, &Transferrable{myName, mySport, false})
+	// Publish my entry
+	client.Publish(ctx, st, &Transferrable{myName, mySport, false})
 
-	// Wait until published
-	writer.SignalEntry(ctx, "ready")
-	<-watcher.Barrier(ctx, "ready", int64(howMany))
+	// Wait until all instances have published entries
+	readyState := sync.State("ready")
+	client.MustSignalEntry(ctx, readyState)
+	<-client.MustBarrier(ctx, readyState, howMany).C
 
-	// Subscriber
+	// Subscribe to the `transfer-key` topic
 	tch := make(chan *Transferrable)
-	watcher.Subscribe(ctx, &st, tch)
+	client.Subscribe(ctx, st, tch)
 
 	for i := 0; i < howMany; i++ {
 		t := <-tch
@@ -140,13 +135,13 @@ func run(runenv *runtime.RunEnv) error {
 }
 ```
 
-Run with multiple instances, like this: 
+Run with multiple instances: 
 
 ```text
-$ testground run single -p quickstart -t quickstart -b exec:go -r local:exec -i 2
+$ testground run single -p quickstart -t quickstart -b exec:go -r local:exec -i 4
 ```
 
 {% hint style="info" %}
-Notice that instances is set to 2. Two instances will run at the same time.
+Notice that instances is set to 4. Four instances will run at the same time.
 {% endhint %}
 
