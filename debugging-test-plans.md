@@ -19,6 +19,7 @@ import "github.com/testground/sdk-go/runtime"
 func main() {
 	runtime.Invoke(run)
 }
+
 func run(runenv *runtime.RunEnv) error {
 	// No closing quote, will not build.
 	runenv.RecordMessage("Hello Bugs)
@@ -31,7 +32,7 @@ func run(runenv *runtime.RunEnv) error {
 
 When this plan runs, the code is sent to the daemon to be built. Of course, this will fail. Notice that the output comes in several sections.  The section labeled `Server output` shows us the error encountered by our builder.
 
-```text
+```bash
 $ testground run single --plan planbuggy --testcase quickstart --runner local:exec --builder exec:go --instances 1
 
 May  5 00:31:15.650020	INFO	using home directory: /home/cory/testground
@@ -64,7 +65,7 @@ In this case, the error is pretty straightforward, but in a more complex plan, t
 
 Test plans are regular executables which accept configuration through environment variables. Because of this, you can test by compiling, testing, and running code. Except for the sync service, the code can be tested outside of Testground. Let's test the code this time without sending it to the Testground daemon. Let's see what the same code looks like testing locally.
 
-```text
+```bash
 $ go test
 
 ./main.go:10:35: newline in string
