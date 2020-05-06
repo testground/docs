@@ -2,7 +2,7 @@
 
 ## Adding an additional test case
 
-Parameters and test cases are defined in the `manifest.toml` file. Let's have a look once again at the `quickstart/manifest.toml` file and add two test cases to the bottom of the file:
+Parameters and test cases are defined in the `manifest.toml` file of every test plan. Let's have a look once again at the `quickstart/manifest.toml` file and add two test cases to the bottom of the file:
 
 {% code title="plans/quickstart/manifest.toml" %}
 ```
