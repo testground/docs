@@ -1,16 +1,20 @@
 # Keeping instances in sync
 
-Sometimes individual test plan instances need to coordinate what they are doing. For this, we use [`barriers`](https://en.wikipedia.org/wiki/Barrier_%28computer_science%29).
+Sometimes individual test plan instances need to coordinate what they are doing. For this, we use the [sync service](../concepts-and-architecture/sync-service.md) and the primitives it offers, such as states and [`barriers`](https://en.wikipedia.org/wiki/Barrier_%28computer_science%29). 
 
 The general concept is this -- as a plan reaches a phase of execution for which synchronisation is required, it will signal the other instances that it has reached that phase. Then, wait until a certain number of other instances reach the same state before continuing.
 
 {% hint style="info" %}
-Internally, this is implemented with a simple counter backed by a Redis database. To wait for a signal barrier means to wait until the counter reaches the specified number.
+Internally, state signalling is implemented with a simple atomic counter backed by a Redis database. To wait for a signal barrier means to wait until the counter reaches the specified number, i.e. instances signalling on that key.
 {% endhint %}
 
 Let's have a look at a plan that waits for others! The plan displayed here is taken from the [example plans](https://github.com/ipfs/testground/tree/master/plans/example).
 
-Notice the use of `client.MustSignalEntry(ctx, readyState)` to designate the entry to the synchronised portion of the plan and the use of `<-client.MustBarrier(ctx, readyState, numFollowers).C` to wait for others to reach the same state.
+Notice the use of:
+
+* `client.MustSignalEntry(ctx, readyState)` to signal the entry to the synchronised portion of the plan.
+  * When we signal entry, the sync service returns a sequence number, i.e. the amount of instances that have signalled. We can use this piece of data to pick a role to assume in the test plan \(e.g. leader or follower in this case\).
+* `<-client.MustBarrier(ctx, readyState, numFollowers).C` to wait for others to reach the same state.
 
 In this test case, the instance with `seq==1` will act as the coordinator and all the others will follow.
 
@@ -18,80 +22,106 @@ In this test case, the instance with `seq==1` will act as the coordinator and al
 ```go
 func ExampleSync(runenv *runtime.RunEnv) error {
 	var (
-		readyState = sync.State("ready")
-		startState = sync.State("start")
+		enrolledState = sync.State("enrolled")
+		readyState    = sync.State("ready")
+		releasedState = sync.State("released")
+
+		ctx = context.Background()
 	)
 
-	ctx, cancel := context.WithTimeout(context.Background(), 300*time.Second)
-	defer cancel()
-
+	// instantiate a sync service client, binding it to the RunEnv.
 	client := sync.MustBoundClient(ctx, runenv)
 	defer client.Close()
 
+	// instantiate a network client; see 'Traffic shaping' in the docs.
 	netclient := network.NewClient(client, runenv)
-	runenv.RecordMessage("Waiting for network initialization")
+	runenv.RecordMessage("waiting for network initialization")
 
+	// wait for the network to initialize; this should be pretty fast.
 	netclient.MustWaitNetworkInitialized(ctx)
-	runenv.RecordMessage("Network initilization complete")
+	runenv.RecordMessage("network initilization complete")
 
-	topic := sync.NewTopic("messages", "")
+	// signal entry in the 'enrolled' state, and obtain a sequence number.
+	seq := client.MustSignalEntry(ctx, enrolledState)
 
-	seq, err := client.Publish(ctx, topic, runenv.TestRun)
-	if err != nil {
-		return err
-	}
+	runenv.RecordMessage("my sequence ID: %d", seq)
 
-	runenv.RecordMessage("My sequence ID: %d", seq)
-
+	// if we're the first instance to signal, we'll become the LEADER.
 	if seq == 1 {
-		runenv.RecordMessage("I'm the boss.")
+		runenv.RecordMessage("i'm the leader.")
 		numFollowers := runenv.TestInstanceCount - 1
 
-		runenv.RecordMessage("Waiting for %d instances to become ready", numFollowers)
+		// let's wait for the followers to signal.
+		runenv.RecordMessage("waiting for %d instances to become ready", numFollowers)
 		err := <-client.MustBarrier(ctx, readyState, numFollowers).C
 		if err != nil {
 			return err
 		}
 
-		runenv.RecordMessage("The followers are all ready")
-		runenv.RecordMessage("Ready...")
+		runenv.RecordMessage("the followers are all ready")
+		runenv.RecordMessage("ready...")
 		time.Sleep(1 * time.Second)
-		runenv.RecordMessage("Set...")
+		runenv.RecordMessage("set...")
 		time.Sleep(5 * time.Second)
-		runenv.RecordMessage("Go!")
+		runenv.RecordMessage("go, release followers!")
 
-		client.MustSignalEntry(ctx, startState)
+		// signal on the 'released' state.
+		client.MustSignalEntry(ctx, releasedState)
 		return nil
 	}
-
+	
 	rand.Seed(time.Now().UnixNano())
-	sleepTime := rand.Intn(10)
-	runenv.RecordMessage("I'm a follower. Signaling ready after %d seconds", sleepTime)
-	time.Sleep(time.Duration(sleepTime) * time.Second)
+	sleep := rand.Intn(5)
+	runenv.RecordMessage("i'm a follower; signalling ready after %d seconds", sleep)
+	time.Sleep(time.Duration(sleep) * time.Second)
+	runenv.RecordMessage("follower signalling now", sleep)
 
+	// signal entry in the 'ready' state.
 	client.MustSignalEntry(ctx, readyState)
 
-	err = <-client.MustBarrier(ctx, startState, 1).C
+	// wait until the leader releases us.
+	err := <-client.MustBarrier(ctx, releasedState, 1).C
 	if err != nil {
 		return err
 	}
 
-	runenv.RecordMessage("Received Start")
+	runenv.RecordMessage("i have been released")
 	return nil
 }
 ```
 {% endcode %}
 
-When we run this, we need to add more than one instance. For testing, let's run it with four instances and have a look at the output. Using `--collect` we can get the output from each instance individually in JSON format.
+When we run this, we need to add more than one instance. For testing, let's run it with 10 instances and have a look at the output.
+
+Using `--collect` we can get an archive of the output from all instances into an `.tgz` after the run completes. Then we can poke around, or process it with scripts. You will notice that most of the output generated by Testground is in easy-to-parse JSON format. 
+
+{% hint style="info" %}
+You can also collect the output after the fact using the [`testground collect` command.](../analyzing-the-results.md#how-to-collect-testground-outputs)
+{% endhint %}
 
 ```bash
 # run the test plan
-$ testground run single -p example -t sync -b exec:go -r local:exec -i 4 --collect
+$ testground run single --plan example \
+                        --testcase sync \
+                        --builder exec:go \
+                        --runner local:exec \
+                        --instances 10 \
+                        --collect
+
+[...]
+
+>>> Result:
+
+May  7 16:59:19.197351	INFO	finished run with ID: 551fd2421ca1
+
+>>> Result:
+
+May  7 16:59:19.209681	INFO	created file: 551fd2421ca1.tgz
 
 # extract the outputs archive
-$ tar -xzvvf e217c3a8a089.tgz
+$ tar -xzvf 551fd2421ca1.tgz
 
-$ cd e217c3a8a089
+$ cd 551fd2421ca1
 
 # print out the contents of all `run.out` from all instances
 $ find . | grep run.out | xargs awk '{print FILENAME, " >>> ", $0 }' | sort

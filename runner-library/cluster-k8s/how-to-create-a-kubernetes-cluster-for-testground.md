@@ -57,6 +57,8 @@ Where:
 * set AWS availability zone B \(not region; for example `us-west-2b` \[availability zone\]\) - used for more worker nodes
 * set `kops` state store bucket \(the bucket we created in the section above\)
 * set number of worker nodes
+* set master node instance type \(read on best practices at [https://kubernetes.io/docs/setup/best-practices/cluster-large/\#size-of-master-and-master-components](https://kubernetes.io/docs/setup/best-practices/cluster-large/#size-of-master-and-master-components)\)
+* set worker node instance type
 * set location of your cluster SSH public key \(for example `~/.ssh/testground_rsa.pub` generated above\)
 
 You might want to add them to your `rc` file \(`.zshrc`, `.bashrc`, etc.\), or to an `.env.sh` file that you source.
@@ -68,6 +70,8 @@ export AWS_REGION=<aws region, for example eu-central-1>
 export ZONE_A=<aws availability zone, for example eu-central-1a>
 export ZONE_B=<aws availability zone, for example eu-central-1b>
 export WORKER_NODES=4
+export MASTER_NODE_TYPE=c5.2xlarge
+export WORKER_NODE_TYPE=c5.2xlarge
 export PUBKEY=$HOME/.ssh/testground_rsa.pub
 export TEAM=<optional - your team name ; tag is used for cost allocation purposes>
 export PROJECT=<optional - your project name ; tag is used for cost allocation purposes>
