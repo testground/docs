@@ -2,7 +2,7 @@
 
 Sometimes individual test plan instances need to coordinate what they are doing. For this, we use the [sync service](../concepts-and-architecture/sync-service.md) and the primitives it offers, such as states and [`barriers`](https://en.wikipedia.org/wiki/Barrier_%28computer_science%29). 
 
-The general concept is this -- as a plan reaches a phase of execution for which synchronisation is required, it will signal the other instances that it has reached that phase. Then, wait until a certain number of other instances reach the same state before continuing.
+The general concept is this -- as a plan reaches a phase of execution for which synchronization is required, it will signal the other instances that it has reached that phase. Then, wait until a certain number of other instances reach the same state before continuing.
 
 {% hint style="info" %}
 Internally, state signalling is implemented with a simple atomic counter backed by a Redis database. To wait for a signal barrier means to wait until the counter reaches the specified number, i.e. instances signalling on that key.
@@ -12,8 +12,8 @@ Let's have a look at a plan that waits for others! The plan displayed here is ta
 
 Notice the use of:
 
-* `client.MustSignalEntry(ctx, readyState)` to signal the entry to the synchronised portion of the plan.
-  * When we signal entry, the sync service returns a sequence number, i.e. the amount of instances that have signalled. We can use this piece of data to pick a role to assume in the test plan \(e.g. leader or follower in this case\).
+* `client.MustSignalEntry(ctx, readyState)` to signal the entry to the synchronized portion of the plan.
+  * When we signal entry, the sync service returns a sequence number, i.e. the amount of instances that have signaled. We can use this piece of data to pick a role to assume in the test plan \(e.g. leader or follower in this case\).
 * `<-client.MustBarrier(ctx, readyState, numFollowers).C` to wait for others to reach the same state.
 
 In this test case, the instance with `seq==1` will act as the coordinator and all the others will follow.
