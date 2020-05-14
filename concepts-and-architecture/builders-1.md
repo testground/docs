@@ -23,6 +23,7 @@ Builder names follow the format: `<build artifact type>:<language>`
 | :--- | :--- | :--- | :--- |
 | `exec:go` | Go | OS-specific executable | `local:exec` |
 | `docker:go` | Go | Docker image | `local:docker`, `cluster:k8s` |
+| `docker:generic` | Any | Docker image | `local:docker`, `cluster:k8s` |
 
 ## Builder configuration options
 
