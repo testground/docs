@@ -7,7 +7,7 @@ This architecture is flexible enough to run the daemon within a shared cluster, 
 {% hint style="info" %}
 At the moment, we do not run Testground in shared-cluster deployments; most developers spin up personal Kubernetes clusters, and run both the daemon and the client on their own development machines, pointing the local daemon to the remote k8s API.
 
-However, as of Testground v0.5, **we do support running the daemon within a Kubernetes cluster as a pod.** This capability is vital to pave the way for shared-cluster deployments, which will enable much more efficient resource utilisation and CI workflows.
+However, as of Testground v0.5, **we do support running the daemon within a Kubernetes cluster as a pod.** This capability is vital to pave the way for shared-cluster deployments, which will enable much more efficient resource utilization and CI workflows.
 {% endhint %}
 
 ## Testground daemon

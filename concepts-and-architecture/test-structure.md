@@ -22,7 +22,7 @@ At the time of writing, Testground offers two builders:
 While test plans are opaque to the eyes of Testground, test plans and Testground promise to satisfy a contract. That contract is inspired by the [12-factor principles](https://12factor.net/), and facilitates deployment on cloud infrastructure when it's time to scale. The contract is as follows:
 
 1. **Execution:** Test plans expose a single point of entry, i.e. a `main()` function.
-2. **Input:** Test plans consume a [formal, standardised runtime environment](runtime.md), in the form of environment variables.
+2. **Input:** Test plans consume a [formal, standardized runtime environment](runtime.md), in the form of environment variables.
 3. **Output:** Test plans record events, results, and optional diagnostics in a predefined JSON schema on stdout and specific files. Any additional output assets they want harvested \(e.g. event trails, traces, generated files, etc.\) are written to a path received in the runtime environment.
 
 {% hint style="success" %}

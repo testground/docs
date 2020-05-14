@@ -22,23 +22,23 @@ Some concrete coordination problems that may emerge in a 1000-instance run of, s
 
 There are various ways of implementing such coordination. We could either adopt:
 
-1. **❌ a command-and-control model:** by having test plans deploy a centralised coordinator instance that acts like a "conductor", telling each child instance participating in the run what it needs to do next.
+1. **❌ a command-and-control model:** by having test plans deploy a centralized coordinator instance that acts like a "conductor", telling each child instance participating in the run what it needs to do next.
    * this model performs poorly in terms of resiliency.
    * this model introduces a scheduling dependency: we need to deploy the coordinator first, obtain its address, and somehow communicate it to the children.
    * this model is complex in terms of design and development: test plan writers need to write the code that will run on the coordinator, as well as the state corresponding checkpoints in the children where an interaction with the coordinator must happen.
-2. **✅ a distributed coordination model:** by coordinating test instances in a decentralised fashion. The same test plan runs on all machines, using an API that hits a common high-performance synchronisation store, and offers distributed synchronisation primitives like barriers, signals, pubsub, latches, semaphores, etc.
+2. **✅ a distributed coordination model:** by coordinating test instances in a decentralized fashion. The same test plan runs on all machines, using an API that hits a common high-performance synchronization store, and offers distributed synchronization primitives like barriers, signals, pubsub, latches, semaphores, etc.
 
 ## Testground sync API
 
-In Testground, test plans hit the APIs of the components under test directly, and whenever they need to synchronise with other participants in the run, they call out to **the sync API.**
+In Testground, test plans hit the APIs of the components under test directly, and whenever they need to synchronize with other participants in the run, they call out to **the sync API.**
 
 Our **sync API** is extensively inspired by Apache ZooKeeper and the Apache Curator recipes, but we have chosen a non-durable, memory-only Redis instance for simplicity and performance reasons. Therefore, the **sync API** is a lightweight wrapper around a Redis client. All Testground runners deploy a Redis instance \(as a Docker container, or as a k8s pod\), and inject the address into test workloads.
 
-The **sync API** offers simple, but powerful and composable synchronisation primitives to coordinate and choreograph distributed test workloads. 
+The **sync API** offers simple, but powerful and composable synchronization primitives to coordinate and choreograph distributed test workloads. 
 
 We have implemented the following primitives so far, and more are to come, such as locks, semaphores, leader election, etc. Take a look at the [Apache Curator recipes](https://curator.apache.org/curator-recipes/index.html) and the [Redisson project](https://github.com/redisson/redisson/wiki/8.-distributed-locks-and-synchronizers) to understand where our thinking is.
 
-**Supported synchronisation primitives**
+**Supported synchronization primitives**
 
 * **State signalling and barriers:** instances can signal **entry into states**, and can **await** until N instances enter that state. Example use cases: wait until all instances have started, wait until instances in group "adders" have added a file to their repo, wait until all nodes have bootstrapped, etc.
 
