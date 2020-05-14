@@ -43,7 +43,7 @@ testground run single --builder docker:generic --runner local:docker --plan exam
 
 ## Are you using docker:generic?
 
-If you are using this, we think that's awesome! Maybe there are cool features which we should add to our other builders or interesting additions we haven't considered. We want to hear about it! Open an issue with us on github and let us know what your're up to!
+If you are using this, we think that's awesome! Maybe there are cool features which we should add to our other builders or interesting additions we haven't considered. We want to hear about it! Open an issue with us on github and let us know what you're up to!
 
 * Are you using an unsupported language?
 * Are you testing with frameworks that aren't easily achievable using the other language-specific builders? \(I'm looking at you, headless web browsers!\)
