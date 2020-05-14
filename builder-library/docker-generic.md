@@ -21,7 +21,7 @@ Sometimes the default builder behaviors just aren't flexible enough to do what y
 
 1. Place a Dockerfile inside the plan directory.
 2. While writing your Dockerfile, you must recognize that the root of the docker build context is one directory higher than the plan. This is the way your plan is packaged when it is sent to the testground daemon. The directory structure actually includes the plan and the SDK
-3. With this directory structure in mind, the builder will construct the container using the equivilent of this command: `docker build -f buildctx/plan/Dockerfile buildctx`. Keep that in mind as you consider which paths to use.
+3. With this directory structure in mind, the builder will construct the container using the equivalent of this command: `docker build -f buildctx/plan/Dockerfile buildctx`. Keep that in mind as you consider which paths to use.
 4. An example which uses docker arguments and adds additional files can be seen [here](https://github.com/testground/testground/tree/master/plans/example).
 
 ```text
