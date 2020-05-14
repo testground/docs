@@ -50,7 +50,7 @@ type RunParams struct {
 
 ```
 
-The runtime environment is propagated on any runner to the test instances via environment variables and then deserialised in the `runtime` package of the SDK upon start.
+The runtime environment is propagated on any runner to the test instances via environment variables and then deserialized in the `runtime` package of the SDK upon start.
 
 Most of these fields should look familiar -- they represent the configuration we added to our `manifest.toml` file along with configuration specific to the test run and the test instance, such as `TestRun`, or `TestSubnet`.
 
@@ -69,7 +69,7 @@ default:
 }
 ```
 
-Additionally a `logger` is initialised as part of the `RunEnv` run environment, so that every time you call `runenv.RecordMessage("my message")` in your test plan, messages include additional metadata such as the current run identifier, group, timestamp, etc.
+Additionally a `logger` is initialized as part of the `RunEnv` run environment, so that every time you call `runenv.RecordMessage("my message")` in your test plan, messages include additional metadata such as the current run identifier, group, timestamp, etc.
 
 For more information, check the [Observability, assets and metrics](../writing-test-plans/observability-assets-and-metrics.md).
 

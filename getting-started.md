@@ -73,7 +73,6 @@ $ testground plan import --from ./plans/network
 created symlink /Users/raul/testground/plans/network -> ./plans/network
 imported plans:
 network ping-pong
-$
 ```
 
 Run the `network`testplan and the `ping-pong` test case with the `docker:go` builder and the `local:docker` runner.
