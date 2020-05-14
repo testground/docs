@@ -28,9 +28,11 @@ Sometimes the default builder behaviors just aren't flexible enough to do what y
 buildctx/
 ├── plan                          <- Your plan is always in a /plan directory
 │   ├── Dockerfile                <- Your provided Dockerfile
-│   └── yourprogram...            <- program files, {c, go, rs, py, java, etc}
-|   └── etc...
+│   └── your...                   <- program files, {c, go, rs, py, java, etc}
+|   └── program...
+|   └── files...
 └── sdk                           <- sdk code which comes with --link-sdk flag
+    └── sdk-go (or another one)
 ```
 
 ## Running the example
