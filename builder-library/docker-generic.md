@@ -34,6 +34,8 @@ buildctx/
 
 ## Running the example
 
+This example runs a  test case which depends on an additional file being added to the image -- something that would not be easy to do using the docker:go builder. Have a look at the Dockerfile and the manifest.toml files to see how this is constructed.
+
 ```text
 testground plan import --from $GOPATH/src/github.com/testground/testground/plans/example
 testground run single --builder docker:generic --runner local:docker --plan example --testcase artifact
