@@ -47,8 +47,7 @@ Once the network is ready, you'll need to actually _configure_ your network. To 
 ```go
 config := network.Config{
     // Control the "default" network. At the moment, this is the only network.
-    // Do not change this value.
-    Network: network.DefaultDataNetwork,
+    Network: "default",
 
     // Enable this network. Setting this to false will disconnect this test
     // instance from this network. You probably don't want to do that.

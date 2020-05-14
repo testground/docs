@@ -38,3 +38,9 @@
   * [Understanding Testground performance on Kubernetes](runner-library/cluster-k8s/understanding-testground-performance-on-kubernetes.md)
   * [Troubleshooting](runner-library/cluster-k8s/troubleshooting.md)
 
+## BUILDER LIBRARY
+
+* [docker:go](builder-library/docker-go.md)
+* [exec:go](builder-library/exec-go.md)
+* [docker:generic](builder-library/docker-generic.md)
+
