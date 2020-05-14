@@ -12,6 +12,14 @@ It is common practice when developing a test plan to use a local runner \(`local
 | **local:docker** | ✅ | ❌ | ✅ | ✅ | ✅ |
 | **cluster:k8s** | ❌ | ✅ | ✅ | ✅ | ❌ |
 
+## Picking a builder
+
+| builder | local:exec | local:docker | cluster:k8s | dependency mgmt | customizable |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **exec:go** | ✅ | ❌ | ❌ | ✅ | ❌ |
+| **docker:go** | ❌ | ✅ | ✅ | ✅ | ❌ |
+| **docker:generic** | ❌ | ✅ | ✅ | ❌ | ✅ |
+
 ## Single runs
 
 A `single` run, is one in which a single version of the code is being tested. This is the simplest way to run a test plan. If you have run through the [Writing test plans -&gt; Quick start](writing-test-plans/quickstart.md) tutorial, you have already encountered this:
