@@ -2,14 +2,14 @@
 
 ## Background
 
-Provided that you are writing plans in go and using the [sync service sdk](https://github.com/testground/sdk-go),  `docker:go` is the builder you want to use. This builder produces plan artifacts which are usable on the `local:docker`  or `cluster:k8s` runner.
+Provided that you are writing plans in Go and using the [sync service sdk](https://github.com/testground/sdk-go),  `docker:go` is the builder you want to use. This builder produces plan artifacts which are usable on the `local:docker`  or `cluster:k8s` runner.
 
 ## Features
 
 * Produces docker containers which can run on docker-powered runners.
 * Linkage with a custom sync service SDK via `--link-sdk` flag
-* Simple command-line dependency mapping uisng the `--dep` flag
-* Busybox base for easy container troubleshooting.
+* Simple command-line dependency mapping using the `--dep` flag
+* `busybox` base for easy container troubleshooting.
 
 ## Troubleshooting
 
@@ -27,7 +27,7 @@ Most build failures are caused by a problem with the plan code rather than the b
 
 ## Learn More
 
-Interested in how this works? All the testground builders can be seen [here](https://github.com/testground/testground/tree/master/pkg/build)
+Interested in how this works? All the Testground builders can be seen [here](https://github.com/testground/testground/tree/master/pkg/build)
 
 
 
