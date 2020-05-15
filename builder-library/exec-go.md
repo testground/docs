@@ -2,13 +2,13 @@
 
 ## Background
 
-this is \*the\* builder for the `local:exec` runner. This builder produces binaries specific to the host system using the user's local golang installation. This is a faster-but-less-portable cousin of the `docker:go` builder. It supports the same replacement semantics as you expect but without the containerization.
+This is \*the\* builder for the `local:exec` runner. This builder produces binaries specific to the host system using the user's local Go installation. This is a faster-but-less-portable cousin of the `docker:go` builder. It supports the same replacement semantics as you expect but without the containerization.
 
 ## Features
 
 * Produces system-specific binary executable. \(i.e. ELF, PE32+, PEF\)
 * Linkage with a custom sync service SDK via `--link-sdk` flag
-* Simple command-line dependency mapping uisng the `--dep` flag
+* Simple command-line dependency mapping using the `--dep` flag
 
 ## Troubleshooting
 
@@ -26,5 +26,5 @@ Most build failures are caused by a problem with the plan code rather than the b
 
 ## Learn More
 
-Interested in how this works? All the testground builders can be seen [here](https://github.com/testground/testground/tree/master/pkg/build)
+Interested in how this works? All the Testground builders can be seen [here](https://github.com/testground/testground/tree/master/pkg/build)
 
