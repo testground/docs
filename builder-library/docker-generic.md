@@ -2,7 +2,7 @@
 
 ## Background
 
-Sometimes the default builder behaviors just aren't flexible enough to do what you want. For those situations, we have the generic builder. Linking and SDK replacement features in the other builders are missing here. No, to use this builder, you must provide your own Dockerfile and specify all the appropriate build activities yourself. 
+Sometimes the default builder behaviors just aren't flexible enough to do what you want. For those situations, we have the `docker:generic` builder. Linking and SDK replacement features in the other builders are missing here. To use this builder, you must provide your own Dockerfile and specify all the appropriate build activities yourself. 
 
 ## Features
 
@@ -20,7 +20,7 @@ Sometimes the default builder behaviors just aren't flexible enough to do what y
 ## Usage
 
 1. Place a Dockerfile inside the plan directory.
-2. While writing your Dockerfile, you must recognize that the root of the docker build context is one directory higher than the plan. This is the way your plan is packaged when it is sent to the testground daemon. The directory structure actually includes the plan and the SDK
+2. While writing your Dockerfile, you must recognize that the root of the docker build context is one directory higher than the plan. This is the way your plan is packaged when it is sent to the Testground daemon. The directory structure actually includes the plan and the SDK.
 3. With this directory structure in mind, the builder will construct the container using the equivalent of this command: `docker build -f buildctx/plan/Dockerfile buildctx`. Keep that in mind as you consider which paths to use in the Dockerfile. Paths should be rooted in the build context directory.
 4. An example which uses docker arguments and adds additional files can be seen [here](https://github.com/testground/testground/tree/master/plans/example).
 
@@ -37,16 +37,16 @@ buildctx/
 
 ## Running the example
 
-This example runs a  test case which depends on an additional file being added to the image -- something that would not be easy to do using the docker:go builder. Have a look at the Dockerfile and the manifest.toml files to see how this is constructed.
+This example runs a  test case which depends on an additional file being added to the image - something that would not be easy to do using the `docker:go` builder. Have a look at the `Dockerfile` and the `manifest.toml` files to see how this is constructed.
 
 ```text
 testground plan import --from $GOPATH/src/github.com/testground/testground/plans/example
 testground run single --builder docker:generic --runner local:docker --plan example --testcase artifact
 ```
 
-## Are you using docker:generic?
+## Are you using `docker:generic`?
 
-If you are using this, we think that's awesome! Maybe there are cool features which we should add to our other builders or interesting additions we haven't considered. We want to hear about it! Open an issue with us on github and let us know what you're up to!
+If you are using this, we think that's awesome! Maybe there are cool features which we should add to our other builders or interesting additions we haven't considered. We want to hear about it! Open an issue with us on Github and let us know what you're up to!
 
 * Are you using an unsupported language?
 * Are you testing with frameworks that aren't easily achievable using the other language-specific builders? \(I'm looking at you, headless web browsers!\)
@@ -54,5 +54,5 @@ If you are using this, we think that's awesome! Maybe there are cool features wh
 
 ## Learn More
 
-Interested in how this works? All the testground builders can be seen [here](https://github.com/testground/testground/tree/master/pkg/build)
+Interested in how this works? All the Testground builders can be seen [here](https://github.com/testground/testground/tree/master/pkg/build)
 
