@@ -2,7 +2,7 @@
 
 ## Background
 
-This is \*the\* builder for the `local:exec` runner. This builder produces binaries specific to the host system using the user's local Go installation. This is a faster-but-less-portable cousin of the `docker:go` builder. It supports the same replacement semantics as you expect but without the containerization.
+This is _the_ builder for the `local:exec` runner. This builder produces binaries specific to the host system using the user's local Go installation. This is a faster-but-less-portable cousin of the `docker:go` builder. It supports the same replacement semantics as you expect but without the containerization.
 
 ## Features
 
