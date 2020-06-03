@@ -2,6 +2,12 @@
 
 ![](.gitbook/assets/image%20%283%29.png)
 
+{% hint style="info" %}
+You are reading the Testground documentation for the latest stable release v0.5.1
+
+The Testground team maintains documentation for the `master` branch and for the latest stable release.
+{% endhint %}
+
 ## Overview
 
 Testground is a platform for testing, benchmarking, and simulating distributed and peer-to-peer systems at scale. It's designed to be multi-lingual and runtime-agnostic, scaling gracefully from 2 to 10k instances, only when needed.
