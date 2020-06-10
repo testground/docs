@@ -60,6 +60,7 @@ Where:
 * set master node instance type \(read on best practices at [https://kubernetes.io/docs/setup/best-practices/cluster-large/\#size-of-master-and-master-components](https://kubernetes.io/docs/setup/best-practices/cluster-large/#size-of-master-and-master-components)\)
 * set worker node instance type
 * set location of your cluster SSH public key \(for example `~/.ssh/testground_rsa.pub` generated above\)
+* set team and project name - these values are used as tags in AWS for cost allocation purposes
 
 You might want to add them to your `rc` file \(`.zshrc`, `.bashrc`, etc.\), or to an `.env.sh` file that you source.
 
@@ -73,8 +74,8 @@ export WORKER_NODES=4
 export MASTER_NODE_TYPE=c5.2xlarge
 export WORKER_NODE_TYPE=c5.2xlarge
 export PUBKEY=$HOME/.ssh/testground_rsa.pub
-export TEAM=<optional - your team name ; tag is used for cost allocation purposes>
-export PROJECT=<optional - your project name ; tag is used for cost allocation purposes>
+export TEAM=<your team name ; tag is used for cost allocation purposes>
+export PROJECT=<your project name ; tag is used for cost allocation purposes>
 ```
 
 ## Setup required Helm chart repositories
