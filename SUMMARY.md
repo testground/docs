@@ -10,6 +10,7 @@
   * [Builders](concepts-and-architecture/builders-1.md)
   * [Runners](concepts-and-architecture/runners.md)
   * [Runtime environment \(runenv\)](concepts-and-architecture/runtime.md)
+  * [Client-Server communication](concepts-and-architecture/client-server-communication.md)
 * [Getting started](getting-started.md)
 * [Writing test plans](writing-test-plans/README.md)
   * [Quick start](writing-test-plans/quickstart.md)
