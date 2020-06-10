@@ -25,8 +25,6 @@ The request is the same kind multipart mime message archive your email administr
 
 A Run request consists of a composition json \(see below\)
 
-
-
 ## Composition JSON
 
 ```javascript
