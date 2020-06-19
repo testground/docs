@@ -166,5 +166,112 @@ access_token = "docker hub access token"
 ```
 {% endcode %}
 
+## Resolving issues with the Windows Subsystem for Linux
+
+Version 2 of Microsoft's Windows Subsystem for Linux \(WSL2\) enables a new backend for Docker Desktop in which Docker runs on the same virtual machine as the Linux userland instead of in a separate VM. This makes Docker much faster and uses system resource more efficiently, but the default Linux kernel for WSL2 is not compatible with testground's [traffic shaping](traffic-shaping.md) feature.
+
+Note that if you're using version 1 of WSL, or if Docker Desktop is not configured to use the WSL2 backend, you should not be affected by this issue. Affected users will see errors similar to the following when running a test plan that uses traffic shaping:
+
+```text
+ERROR   sidecar worker failed: failed to initialise the container: failed to initialize link default (eth1): failed to set root qdisc: no such file or directory
+```
+
+To enable traffic shaping under WSL2, you'll need to build a Linux kernel with a custom configuration.
+
+First, install the requirements for building the kernel:
+
+```text
+sudo apt install build-essential flex bison libssl-dev libelf-dev
+```
+
+This assumes you're using a debian based distribution like Ubuntu; adapt to your preferred package manager otherwise.
+
+Then clone the kernel sources:
+
+```text
+git clone --depth=1 https://github.com/microsoft/WSL2-Linux-Kernel.git
+cd WSL2-Linux-Kernel
+```
+
+And copy Microsoft's kernel config to use as a base:
+
+```text
+cp Microsoft/config-wsl .config
+```
+
+Now edit the `.config` file and find the `Queueing/Scheduling` section. We want it to look like this:
+
+```text
+#
+# Queueing/Scheduling
+#
+CONFIG_NET_SCH_CBQ=y
+CONFIG_NET_SCH_HTB=y
+CONFIG_NET_SCH_HFSC=y
+CONFIG_NET_SCH_PRIO=y
+CONFIG_NET_SCH_MULTIQ=y
+CONFIG_NET_SCH_RED=y
+CONFIG_NET_SCH_SFB=y
+CONFIG_NET_SCH_SFQ=y
+CONFIG_NET_SCH_TEQL=y
+CONFIG_NET_SCH_TBF=y
+CONFIG_NET_SCH_CBS=y
+CONFIG_NET_SCH_ETF=y
+CONFIG_NET_SCH_GRED=y
+CONFIG_NET_SCH_DSMARK=y
+CONFIG_NET_SCH_NETEM=y
+CONFIG_NET_SCH_DRR=y
+CONFIG_NET_SCH_MQPRIO=y
+CONFIG_NET_SCH_SKBPRIO=y
+CONFIG_NET_SCH_CHOKE=y
+CONFIG_NET_SCH_QFQ=y
+CONFIG_NET_SCH_CODEL=y
+CONFIG_NET_SCH_FQ_CODEL=y
+CONFIG_NET_SCH_CAKE=y
+CONFIG_NET_SCH_FQ=y
+CONFIG_NET_SCH_HHF=y
+CONFIG_NET_SCH_PIE=y
+CONFIG_NET_SCH_INGRESS=y
+CONFIG_NET_SCH_PLUG=y
+CONFIG_NET_SCH_DEFAULT=y
+# CONFIG_DEFAULT_FQ is not set
+# CONFIG_DEFAULT_CODEL is not set
+CONFIG_DEFAULT_FQ_CODEL=y
+# CONFIG_DEFAULT_SFQ is not set
+# CONFIG_DEFAULT_PFIFO_FAST is not set
+CONFIG_DEFAULT_NET_SCH="fq_codel"
+```
+
+It's also a good idea to change the `CONFIG_LOCALVERSION` setting from `"-microsoft-standard"` to something recognizable, e.g. `"-wsl-traffic-shaping"`.
+
+Now you can build the kernel:
+
+```text
+make
+```
+
+When it's finished, copy the compiled kernel somewhere on your Windows filesystem. For this example, we'll put the kernel at `C:\wsl\kernel-traffic-shaping.bzImage`.
+
+Create the `c:\wsl` folder if needed, then copy the file:
+
+```text
+cp arch/x86_64/boot/bzImage /mnt/c/wsl/kernel-traffic-shaping.bzImage
+```
+
+To use the new kernel, edit the `.wslconfig` file in your Windows home directory, creating it if it doesn't exist:
+
+```text
+[wsl2]
+kernel=C:\\wsl\\kernel-traffic-shaping.bzImage
+```
+
+Notice that you need to use Windows-style paths with escaped backslashes.
+
+Now from a Windows command prompt, run `wsl.exe --shutdown` - this will halt the Linux VM, so make sure you don't have any unsaved work in Linux land.
+
+Opening a new WSL session should use the new kernel. You can verify this with `uname -a`, which should show the value you set for `CONFIG_LOCALVERSION` earlier instead of `-microsoft-standard`.
+
+Now, testground traffic shaping should work as expected. You can verify this by running the `network/ping-pong` plan included in the testground repository.
+
 
 
