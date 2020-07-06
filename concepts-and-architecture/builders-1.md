@@ -65,7 +65,7 @@ None of these options are required and need only be edited if the defaults do no
 
 ## Examples
 
-Single build for a single test for the example/output plan using the exec:go builder. This command will produce a binary which you can find in `~/testground/` on Linux and macOS systems.
+Single build for a single test for the example/output plan using the `exec:go` builder. This command will produce a binary which you can find in `~/testground/` on Linux and macOS systems.
 
 ```bash
 $ testground build single --plan=example --builder=exec:go

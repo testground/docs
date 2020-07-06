@@ -94,6 +94,6 @@ $ testground run single --plan quickstart \
 ```
 
 {% hint style="info" %}
-Try using different runners. This command executes the plan with the `local:exec` runner and `exec:go`builder, but it works just as well with the `local:docker` runner or the Kubernetes `cluster:k8s`runner \(for which you will need to use the  `docker:go` builder!
+Try using different runners. This command executes the plan with the `local:exec` runner and `exec:go`builder, but it works just as well with the `local:docker` runner or the Kubernetes `cluster:k8s`runner \(for which you will need to use the `docker:go` builder\)!
 {% endhint %}
 

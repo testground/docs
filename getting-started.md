@@ -128,7 +128,7 @@ Testground tries to load this file from `$TESTGROUND_HOME/.env.toml`, where `$TE
 
 ### Changing default daemon bind addresses
 
-You can change the default bind addresses by configuring `daemon.listen` and `client.endpoint`
+You can change the default bind addresses by configuring `daemon.listen` and `client.endpoint`:
 
 {% code title=".env.toml" %}
 ```text

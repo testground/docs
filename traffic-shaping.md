@@ -69,7 +69,7 @@ This sets _egress_ \(outbound\) properties on the link. These settings must be s
 {% endhint %}
 
 {% hint style="info" %}
-Per-subnet traffic shaping is a desired but unimplemented feature. The sidecar will reject configs with per-subnet rules set in `network.Config.Rules`
+Per-subnet traffic shaping is a desired but unimplemented feature. The sidecar will reject configs with per-subnet rules set in `network.Config.Rules`.
 {% endhint %}
 
 ### **\(Optional\) Changing your IP address**

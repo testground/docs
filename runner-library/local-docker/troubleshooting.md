@@ -2,7 +2,7 @@
 
 ## Verify that Docker is working correctly
 
-The following command, if it runs successfully, will verify that docker if running correctly.
+The following command, if it runs successfully, will verify that docker is running correctly.
 
 ```text
 $ docker run hello-world
@@ -36,7 +36,7 @@ For more examples and ideas, visit:
 
 ## Docker error messages
 
-| Message | Cause | Fix |
+| message | cause | fix |
 | :--- | :--- | :--- |
 | `engine build error: docker build failed: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?` | Docker daemon is not running.  | Restart the Docker daemon |
 | `read tcp xxx.xxx.xxx.xxx:443 i/o timeout` | Cannot connect to remote repository | This is a frequent and probably transient error. Try again. |

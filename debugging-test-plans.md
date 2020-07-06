@@ -85,7 +85,7 @@ If your plan relies on knowledge of the test plan or test case, this can be pass
 
 Now that output is much more readable!
 
-I can't claim that build errors will always be as easy to diagnose as this one, but this feature enables plan writers to employ traditional debugging techniques or other debugging tools which they are already familiar.
+I can't claim that build errors will always be as easy to diagnose as this one, but this feature enables plan writers to employ traditional debugging techniques or other debugging tools with which they are already familiar.
 
 ## Debugging with message output
 
@@ -107,9 +107,9 @@ for {
 runenv.R().RecordPoint("total_things", things)
 ```
 
-To see how this works, let's use [ron swanson's classic dilemma](http://adit.io/posts/2013-05-11-The-Dining-Philosophers-Problem-With-Ron-Swanson.html).
+To see how this works, let's use [Ron Swanson's classic dilemma](http://adit.io/posts/2013-05-11-The-Dining-Philosophers-Problem-With-Ron-Swanson.html).
 
-In the following plan, five ~~philosophers~~ Ron Swansons sit at a table with five forks between them. Unfortunately, there is an implementation bug and these Ron Swansons will be be here forever. Add some debugging messages using `runenv.RecordMessage` to see if you can straighten this whole thing out \(hint: answer is in the second tab\)
+In the following plan, five ~~philosophers~~ Ron Swansons sit at a table with five forks between them. Unfortunately, there is an implementation bug and these Ron Swansons will be here forever. Add some debugging messages using `runenv.RecordMessage` to see if you can straighten this whole thing out \(hint: answer is in the second tab\).
 
 {% tabs %}
 {% tab title="exercise" %}
@@ -191,7 +191,7 @@ func run(runenv *runtime.RunEnv) error {
 ```
 {% endtab %}
 
-{% tab title="Solution" %}
+{% tab title="solution" %}
 ```
 Line 24.
 Ron puts down his left fork, but forgets to put down his right fork!
@@ -204,13 +204,13 @@ by one. Two Rons are sharing the same seat! this will not do.
 {% endtab %}
 {% endtabs %}
 
-If you can successfully debug this code, you will see each ron finish his meals and finally the  end message "**all rons have eaten**"
+If you can successfully debug this code, you will see each Ron finish his meals and finally the end message "**all rons have eaten**".
 
-### Collecting outputs vs viewing messages in the terminal
+### Collecting outputs vs. viewing messages in the terminal
 
-When using the local runners, with a relatively small number of plan instances it is fairly easy to view outputs in the terminal runner. I recommend troubleshooting the plan with a small number of instances. The same messages you can see in your terminal are also available in outputs collections.
+When using the local runners, with a relatively small number of plan instances it is fairly easy to view outputs in the terminal runner. I recommend troubleshooting the plan with a small number of instances. The same messages you can see in your terminal are also available in `outputs` collection.
 
-For more information about this, see [Analyzing the results](https://app.gitbook.com/@protocol-labs/s/testground/~/drafts/-M6X2x7PG-JL0LAa-bnw/analyzing-the-results).
+For more information about this, see [Analyzing the results](analyzing-the-results.md).
 
 ## Accessing profile data
 
