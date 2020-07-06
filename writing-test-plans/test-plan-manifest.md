@@ -1,12 +1,12 @@
 # Understanding the test plan manifest
 
-Inside the root of every test plan is a file called `manifest.toml`.  This file is used to explain the test plan to the Testground daemon. In this file,  a plan can be restricted to specific runners. Additionally, this is the file where test cases and parameters are defined.
+Inside the root of every test plan is a file called `manifest.toml`.  This file is used to explain the test plan to the Testground daemon. In this file, a plan can be restricted to specific runners. Additionally, this is the file where test cases and parameters are defined.
 
 If you have created the `quickstart` plan in the previous article, let's have a look at the manifest file we have just created.
 
 ### Test plan name
 
-the name of the test plan is a top-level of the file's schema. 
+The name of the test plan is a top-level of the file's schema.
 
 ```text
 name = "quickstart"
@@ -14,7 +14,7 @@ name = "quickstart"
 
 ### Defaults
 
-Enclosed in a defaults section are default builders. These are variables which can be used as defaults for the plan In this section, we set the default builder and runner.
+Enclosed in a defaults section are default builders. These are variables which can be used as defaults for the plan. In this section, we set the default builder and runner.
 
 ```text
 [defaults]

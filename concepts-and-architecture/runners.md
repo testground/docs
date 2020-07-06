@@ -15,7 +15,7 @@ A **runner** is a component that takes _**build artifact**_ produced by a [Build
 
 ### Supported runners
 
-| builder | input work unit | Environment |
+| runner | input work unit | environment |
 | :--- | :--- | :--- |
 | `local:exec` | OS-specific executable | local |
 | `local:docker` | Docker image | local Docker environment |
