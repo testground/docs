@@ -20,6 +20,7 @@ instances = { min = 1, max = 200, default = 1 }
 
 [[testcases]]
 name = "bigbrain"
+instances = { min = 1, max = 200, default = 1 }
 
   [testcases.params]
   word = { type = "string", default = "always" }
@@ -53,7 +54,7 @@ As you can see, a test plan a simple executable that conforms to the [simple Tes
 package main
 
 import (
-	"github.com/ipfs/testground/sdk/runtime"
+	"github.com/testground/sdk-go/runtime"
 )
 
 func main() {
@@ -83,13 +84,32 @@ func run(runenv *runtime.RunEnv) error {
 ```
 {% endcode %}
 
-The time has come now to run these test cases. Let's run it!
+The time has come now to run these test cases by setting the `--testcase` flag. Let's run the `smallbrain` test case first!
 
 ```bash
 $ testground run single --plan quickstart \
                         --testcase smallbrain \
                         --builder exec:go \
-                        --run local:exec \
+                        --runner local:exec \
+                        --instances 1
+```
+
+Watch the output for `MESSAGE`s with the `smallbrain`'s parameters.
+
+```
+INFO  0.0112s      START << instance   1 >> {"plan":"quickstart","case":"smallbrain", [...]
+INFO  0.0114s    MESSAGE << instance   1 >> I am a smallbrain test case.
+INFO  0.0115s    MESSAGE << instance   1 >> I store my files on 2 servers.
+INFO  0.0115s    MESSAGE << instance   1 >> I never run tests on my P2P code.
+```
+
+Then watch for the different parameters of the `bigbrain` test case.
+
+```bash
+$ testground run single --plan quickstart \
+                        --testcase bigbrain \
+                        --builder exec:go \
+                        --runner local:exec \
                         --instances 1
 ```
 
