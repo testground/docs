@@ -154,7 +154,7 @@ To add additional directives or customize your build further, add a section to y
 
 ```text
 [builders."docker:go"]
-skip_runtime_image  = false
+skip_runtime_image = true
 
 [builders."docker:go".dockerfile_extensions]
 pre_mod_download    = "RUN echo 'at pre_mod_download'"
@@ -165,6 +165,14 @@ pre_build           = "RUN echo 'at pre_build'"
 post_build          = "RUN echo 'at post_build'"
 pre_runtime_copy    = "RUN echo 'at pre_runtime_copy'"
 post_runtime_copy   = "RUN echo 'at post_runtime_copy'"
+```
+
+This example changes the build base image and enables the Go build cache:
+
+```
+[builders."docker:go"]
+build_base_image = "golang:1.14.4-buster"
+enable_go_build_cache = true
 ```
 
 ## Learn More
