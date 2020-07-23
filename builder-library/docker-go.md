@@ -171,7 +171,7 @@ This example changes the build base image and enables the Go build cache:
 
 ```
 [builders."docker:go"]
-build_base_image = "golang:1.14.4-buster"
+build_base_image      = "golang:1.14.4-buster"
 enable_go_build_cache = true
 ```
 
