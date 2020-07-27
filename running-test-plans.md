@@ -6,7 +6,7 @@ Plans which run on one runner generally should be usable on all other runners as
 
 It is common practice when developing a test plan to use a local runner \(`local:exec` or `local:docker`\) in order to iterate quickly and then move to the Kubernetes `cluster:k8s` runner when you want to run your test plan with many more test instances.
 
-|  runner | quick iteration | high instance count | network containment | traffic shaping | quick setup |
+| runner | quick iteration | high instance count | network containment | traffic shaping | quick setup |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **local:exec** | ✅ | ❌ | ❌ | ❌ | ✅ |
 | **local:docker** | ✅ | ❌ | ✅ | ✅ | ✅ |
@@ -32,9 +32,9 @@ A single test run can be used to benchmark, validate, or observe the behaviour o
 
 ## Composition runs
 
-A `composition` run, is one in which multiple versions of the same software can be tested simultaneously.  Where single runs allow you the performance of a single version of code, compositions allow you to test the way new developments interact with the existing network. This feature has been used heavily during libp2p DHT development.
+A `composition` run, is one in which multiple versions of the same software can be tested simultaneously. Where single runs allow you the performance of a single version of code, compositions allow you to test the way new developments interact with the existing network. This feature has been used heavily during libp2p DHT development.
 
-To define a composition run, a manifest for the __`single` plan must already exist. Indeed, a composition run is just multiple single runs being executed simultaneously with different versions of code being imported.
+To define a composition run, a manifest for the `single` plan must already exist. Indeed, a composition run is just multiple single runs being executed simultaneously with different versions of code being imported.
 
 Here is how we go about creating a composition test run. The following is a simple example. For a more complete example used by the libp2p project, I recommend you have a look at [libp2p compositions](https://github.com/libp2p/test-plans/tree/master/dht/compositions).
 
@@ -109,6 +109,4 @@ $ cat composition.toml
 ```text
 $ testground run composition -f composition.toml
 ```
-
-
 

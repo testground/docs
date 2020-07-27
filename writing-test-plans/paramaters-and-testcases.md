@@ -5,7 +5,7 @@
 Parameters and test cases are defined in the `manifest.toml` file of every test plan. Let's have a look once again at the `quickstart/manifest.toml` file and add two test cases to the bottom of the file:
 
 {% code title="$TESTGROUND\_HOME/plans/quickstart/manifest.toml" %}
-```
+```text
 ...
 
 
@@ -54,32 +54,32 @@ As you can see, a test plan a simple executable that conforms to the [simple Tes
 package main
 
 import (
-	"github.com/testground/sdk-go/runtime"
+    "github.com/testground/sdk-go/runtime"
 )
 
 func main() {
-	runtime.InvokeMap(map[string]runtime.TestCaseFn{
-		"bigbrain": 	run,
-		"smallbrain": run,
-	})
+    runtime.InvokeMap(map[string]runtime.TestCaseFn{
+        "bigbrain":     run,
+        "smallbrain": run,
+    })
 }
 
 func run(runenv *runtime.RunEnv) error {
   var (
-    num 		= runenv.IntParam("num")
-  	word 		= runenv.StringParam("word")
-  	feature = runenv.BooleanParam("feature")
+    num         = runenv.IntParam("num")
+      word         = runenv.StringParam("word")
+      feature = runenv.BooleanParam("feature")
   )
-  
-	runenv.RecordMessage("I am a %s test case.", runenv.TestCase)
-	runenv.RecordMessage("I store my files on %d servers.", num)
-	runenv.RecordMessage("I %s run tests on my P2P code.", word)
-	
-	if feature {
-		runenv.RecordMessage("I use IPFS!")
-	}
-	
-	return nil
+
+    runenv.RecordMessage("I am a %s test case.", runenv.TestCase)
+    runenv.RecordMessage("I store my files on %d servers.", num)
+    runenv.RecordMessage("I %s run tests on my P2P code.", word)
+
+    if feature {
+        runenv.RecordMessage("I use IPFS!")
+    }
+
+    return nil
 }
 ```
 {% endcode %}
@@ -96,7 +96,7 @@ $ testground run single --plan quickstart \
 
 Watch the output for `MESSAGE`s with the `smallbrain`'s parameters.
 
-```
+```text
 INFO  0.0112s      START << instance   1 >> {"plan":"quickstart","case":"smallbrain", [...]
 INFO  0.0114s    MESSAGE << instance   1 >> I am a smallbrain test case.
 INFO  0.0115s    MESSAGE << instance   1 >> I store my files on 2 servers.

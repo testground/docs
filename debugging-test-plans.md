@@ -23,42 +23,42 @@ package main
 import "github.com/testground/sdk-go/runtime"
 
 func main() {
-	runtime.Invoke(run)
+    runtime.Invoke(run)
 }
 
 func run(runenv *runtime.RunEnv) error {
-	// No closing quote, will not build.
-	runenv.RecordMessage("Hello Bugs)
-	return nil
+    // No closing quote, will not build.
+    runenv.RecordMessage("Hello Bugs)
+    return nil
 }
 ```
 {% endcode %}
 
 ### How it looks in terminal output
 
-When this plan runs, the code is sent to the daemon to be built. Of course, this will fail. Notice that the output comes in several sections.  The section labeled `Server output` shows us the error encountered by our builder.
+When this plan runs, the code is sent to the daemon to be built. Of course, this will fail. Notice that the output comes in several sections. The section labeled `Server output` shows us the error encountered by our builder.
 
 ```bash
 $ testground run single --plan planbuggy --testcase quickstart --runner local:exec --builder exec:go --instances 1
 
-May  5 00:31:15.650020	INFO	using home directory: /home/cory/testground
-May  5 00:31:15.650143	INFO	no .env.toml found at /home/cory/testground/.env.toml; running with defaults
-May  5 00:31:15.650182	INFO	testground client initialized	{"addr": "localhost:8042"}
-May  5 00:31:15.651180	INFO	using home directory: /home/cory/testground
-May  5 00:31:15.651300	INFO	no .env.toml found at /home/cory/testground/.env.toml; running with defaults
-May  5 00:31:15.651339	INFO	testground client initialized	{"addr": "localhost:8042"}
-May  5 00:31:15.651772	INFO	test plan source at: /home/cory/testground/plans/planbuggy
+May  5 00:31:15.650020    INFO    using home directory: /home/cory/testground
+May  5 00:31:15.650143    INFO    no .env.toml found at /home/cory/testground/.env.toml; running with defaults
+May  5 00:31:15.650182    INFO    testground client initialized    {"addr": "localhost:8042"}
+May  5 00:31:15.651180    INFO    using home directory: /home/cory/testground
+May  5 00:31:15.651300    INFO    no .env.toml found at /home/cory/testground/.env.toml; running with defaults
+May  5 00:31:15.651339    INFO    testground client initialized    {"addr": "localhost:8042"}
+May  5 00:31:15.651772    INFO    test plan source at: /home/cory/testground/plans/planbuggy
 
 >>> Server output:
 
-May  5 00:31:15.662268	INFO	performing build for groups	{"req_id": "be8cc8ee", "plan": "planbuggy", "groups": ["single"], "builder": "exec:go"}
-May  5 00:31:15.906353	ERROR	go build failed: # github.com/coryschwartz/planbuggy
+May  5 00:31:15.662268    INFO    performing build for groups    {"req_id": "be8cc8ee", "plan": "planbuggy", "groups": ["single"], "builder": "exec:go"}
+May  5 00:31:15.906353    ERROR    go build failed: # github.com/coryschwartz/planbuggy
 ./main.go:10:35: newline in string
 ./main.go:10:35: syntax error: unexpected newline, expecting comma or )
 ./main.go:11:2: syntax error: unexpected return at end of statement
-	{"req_id": "be8cc8ee"}
-May  5 00:31:15.906505	INFO	build failed	{"req_id": "be8cc8ee", "plan": "planbuggy", "groups": ["single"], "builder": "exec:go", "error": "failed to run the build; exit status 2"}
-May  5 00:31:15.906563	WARN	engine build error: failed to run the build; exit status 2	{"req_id": "be8cc8ee"}
+    {"req_id": "be8cc8ee"}
+May  5 00:31:15.906505    INFO    build failed    {"req_id": "be8cc8ee", "plan": "planbuggy", "groups": ["single"], "builder": "exec:go", "error": "failed to run the build; exit status 2"}
+May  5 00:31:15.906563    WARN    engine build error: failed to run the build; exit status 2    {"req_id": "be8cc8ee"}
 
 >>> Error:
 
@@ -95,7 +95,7 @@ The next technique is useful for plans which build correctly and you want to obs
 runenv.RecordEvent("this is a message")
 ```
 
- Another thing which might be useful for debugging is events.  Just like messages, events can be used as a point-in-time caputre of the current state. Events are included in the outputs collection. They are recorded in the order they occur for each plan instance. We created R\(\) and D\(\) metrics collectors \(results and debugging\).  The difference between these two is that debugging is sent to the metrics pipeline fairly quickly whereas results are collected at the end of a test run.
+Another thing which might be useful for debugging is events. Just like messages, events can be used as a point-in-time caputre of the current state. Events are included in the outputs collection. They are recorded in the order they occur for each plan instance. We created R\(\) and D\(\) metrics collectors \(results and debugging\). The difference between these two is that debugging is sent to the metrics pipeline fairly quickly whereas results are collected at the end of a test run.
 
 ```go
 var things int
@@ -117,82 +117,81 @@ In the following plan, five ~~philosophers~~ Ron Swansons sit at a table with fi
 package main
 
 import (
-	"github.com/testground/sdk-go/runtime"
-	"sync"
+    "github.com/testground/sdk-go/runtime"
+    "sync"
 )
 
 type Fork struct {
-	id int
-	m  *sync.Mutex
+    id int
+    m  *sync.Mutex
 }
 
 type Swanson struct {
-	id                  int
-	meals               int
-	leftFork, rightFork *Fork
-	wg                  *sync.WaitGroup
+    id                  int
+    meals               int
+    leftFork, rightFork *Fork
+    wg                  *sync.WaitGroup
 }
 
 func (ron *Swanson) Feast(runenv *runtime.RunEnv) {
-	ron.leftFork.m.Lock()
-	ron.rightFork.m.Lock()
-	r.D().RecordPoint("eats", 1)
-	
-	ron.leftFork.m.Unlock()
+    ron.leftFork.m.Lock()
+    ron.rightFork.m.Lock()
+    r.D().RecordPoint("eats", 1)
 
-	ron.meals = ron.meals - 1
-	if ron.meals > 0 {
-		runenv.Message("Still hungry. %d more meals to fill me up.", ron.meals)
-		ron.Feast(runenv)
-	} else {
-		runenv.Message("All done. For now...")
-		ron.wg.Done()
-	}
+    ron.leftFork.m.Unlock()
+
+    ron.meals = ron.meals - 1
+    if ron.meals > 0 {
+        runenv.Message("Still hungry. %d more meals to fill me up.", ron.meals)
+        ron.Feast(runenv)
+    } else {
+        runenv.Message("All done. For now...")
+        ron.wg.Done()
+    }
 }
 
 func main() {
-	runtime.Invoke(run)
+    runtime.Invoke(run)
 }
 
 func run(runenv *runtime.RunEnv) error {
   // Five hungry rons eat 10 plates of food each.
-	countRons := 5
-	countMeals := 10
-	wg := sync.WaitGroup{}
+    countRons := 5
+    countMeals := 10
+    wg := sync.WaitGroup{}
 
-	// Create forks
-	forks := make([]*Fork, countRons)
-	for i := 0; i < countRons; i++ {
-		forks[i] = &Fork{
-			id: i,
-			m:  new(sync.Mutex),
-		}
-	}
+    // Create forks
+    forks := make([]*Fork, countRons)
+    for i := 0; i < countRons; i++ {
+        forks[i] = &Fork{
+            id: i,
+            m:  new(sync.Mutex),
+        }
+    }
 
-	// Each ron swanson has has a fork to his left and right
-	rons := make([]*Swanson, countRons)
-	wg.Add(countRons)
-	for i := 0; i <= countRons; i++ {
-		rons[i] = &Swanson{
-			id:        i,
-			leftFork:  forks[i%countRons],
-			rightFork: forks[(i+1)%countRons],
-			meals:     countMeals,
-			wg:        &wg,
-		}
-		go rons[i].Feast(runenv)
-	}
+    // Each ron swanson has has a fork to his left and right
+    rons := make([]*Swanson, countRons)
+    wg.Add(countRons)
+    for i := 0; i <= countRons; i++ {
+        rons[i] = &Swanson{
+            id:        i,
+            leftFork:  forks[i%countRons],
+            rightFork: forks[(i+1)%countRons],
+            meals:     countMeals,
+            wg:        &wg,
+        }
+        go rons[i].Feast(runenv)
+    }
 
-	wg.Wait()
-	runenv.RecordMessage("all rons have eaten")
-	return nil
+    wg.Wait()
+    runenv.RecordMessage("all rons have eaten")
+    return nil
 }
-
 ```
 {% endtab %}
 
 {% tab title="solution" %}
-```
+```text
 Line 24.
 Ron puts down his left fork, but forgets to put down his right fork!
 Add another line to unlick the rigtFork mutex to fix this problem.
@@ -230,11 +229,11 @@ On Testground gaining access to the `pprof` port can sometimes be non-obvious. A
 # look for the following messages in the test run output to figure out
 # the URL where to access the pprof endpoint of each instance:
 #
-# May  6 14:32:10.146239	INFO	0.0174s    MESSAGE << instance   1 >>
+# May  6 14:32:10.146239    INFO    0.0174s    MESSAGE << instance   1 >>
 # registering default http handler at: http://[::]:6060/
 # (pprof: http://[::]:6060/debug/pprof/)
 #
-# May  6 14:32:10.146535	INFO	0.0179s    MESSAGE << instance   2 >>
+# May  6 14:32:10.146535    INFO    0.0179s    MESSAGE << instance   2 >>
 # registering default http handler at: http://[::]:64912/
 # (pprof: http://[::]:64912/debug/pprof/)
 
@@ -260,7 +259,6 @@ Entering interactive mode (type "help" for commands, "o" for options)
          0     0%   100%   544.67kB   100%  net.goLookupIPFiles
          0     0%   100%   544.67kB   100%  net.lookupStaticHost
          0     0%   100%   544.67kB   100%  net.readHosts
-
 ```
 {% endtab %}
 
@@ -302,7 +300,6 @@ Showing top 10 nodes out of 11
          0     0%   100%   512.44kB 49.92%  runtime.park_m
          0     0%   100%   512.44kB 49.92%  runtime.schedule
          0     0%   100%   512.44kB 49.92%  runtime.startm
-
 ```
 {% endtab %}
 
@@ -336,41 +333,41 @@ Showing top 10 nodes out of 21
          0     0%   100%   548.84kB 17.63%  github.com/markbates/pkger/internal/takeon/github.com/markbates/hepa/filters.init
          0     0%   100%   513.31kB 16.49%  k8s.io/apimachinery/pkg/util/naming.init
          0     0%   100%  2052.02kB 65.92%  regexp.Compile (inline)
-
 ```
 {% endtab %}
 {% endtabs %}
 
 ## Catching panics
 
-When using the Go SDK, the library will handle panics automatically if they are thrown from the main test case routine. However, it is possible to handle panics thrown in goroutines by deferring a call to `run.HandlePanics()` in the beginning of the routine. 
+When using the Go SDK, the library will handle panics automatically if they are thrown from the main test case routine. However, it is possible to handle panics thrown in goroutines by deferring a call to `run.HandlePanics()` in the beginning of the routine.
 
 {% code title="main.go" %}
 ```go
 package main
 
 import (
-	"fmt"
-	"time"
+    "fmt"
+    "time"
 
-	"github.com/testground/sdk-go/run"
-	"github.com/testground/sdk-go/runtime"
+    "github.com/testground/sdk-go/run"
+    "github.com/testground/sdk-go/runtime"
 )
 
 func main() {
-	run.Invoke(test)
+    run.Invoke(test)
 }
 
 func test(runenv *runtime.RunEnv) error {
-	go func() {
-		// Will ensure that the panics are handled!
-		defer run.HandlePanics()
-		panic(fmt.Errorf("do not panic and code"))
-	}()
+    go func() {
+        // Will ensure that the panics are handled!
+        defer run.HandlePanics()
+        panic(fmt.Errorf("do not panic and code"))
+    }()
 
-	// Make sure there's enough time.
-	time.Sleep(1 * time.Minute)
-	return nil
+    // Make sure there's enough time.
+    time.Sleep(1 * time.Minute)
+    return nil
 }
 ```
 {% endcode %}
+

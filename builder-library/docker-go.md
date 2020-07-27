@@ -2,7 +2,7 @@
 
 ## Background
 
-Provided that you are writing plans in Go and using the [sync service sdk](https://github.com/testground/sdk-go),  `docker:go` is the builder you want to use. This builder produces plan artifacts which are usable on the `local:docker`  or `cluster:k8s` runner.
+Provided that you are writing plans in Go and using the [sync service sdk](https://github.com/testground/sdk-go), `docker:go` is the builder you want to use. This builder produces plan artifacts which are usable on the `local:docker` or `cluster:k8s` runner.
 
 ## Features
 
@@ -169,7 +169,7 @@ post_runtime_copy   = "RUN echo 'at post_runtime_copy'"
 
 This example changes the build base image and enables the Go build cache:
 
-```
+```text
 [builders."docker:go"]
 build_base_image      = "golang:1.14.4-buster"
 enable_go_build_cache = true
@@ -180,6 +180,4 @@ enable_go_build_cache = true
 See an example plan which uses a customized Dockerfile, see [here](https://github.com/testground/testground/tree/master/plans/dockercustomize)
 
 Interested in how this works? All the Testground builders can be seen [here](https://github.com/testground/testground/tree/master/pkg/build)
-
-
 

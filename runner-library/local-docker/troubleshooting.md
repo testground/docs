@@ -38,7 +38,7 @@ For more examples and ideas, visit:
 
 | message | cause | fix |
 | :--- | :--- | :--- |
-| `engine build error: docker build failed: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?` | Docker daemon is not running.  | Restart the Docker daemon |
+| `engine build error: docker build failed: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?` | Docker daemon is not running. | Restart the Docker daemon |
 | `read tcp xxx.xxx.xxx.xxx:443 i/o timeout` | Cannot connect to remote repository | This is a frequent and probably transient error. Try again. |
 
 ## Troubleshooting
@@ -51,7 +51,7 @@ For more examples and ideas, visit:
   * terminate old test plan containers \(if any\) with `testground terminate`
   * close applications which may cause enough load to interfere with the test
 
-*  Test plans fail while waiting on a barrier
+* Test plans fail while waiting on a barrier
 
   This may indicate a problem with the sync service or the sidecar. Investigate and try again.
 
@@ -112,6 +112,5 @@ Fixes:
 - local-redis: ok; container started
 - local-influxdb: ok; container started
 - sidecar-container: ok; container started
-
 ```
 

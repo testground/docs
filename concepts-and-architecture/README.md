@@ -24,5 +24,3 @@ To help you situate yourself, this architecture diagram provides a bird's-eye vi
 
 {% page-ref page="runtime.md" %}
 
-
-

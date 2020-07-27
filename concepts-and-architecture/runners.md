@@ -13,13 +13,11 @@ A **runner** is a component that takes _**build artifact**_ produced by a [Build
 -------------    -----------    ------------------    ----------    ---------------
 ```
 
-### Supported runners
+## Supported runners
 
 | runner | input work unit | environment |
 | :--- | :--- | :--- |
 | `local:exec` | OS-specific executable | local |
 | `local:docker` | Docker image | local Docker environment |
 | `cluster:k8s` | Docker image | [Kubernetes cluster](../runner-library/cluster-k8s/how-to-create-a-kubernetes-cluster-for-testground.md) |
-
-
 

@@ -51,7 +51,7 @@ $TESTGROUND_HOME
  |__ data               >>> [d] data directory  
       |__ outputs
       |__ work
- 
+
 [c] = used client-side // [d] = used mostly daemon-side.
 ```
 
@@ -96,7 +96,7 @@ During the first run the Testground daemon sets up the builder and runner enviro
 
 You should see a flurry of activity, including measurements, messages, and runtime events. When the execution concludes, you will see something like:
 
-```
+```text
 [...]
 INFO run finished successfully {"req_id": "d570c53a", "plan": "network", "case": "ping-pong", "runner": "local:docker", "instances": 2}
 
@@ -105,7 +105,7 @@ INFO run finished successfully {"req_id": "d570c53a", "plan": "network", "case":
 INFO finished run with ID: 5222e5df793b
 ```
 
-In the local runners, all test plan run outputs and logs are stored at `$TESTGROUND_HOME/data`.  Collect them into a bundle with the following command \(replacing `5222e5df793b` with the corresponding run ID\):
+In the local runners, all test plan run outputs and logs are stored at `$TESTGROUND_HOME/data`. Collect them into a bundle with the following command \(replacing `5222e5df793b` with the corresponding run ID\):
 
 ```bash
 $ testground collect --runner=local:docker 5222e5df793b
@@ -113,7 +113,7 @@ $ testground collect --runner=local:docker 5222e5df793b
 
 >>> Result:
 
-INFO	created file: 5222e5df793b.tgz
+INFO    created file: 5222e5df793b.tgz
 ```
 
 Open the bundle and you will find the outputs from the test in there:
@@ -165,6 +165,4 @@ username = "username"
 access_token = "docker hub access token"
 ```
 {% endcode %}
-
-
 
