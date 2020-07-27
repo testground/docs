@@ -341,5 +341,36 @@ Showing top 10 nodes out of 21
 {% endtab %}
 {% endtabs %}
 
+## Catching panics
 
+When using the Go SDK, the library will handle panics automatically if they are thrown from the main test case routine. However, it is possible to handle panics thrown in sub routines by deffering a call to `run.HandlePanics()` in the beginning of the routine. 
 
+{% code title="main.go" %}
+```go
+package main
+
+import (
+	"fmt"
+	"time"
+
+	"github.com/testground/sdk-go/run"
+	"github.com/testground/sdk-go/runtime"
+)
+
+func main() {
+	run.Invoke(test)
+}
+
+func test(runenv *runtime.RunEnv) error {
+	go func() {
+		// Will ensure that the panics are handled!
+		defer run.HandlePanics()
+		panic(fmt.Errorf("do not panic and code"))
+	}()
+
+	// Make sure there's enough time.
+	time.Sleep(1 * time.Minute)
+	return nil
+}
+```
+{% endcode %}
