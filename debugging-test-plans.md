@@ -343,7 +343,7 @@ Showing top 10 nodes out of 21
 
 ## Catching panics
 
-When using the Go SDK, the library will handle panics automatically if they are thrown from the main test case routine. However, it is possible to handle panics thrown in sub routines by deffering a call to `run.HandlePanics()` in the beginning of the routine. 
+When using the Go SDK, the library will handle panics automatically if they are thrown from the main test case routine. However, it is possible to handle panics thrown in goroutines by deferring a call to `run.HandlePanics()` in the beginning of the routine. 
 
 {% code title="main.go" %}
 ```go
