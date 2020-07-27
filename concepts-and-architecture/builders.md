@@ -69,7 +69,7 @@ You can include extra files located at directories other than the test plan's so
 
 To use this feature, you need to specify an `extra_sources` on the `manifest.toml` file, consisting of a `builder => []paths`, which specify which paths to include as extras for each builders.
 
-The paths are resolved relative to the plan source directory, i.e., where the manifest resides, evaluating symlinks first. To add an absolute and a relative path as extra sources to a  `docker:go` build, you could add this snippet to the plan's manifest:
+The paths are resolved relative to the plan source directory, i.e. where the manifest resides, evaluating symlinks first. To add an absolute and a relative path as extra sources to a `docker:go` build, you could add this snippet to the plan's manifest:
 
 ```toml
 [extra_sources]
@@ -107,4 +107,3 @@ Build a composition defined in `barrier-local.toml`. Note that the composition f
 $ testground build composition --file=compositions/barrier-local.toml \
                                --write-artifacts
 ```
-
