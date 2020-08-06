@@ -23,42 +23,42 @@ package main
 import "github.com/testground/sdk-go/runtime"
 
 func main() {
-    runtime.Invoke(run)
+	runtime.Invoke(run)
 }
 
 func run(runenv *runtime.RunEnv) error {
-    // No closing quote, will not build.
-    runenv.RecordMessage("Hello Bugs)
-    return nil
+	// No closing quote, will not build.
+	runenv.RecordMessage("Hello Bugs)
+	return nil
 }
 ```
 {% endcode %}
 
 ### How it looks in terminal output
 
-When this plan runs, the code is sent to the daemon to be built. Of course, this will fail. Notice that the output comes in several sections. The section labeled `Server output` shows us the error encountered by our builder.
+When this plan runs, the code is sent to the daemon to be built. Of course, this will fail. Notice that the output comes in several sections.  The section labeled `Server output` shows us the error encountered by our builder.
 
 ```bash
 $ testground run single --plan planbuggy --testcase quickstart --runner local:exec --builder exec:go --instances 1
 
-May  5 00:31:15.650020    INFO    using home directory: /home/cory/testground
-May  5 00:31:15.650143    INFO    no .env.toml found at /home/cory/testground/.env.toml; running with defaults
-May  5 00:31:15.650182    INFO    testground client initialized    {"addr": "localhost:8042"}
-May  5 00:31:15.651180    INFO    using home directory: /home/cory/testground
-May  5 00:31:15.651300    INFO    no .env.toml found at /home/cory/testground/.env.toml; running with defaults
-May  5 00:31:15.651339    INFO    testground client initialized    {"addr": "localhost:8042"}
-May  5 00:31:15.651772    INFO    test plan source at: /home/cory/testground/plans/planbuggy
+May  5 00:31:15.650020	INFO	using home directory: /home/cory/testground
+May  5 00:31:15.650143	INFO	no .env.toml found at /home/cory/testground/.env.toml; running with defaults
+May  5 00:31:15.650182	INFO	testground client initialized	{"addr": "localhost:8042"}
+May  5 00:31:15.651180	INFO	using home directory: /home/cory/testground
+May  5 00:31:15.651300	INFO	no .env.toml found at /home/cory/testground/.env.toml; running with defaults
+May  5 00:31:15.651339	INFO	testground client initialized	{"addr": "localhost:8042"}
+May  5 00:31:15.651772	INFO	test plan source at: /home/cory/testground/plans/planbuggy
 
 >>> Server output:
 
-May  5 00:31:15.662268    INFO    performing build for groups    {"req_id": "be8cc8ee", "plan": "planbuggy", "groups": ["single"], "builder": "exec:go"}
-May  5 00:31:15.906353    ERROR    go build failed: # github.com/coryschwartz/planbuggy
+May  5 00:31:15.662268	INFO	performing build for groups	{"req_id": "be8cc8ee", "plan": "planbuggy", "groups": ["single"], "builder": "exec:go"}
+May  5 00:31:15.906353	ERROR	go build failed: # github.com/coryschwartz/planbuggy
 ./main.go:10:35: newline in string
 ./main.go:10:35: syntax error: unexpected newline, expecting comma or )
 ./main.go:11:2: syntax error: unexpected return at end of statement
-    {"req_id": "be8cc8ee"}
-May  5 00:31:15.906505    INFO    build failed    {"req_id": "be8cc8ee", "plan": "planbuggy", "groups": ["single"], "builder": "exec:go", "error": "failed to run the build; exit status 2"}
-May  5 00:31:15.906563    WARN    engine build error: failed to run the build; exit status 2    {"req_id": "be8cc8ee"}
+	{"req_id": "be8cc8ee"}
+May  5 00:31:15.906505	INFO	build failed	{"req_id": "be8cc8ee", "plan": "planbuggy", "groups": ["single"], "builder": "exec:go", "error": "failed to run the build; exit status 2"}
+May  5 00:31:15.906563	WARN	engine build error: failed to run the build; exit status 2	{"req_id": "be8cc8ee"}
 
 >>> Error:
 
@@ -85,7 +85,7 @@ If your plan relies on knowledge of the test plan or test case, this can be pass
 
 Now that output is much more readable!
 
-I can't claim that build errors will always be as easy to diagnose as this one, but this feature enables plan writers to employ traditional debugging techniques or other debugging tools with which they are already familiar.
+I can't claim that build errors will always be as easy to diagnose as this one, but this feature enables plan writers to employ traditional debugging techniques or other debugging tools which they are already familiar.
 
 ## Debugging with message output
 
@@ -95,7 +95,7 @@ The next technique is useful for plans which build correctly and you want to obs
 runenv.RecordEvent("this is a message")
 ```
 
-Another thing which might be useful for debugging is events. Just like messages, events can be used as a point-in-time caputre of the current state. Events are included in the outputs collection. They are recorded in the order they occur for each plan instance. We created R\(\) and D\(\) metrics collectors \(results and debugging\). The difference between these two is that debugging is sent to the metrics pipeline fairly quickly whereas results are collected at the end of a test run.
+ Another thing which might be useful for debugging is events.  Just like messages, events can be used as a point-in-time caputre of the current state. Events are included in the outputs collection. They are recorded in the order they occur for each plan instance. We created R\(\) and D\(\) metrics collectors \(results and debugging\).  The difference between these two is that debugging is sent to the metrics pipeline fairly quickly whereas results are collected at the end of a test run.
 
 ```go
 var things int
@@ -107,9 +107,9 @@ for {
 runenv.R().RecordPoint("total_things", things)
 ```
 
-To see how this works, let's use [Ron Swanson's classic dilemma](http://adit.io/posts/2013-05-11-The-Dining-Philosophers-Problem-With-Ron-Swanson.html).
+To see how this works, let's use [ron swanson's classic dilemma](http://adit.io/posts/2013-05-11-The-Dining-Philosophers-Problem-With-Ron-Swanson.html).
 
-In the following plan, five ~~philosophers~~ Ron Swansons sit at a table with five forks between them. Unfortunately, there is an implementation bug and these Ron Swansons will be here forever. Add some debugging messages using `runenv.RecordMessage` to see if you can straighten this whole thing out \(hint: answer is in the second tab\).
+In the following plan, five ~~philosophers~~ Ron Swansons sit at a table with five forks between them. Unfortunately, there is an implementation bug and these Ron Swansons will be be here forever. Add some debugging messages using `runenv.RecordMessage` to see if you can straighten this whole thing out \(hint: answer is in the second tab\)
 
 {% tabs %}
 {% tab title="exercise" %}
@@ -117,81 +117,82 @@ In the following plan, five ~~philosophers~~ Ron Swansons sit at a table with fi
 package main
 
 import (
-    "github.com/testground/sdk-go/runtime"
-    "sync"
+	"github.com/testground/sdk-go/runtime"
+	"sync"
 )
 
 type Fork struct {
-    id int
-    m  *sync.Mutex
+	id int
+	m  *sync.Mutex
 }
 
 type Swanson struct {
-    id                  int
-    meals               int
-    leftFork, rightFork *Fork
-    wg                  *sync.WaitGroup
+	id                  int
+	meals               int
+	leftFork, rightFork *Fork
+	wg                  *sync.WaitGroup
 }
 
 func (ron *Swanson) Feast(runenv *runtime.RunEnv) {
-    ron.leftFork.m.Lock()
-    ron.rightFork.m.Lock()
-    r.D().RecordPoint("eats", 1)
+	ron.leftFork.m.Lock()
+	ron.rightFork.m.Lock()
+	r.D().RecordPoint("eats", 1)
+	
+	ron.leftFork.m.Unlock()
 
-    ron.leftFork.m.Unlock()
-
-    ron.meals = ron.meals - 1
-    if ron.meals > 0 {
-        runenv.Message("Still hungry. %d more meals to fill me up.", ron.meals)
-        ron.Feast(runenv)
-    } else {
-        runenv.Message("All done. For now...")
-        ron.wg.Done()
-    }
+	ron.meals = ron.meals - 1
+	if ron.meals > 0 {
+		runenv.Message("Still hungry. %d more meals to fill me up.", ron.meals)
+		ron.Feast(runenv)
+	} else {
+		runenv.Message("All done. For now...")
+		ron.wg.Done()
+	}
 }
 
 func main() {
-    runtime.Invoke(run)
+	runtime.Invoke(run)
 }
 
 func run(runenv *runtime.RunEnv) error {
   // Five hungry rons eat 10 plates of food each.
-    countRons := 5
-    countMeals := 10
-    wg := sync.WaitGroup{}
+	countRons := 5
+	countMeals := 10
+	wg := sync.WaitGroup{}
 
-    // Create forks
-    forks := make([]*Fork, countRons)
-    for i := 0; i < countRons; i++ {
-        forks[i] = &Fork{
-            id: i,
-            m:  new(sync.Mutex),
-        }
-    }
+	// Create forks
+	forks := make([]*Fork, countRons)
+	for i := 0; i < countRons; i++ {
+		forks[i] = &Fork{
+			id: i,
+			m:  new(sync.Mutex),
+		}
+	}
 
-    // Each ron swanson has has a fork to his left and right
-    rons := make([]*Swanson, countRons)
-    wg.Add(countRons)
-    for i := 0; i <= countRons; i++ {
-        rons[i] = &Swanson{
-            id:        i,
-            leftFork:  forks[i%countRons],
-            rightFork: forks[(i+1)%countRons],
-            meals:     countMeals,
-            wg:        &wg,
-        }
-        go rons[i].Feast(runenv)
-    }
+	// Each ron swanson has has a fork to his left and right
+	rons := make([]*Swanson, countRons)
+	wg.Add(countRons)
+	for i := 0; i <= countRons; i++ {
+		rons[i] = &Swanson{
+			id:        i,
+			leftFork:  forks[i%countRons],
+			rightFork: forks[(i+1)%countRons],
+			meals:     countMeals,
+			wg:        &wg,
+		}
+		go rons[i].Feast(runenv)
+	}
 
-    wg.Wait()
-    runenv.RecordMessage("all rons have eaten")
-    return nil
+	wg.Wait()
+	runenv.RecordMessage("all rons have eaten")
+	return nil
 }
+
 ```
 {% endtab %}
 
-{% tab title="solution" %}
-```text
+{% tab title="Solution" %}
+```
 Line 24.
 Ron puts down his left fork, but forgets to put down his right fork!
 Add another line to unlick the rigtFork mutex to fix this problem.
@@ -203,13 +204,13 @@ by one. Two Rons are sharing the same seat! this will not do.
 {% endtab %}
 {% endtabs %}
 
-If you can successfully debug this code, you will see each Ron finish his meals and finally the end message "**all rons have eaten**".
+If you can successfully debug this code, you will see each ron finish his meals and finally the  end message "**all rons have eaten**"
 
-### Collecting outputs vs. viewing messages in the terminal
+### Collecting outputs vs viewing messages in the terminal
 
-When using the local runners, with a relatively small number of plan instances it is fairly easy to view outputs in the terminal runner. I recommend troubleshooting the plan with a small number of instances. The same messages you can see in your terminal are also available in `outputs` collection.
+When using the local runners, with a relatively small number of plan instances it is fairly easy to view outputs in the terminal runner. I recommend troubleshooting the plan with a small number of instances. The same messages you can see in your terminal are also available in outputs collections.
 
-For more information about this, see [Analyzing the results](analyzing-the-results.md).
+For more information about this, see [Analyzing the results](https://app.gitbook.com/@protocol-labs/s/testground/~/drafts/-M6X2x7PG-JL0LAa-bnw/analyzing-the-results).
 
 ## Accessing profile data
 
@@ -229,11 +230,11 @@ On Testground gaining access to the `pprof` port can sometimes be non-obvious. A
 # look for the following messages in the test run output to figure out
 # the URL where to access the pprof endpoint of each instance:
 #
-# May  6 14:32:10.146239    INFO    0.0174s    MESSAGE << instance   1 >>
+# May  6 14:32:10.146239	INFO	0.0174s    MESSAGE << instance   1 >>
 # registering default http handler at: http://[::]:6060/
 # (pprof: http://[::]:6060/debug/pprof/)
 #
-# May  6 14:32:10.146535    INFO    0.0179s    MESSAGE << instance   2 >>
+# May  6 14:32:10.146535	INFO	0.0179s    MESSAGE << instance   2 >>
 # registering default http handler at: http://[::]:64912/
 # (pprof: http://[::]:64912/debug/pprof/)
 
@@ -259,6 +260,7 @@ Entering interactive mode (type "help" for commands, "o" for options)
          0     0%   100%   544.67kB   100%  net.goLookupIPFiles
          0     0%   100%   544.67kB   100%  net.lookupStaticHost
          0     0%   100%   544.67kB   100%  net.readHosts
+
 ```
 {% endtab %}
 
@@ -300,6 +302,7 @@ Showing top 10 nodes out of 11
          0     0%   100%   512.44kB 49.92%  runtime.park_m
          0     0%   100%   512.44kB 49.92%  runtime.schedule
          0     0%   100%   512.44kB 49.92%  runtime.startm
+
 ```
 {% endtab %}
 
@@ -333,41 +336,10 @@ Showing top 10 nodes out of 21
          0     0%   100%   548.84kB 17.63%  github.com/markbates/pkger/internal/takeon/github.com/markbates/hepa/filters.init
          0     0%   100%   513.31kB 16.49%  k8s.io/apimachinery/pkg/util/naming.init
          0     0%   100%  2052.02kB 65.92%  regexp.Compile (inline)
+
 ```
 {% endtab %}
 {% endtabs %}
 
-## Catching panics
 
-When using the Go SDK, the library will handle panics automatically if they are thrown from the main test case routine. However, it is possible to handle panics thrown in goroutines by deferring a call to `run.HandlePanics()` in the beginning of the routine.
-
-{% code title="main.go" %}
-```go
-package main
-
-import (
-    "fmt"
-    "time"
-
-    "github.com/testground/sdk-go/run"
-    "github.com/testground/sdk-go/runtime"
-)
-
-func main() {
-    run.Invoke(test)
-}
-
-func test(runenv *runtime.RunEnv) error {
-    go func() {
-        // Will ensure that the panics are handled!
-        defer run.HandlePanics()
-        panic(fmt.Errorf("do not panic and code"))
-    }()
-
-    // Make sure there's enough time.
-    time.Sleep(1 * time.Minute)
-    return nil
-}
-```
-{% endcode %}
 

@@ -32,7 +32,7 @@ The builders accept options on the command-line which can customize their behavi
 Builder configuration options can be provided by various means, in the following order of precedence \(highest precedence to lowest precedence\):
 
 1. CLI `--build-cfg` flags for `single` commands, and in the composition file for `composition` commands.
-2. `.env.toml`: `[builders]` section.
+2.  `.env.toml`: `[builders]` section.
 3. Test plan manifest.
 4. Builder defaults \(applied by the runner\).
 
@@ -63,25 +63,9 @@ None of these options are required and need only be edited if the defaults do no
 | `go_proxy_mode` | how to access go proxy. By default, use a local container. |
 | `go_proxy_url` | required if `go_proxy_mode` is custom. Use a custom go\_proxy instance. |
 
-## Include extra sources
-
-You can include extra files located at directories other than the test plan's source directory on your build. These assets can be useful on, for example, tests that depend on external artifacts or even to override dependencies \(e.g. via replace directive\) with local copies.
-
-To use this feature, you need to specify an `extra_sources` on the `manifest.toml` file, consisting of a `builder => []paths`, which specify which paths to include as extras for each builders.
-
-The paths are resolved relative to the plan source directory, i.e. where the manifest resides, evaluating symlinks first. To add an absolute and a relative path as extra sources to a `docker:go` build, you could add this snippet to the plan's manifest:
-
-```text
-[extra_sources]
-  docker_go = [
-    "/path/to/assets",
-    "relative/images"
-  ]
-```
-
 ## Examples
 
-Single build for a single test for the example/output plan using the `exec:go` builder. This command will produce a binary which you can find in `~/testground/` on Linux and macOS systems.
+Single build for a single test for the example/output plan using the exec:go builder. This command will produce a binary which you can find in `~/testground/` on Linux and macOS systems.
 
 ```bash
 $ testground build single --plan=example --builder=exec:go
