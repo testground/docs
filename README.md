@@ -3,7 +3,7 @@
 ![](.gitbook/assets/image%20%283%29.png)
 
 {% hint style="info" %}
-You are reading the Testground documentation for the [master branch](https://github.com/testground/testground)
+You are reading the Testground documentation for the [stable release v0.5.3](https://github.com/testground/testground/releases/tag/v0.5.3)
 
 The Testground team maintains documentation for the `master` branch and for the latest stable release.
 {% endhint %}
