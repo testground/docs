@@ -65,7 +65,8 @@ Where:
 You might want to add them to your `rc` file \(`.zshrc`, `.bashrc`, etc.\), or to an `.env.sh` file that you source.
 
 ```bash
-export NAME=<desired kubernetes cluster name (e.g. mycluster.k8s.local)>
+export CLUSTER_NAME=<desired kubernetes cluster name (e.g. mycluster.k8s.local)>
+export DEPLOYMENT_NAME=<desired kubernetes deployment name>
 export KOPS_STATE_STORE=s3://<kops state s3 bucket>
 export AWS_REGION=<aws region, for example eu-central-1>
 export ZONE_A=<aws availability zone, for example eu-central-1a>
