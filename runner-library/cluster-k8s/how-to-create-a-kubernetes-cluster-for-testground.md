@@ -81,7 +81,7 @@ export PROJECT=<your project name ; tag is used for cost allocation purposes>
 ## Setup required Helm chart repositories
 
 ```text
-$ helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+$ helm repo add stable https://charts.helm.sh/stable
 $ helm repo add bitnami https://charts.bitnami.com/bitnami
 $ helm repo add influxdata https://helm.influxdata.com/
 $ helm repo update
