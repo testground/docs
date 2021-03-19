@@ -22,7 +22,8 @@
 * [Managing test plans](managing-test-plans.md)
 * [Running test plans](running-test-plans.md)
 * [Traffic shaping](traffic-shaping.md)
-* [Analyzing test run results](analyzing-the-results.md)
+* [Analyzing test run results](analyzing-the-results/README.md)
+  * [Capturing profiles](analyzing-the-results/capturing-profiles.md)
 * [Debugging test plans](debugging-test-plans.md)
 
 ## Runner library
