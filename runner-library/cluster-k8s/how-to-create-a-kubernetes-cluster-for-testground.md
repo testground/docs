@@ -81,7 +81,7 @@ export PROJECT=<your project name ; tag is used for cost allocation purposes>
 ## Setup required Helm chart repositories
 
 ```text
-$ helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+$ helm repo add stable https://charts.helm.sh/stable
 $ helm repo add bitnami https://charts.bitnami.com/bitnami
 $ helm repo add influxdata https://helm.influxdata.com/
 $ helm repo update
@@ -100,17 +100,37 @@ Once you run this command, take some time to walk the dog, clean up around the o
 ```bash
 $ git clone https://github.com/testground/infra
 
-$ cd infra
+$ cd infra/k8s
 
-$ ./k8s/install.sh ./k8s/cluster.yaml
+# Install AWS cloud resources with `kops`
+$ ./01_install_k8s.sh cluster.yaml
+
+# Install EFS file system and mount it to the cluster
+$ ./02_efs.sh cluster.yaml
+
+# Add EBS storage class to the cluster
+$ ./03_ebs.sh cluster.yaml
+
+# Install the remote Testground daemon
+$ ./04_testground_daemon.sh cluster.yaml
 ```
 
 ## Destroy the cluster when you're done working on it
 
 Do not forget to delete the cluster once you are done running test plans.
 
-```text
-$ ./k8s/delete.sh
+```bash
+$ cd infra/k8s
+
+# Remove EBS volumes
+$ ./delete_ebs.sh
+
+# Remove EFS file system
+$ ./delete_efs.sh
+
+# Remove AWS cloud resources created by `kops` - EC2 VMs, security groups,
+# auto-scaling groups, etc.
+$ ./delete_kops.sh
 ```
 
 ## Resizing the cluster
