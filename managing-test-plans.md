@@ -60,7 +60,7 @@ You can modify the behaviour of `plan create`using command-line flags to change 
 
 ### Importing existing plans
 
-Importing existing plans requires a `--source` flag. The source can be either from the local filesystem or downloaded from a git repository. When importing plans from a local filesystem, a symbolic link is created from the source to the plan directory. When `git` is used,  the plan is imported over any protocol supported by git.
+Importing existing plans requires a `--from` flag. The source can be either from the local filesystem or downloaded from a git repository. When importing plans from a local filesystem, a symbolic link is created from the source to the plan directory. When `git` is used,  the plan is imported over any protocol supported by git.
 
 #### ...from the local filesystem
 
@@ -68,7 +68,7 @@ Importing existing plans requires a `--source` flag. The source can be either fr
 # Import multiple plans from your local filesystem
 # Changing the name to "myplans" (not required)
 
-$ testground plan import --source /local/plans/dir/ --name myplans
+$ testground plan import --from /local/plans/dir/ --name myplans
 
 created symlink $TESTGROUND_HOME/plans/myplans -> /local/plans/dir/
 imported plans:
@@ -107,7 +107,7 @@ lrwxrwxrwx 1 cory users  56 May  4 15:36 myplans -> /local/plans/dir/
 ```bash
 # Import multiple plans from the same git repo
 
-$ testground plan import --git --source https://github.com/libp2p/test-plans
+$ testground plan import --git --from https://github.com/libp2p/test-plans
 
 Enumerating objects: 54, done
 Counting objects: 100% (54/54), done.
