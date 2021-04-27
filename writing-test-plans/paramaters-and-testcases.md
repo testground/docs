@@ -53,31 +53,32 @@ As you can see, a test plan a simple executable that conforms to the [simple Tes
 package main
 
 import (
+  "github.com/ipfs/testground/sdk/run"
 	"github.com/ipfs/testground/sdk/runtime"
 )
 
 func main() {
-	runtime.InvokeMap(map[string]runtime.TestCaseFn{
-		"bigbrain": 	run,
-		"smallbrain": run,
+	run.InvokeMap(map[string]interface{}{
+		"bigbrain": 	runf,
+		"smallbrain": runf,
 	})
 }
 
-func run(runenv *runtime.RunEnv) error {
+func runf(runenv *runtime.RunEnv) error {
   var (
     num 		= runenv.IntParam("num")
   	word 		= runenv.StringParam("word")
   	feature = runenv.BooleanParam("feature")
   )
-  
+
 	runenv.RecordMessage("I am a %s test case.", runenv.TestCase)
 	runenv.RecordMessage("I store my files on %d servers.", num)
 	runenv.RecordMessage("I %s run tests on my P2P code.", word)
-	
+
 	if feature {
 		runenv.RecordMessage("I use IPFS!")
 	}
-	
+
 	return nil
 }
 ```
@@ -96,4 +97,3 @@ $ testground run single --plan quickstart \
 {% hint style="info" %}
 Try using different runners. This command executes the plan with the `local:exec` runner and `exec:go`builder, but it works just as well with the `local:docker` runner or the Kubernetes `cluster:k8s`runner \(for which you will need to use the  `docker:go` builder!
 {% endhint %}
-

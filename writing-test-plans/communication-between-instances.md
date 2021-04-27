@@ -8,7 +8,7 @@ Lets create a plan in which one of the plans produces a `struct` which is re-con
 
 ### Setting up the`topic`
 
-`Transferrable` is the value type we will be transferring. 
+`Transferrable` is the value type we will be transferring.
 
 ```go
 type Transferrable struct {
@@ -30,7 +30,7 @@ To write to a topic, create a bounded client and use it to publish to the topic 
 
 ```go
 	ctx := context.Background()
-	
+
 	client := sync.MustBoundClient(ctx, runenv)
 	defer client.Close()
 
@@ -43,7 +43,7 @@ Subscribe to the topic we created earlier and set up a channel to receive the va
 
 ```go
 	tch := make(chan *Transferrable)
-	
+
 	_, err = client.Subscribe(ctx, st, tch)
 	if err != nil {
 		panic(err)
@@ -65,6 +65,7 @@ import (
 	"math/rand"
 	"time"
 
+	"github.com/testground/sdk-go/run"
 	"github.com/testground/sdk-go/runtime"
 	"github.com/testground/sdk-go/sync"
 )
@@ -97,16 +98,16 @@ func (t *Transferrable) String() string {
 }
 
 func main() {
-	runtime.Invoke(run)
+	run.Invoke(runf)
 }
 
-func run(runenv *runtime.RunEnv) error {
+func runf(runenv *runtime.RunEnv) error {
 	rand.Seed(time.Now().UnixNano())
 
 	ctx := context.Background()
 	client := sync.MustBoundClient(ctx, runenv)
 	defer client.Close()
-	
+
 	st := sync.NewTopic("transfer-key", &Transferrable{})
 
 	// Configure the test
@@ -135,7 +136,7 @@ func run(runenv *runtime.RunEnv) error {
 }
 ```
 
-Run with multiple instances: 
+Run with multiple instances:
 
 ```text
 $ testground run single -p quickstart -t quickstart -b exec:go -r local:exec -i 4
@@ -144,4 +145,3 @@ $ testground run single -p quickstart -t quickstart -b exec:go -r local:exec -i 
 {% hint style="info" %}
 Notice that instances is set to 4. Four instances will run at the same time.
 {% endhint %}
-
