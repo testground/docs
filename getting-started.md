@@ -136,7 +136,7 @@ You can change the default bind addresses by configuring `daemon.listen` and `cl
 listen = ":8080"
 
 [client]
-endpoint = "localhost:8080"
+endpoint = "http://localhost:8080"
 ```
 {% endcode %}
 
