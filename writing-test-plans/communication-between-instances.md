@@ -12,9 +12,9 @@ Lets create a plan in which one of the plans produces a `struct` which is re-con
 
 ```go
 type Transferrable struct {
-	Name          string
-	FavoriteSport int
-	CareWhoKnows  bool
+  Name          string
+  FavoriteSport int
+  CareWhoKnows  bool
 }
 ```
 
@@ -29,12 +29,12 @@ st := sync.NewTopic("transfer-key", &Transferrable{})
 To write to a topic, create a bounded client and use it to publish to the topic we have just defined.
 
 ```go
-	ctx := context.Background()
-	
-	client := sync.MustBoundClient(ctx, runenv)
-	defer client.Close()
+  ctx := context.Background()
+  
+  client := sync.MustBoundClient(ctx, runenv)
+  defer client.Close()
 
-	client.Publish(ctx, st, &Transferrable{"Guy#1", 1, false})
+  client.Publish(ctx, st, &Transferrable{"Guy#1", 1, false})
 ```
 
 ### Reading from a `topic`
@@ -42,12 +42,12 @@ To write to a topic, create a bounded client and use it to publish to the topic 
 Subscribe to the topic we created earlier and set up a channel to receive the values.
 
 ```go
-	tch := make(chan *Transferrable)
-	
-	_, err = client.Subscribe(ctx, st, tch)
-	if err != nil {
-		panic(err)
-	}
+  tch := make(chan *Transferrable)
+  
+  _, err = client.Subscribe(ctx, st, tch)
+  if err != nil {
+    panic(err)
+  }
 ```
 
 ### Who subscribes and who publishes?
@@ -60,78 +60,78 @@ This question is left up to the plan writer, and certainly different situations 
 package main
 
 import (
-	"context"
-	"fmt"
-	"math/rand"
-	"time"
+  "context"
+  "fmt"
+  "math/rand"
+  "time"
 
-	"github.com/testground/sdk-go/runtime"
-	"github.com/testground/sdk-go/sync"
+  "github.com/testground/sdk-go/runtime"
+  "github.com/testground/sdk-go/sync"
 )
 
 type Sport int
 
 const (
-	football Sport = iota
-	tennis
-	hockey
-	golf
+  football Sport = iota
+  tennis
+  hockey
+  golf
 )
 
 func (s Sport) String() string {
-	return [...]string{"football", "tennis", "hockey", "golf"}[s]
+  return [...]string{"football", "tennis", "hockey", "golf"}[s]
 }
 
 type Transferrable struct {
-	Name          string
-	FavoriteSport Sport
-	CareWhoKnows  bool
+  Name          string
+  FavoriteSport Sport
+  CareWhoKnows  bool
 }
 
 func (t *Transferrable) String() string {
-	msg := fmt.Sprintf("%s: I like %s", t.Name, t.FavoriteSport)
-	if t.CareWhoKnows {
-		return msg + " and I really care!"
-	}
-	return msg + " and I don't care who knows!"
+  msg := fmt.Sprintf("%s: I like %s", t.Name, t.FavoriteSport)
+  if t.CareWhoKnows {
+    return msg + " and I really care!"
+  }
+  return msg + " and I don't care who knows!"
 }
 
 func main() {
-	runtime.Invoke(run)
+  runtime.Invoke(run)
 }
 
 func run(runenv *runtime.RunEnv) error {
-	rand.Seed(time.Now().UnixNano())
+  rand.Seed(time.Now().UnixNano())
 
-	ctx := context.Background()
-	client := sync.MustBoundClient(ctx, runenv)
-	defer client.Close()
-	
-	st := sync.NewTopic("transfer-key", &Transferrable{})
+  ctx := context.Background()
+  client := sync.MustBoundClient(ctx, runenv)
+  defer client.Close()
+  
+  st := sync.NewTopic("transfer-key", &Transferrable{})
 
-	// Configure the test
-	myName := fmt.Sprintf("Guy#%d", rand.Int()%100)
-	mySport := Sport(rand.Int() % 4)
-	howMany := runenv.TestInstanceCount
+  // Configure the test
+  myName := fmt.Sprintf("Guy#%d", rand.Int()%100)
+  mySport := Sport(rand.Int() % 4)
+  howMany := runenv.TestInstanceCount
 
-	// Publish my entry
-	client.Publish(ctx, st, &Transferrable{myName, mySport, false})
+  // Publish my entry
+  client.Publish(ctx, st, &Transferrable{myName, mySport, false})
 
-	// Wait until all instances have published entries
-	readyState := sync.State("ready")
-	client.MustSignalEntry(ctx, readyState)
-	<-client.MustBarrier(ctx, readyState, howMany).C
+  // Wait until all instances have published entries
+  readyState := sync.State("ready")
+  client.MustSignalEntry(ctx, readyState)
+  <-client.MustBarrier(ctx, readyState, howMany).C
 
-	// Subscribe to the `transfer-key` topic
-	tch := make(chan *Transferrable)
-	client.Subscribe(ctx, st, tch)
+  // Subscribe to the `transfer-key` topic
+  tch := make(chan *Transferrable)
+  client.Subscribe(ctx, st, tch)
 
-	for i := 0; i < howMany; i++ {
-		t := <-tch
-		runenv.RecordMessage("%s", t)
-	}
+  for i := 0; i < howMany; i++ {
+    t := <-tch
+    runenv.RecordMessage("%s", t)
+  }
 
-	return nil
+  return nil
 }
 ```
 
