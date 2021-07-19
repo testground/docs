@@ -58,7 +58,7 @@ import (
 
 func main() {
 	runtime.InvokeMap(map[string]interface{}{
-		"bigbrain": 	run,
+		"bigbrain":   run,
 		"smallbrain": run,
 	})
 }
