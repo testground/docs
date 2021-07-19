@@ -65,8 +65,8 @@ func main() {
 
 func run(runenv *runtime.RunEnv) error {
   var (
-    num 		= runenv.IntParam("num")
-    word 		= runenv.StringParam("word")
+    num     = runenv.IntParam("num")
+    word    = runenv.StringParam("word")
     feature = runenv.BooleanParam("feature")
   )
   
