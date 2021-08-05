@@ -6,9 +6,9 @@ In this tutorial, we will explore typed message passing through the Testground s
 
 Lets create a plan in which one of the plans produces a `struct` which is re-constructed on the distant end. First, I'll show short snippets with the relevant information, and the whole test plan will be shown at the end.
 
-### Setting up the`topic`
+## Setting up the`topic`
 
-`Transferrable` is the value type we will be transferring. 
+`Transferrable` is the value type we will be transferring.
 
 ```go
 type Transferrable struct {
@@ -24,37 +24,37 @@ The value will be transferred over a `topic`. Think of the `topic` as a named an
 st := sync.NewTopic("transfer-key", &Transferrable{})
 ```
 
-### Publishing to a `topic`
+## Publishing to a `topic`
 
 To write to a topic, create a bounded client and use it to publish to the topic we have just defined.
 
 ```go
   ctx := context.Background()
-  
+
   client := sync.MustBoundClient(ctx, runenv)
   defer client.Close()
 
   client.Publish(ctx, st, &Transferrable{"Guy#1", 1, false})
 ```
 
-### Reading from a `topic`
+## Reading from a `topic`
 
 Subscribe to the topic we created earlier and set up a channel to receive the values.
 
 ```go
   tch := make(chan *Transferrable)
-  
+
   _, err = client.Subscribe(ctx, st, tch)
   if err != nil {
     panic(err)
   }
 ```
 
-### Who subscribes and who publishes?
+## Who subscribes and who publishes?
 
 This question is left up to the plan writer, and certainly different situations will call for different implementations. In this example, all the plans will publish and all will subscribe, but there are scenarios where this is inappropriate.
 
-### Full Example
+## Full Example
 
 ```go
 package main
@@ -106,7 +106,7 @@ func run(runenv *runtime.RunEnv) error {
   ctx := context.Background()
   client := sync.MustBoundClient(ctx, runenv)
   defer client.Close()
-  
+
   st := sync.NewTopic("transfer-key", &Transferrable{})
 
   // Configure the test
@@ -135,7 +135,7 @@ func run(runenv *runtime.RunEnv) error {
 }
 ```
 
-Run with multiple instances: 
+Run with multiple instances:
 
 ```text
 $ testground run single -p quickstart -t quickstart -b exec:go -r local:exec -i 4

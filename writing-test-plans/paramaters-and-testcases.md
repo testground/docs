@@ -5,7 +5,7 @@
 Parameters and test cases are defined in the `manifest.toml` file of every test plan. Let's have a look once again at the `quickstart/manifest.toml` file and add two test cases to the bottom of the file:
 
 {% code title="$TESTGROUND\_HOME/plans/quickstart/manifest.toml" %}
-```
+```text
 ...
 
 
@@ -69,15 +69,15 @@ func run(runenv *runtime.RunEnv) error {
     word    = runenv.StringParam("word")
     feature = runenv.BooleanParam("feature")
   )
-  
+
   runenv.RecordMessage("I am a %s test case.", runenv.TestCase)
   runenv.RecordMessage("I store my files on %d servers.", num)
   runenv.RecordMessage("I %s run tests on my P2P code.", word)
-  
+
   if feature {
     runenv.RecordMessage("I use IPFS!")
   }
-  
+
   return nil
 }
 ```
@@ -94,6 +94,6 @@ $ testground run single --plan quickstart \
 ```
 
 {% hint style="info" %}
-Try using different runners. This command executes the plan with the `local:exec` runner and `exec:go`builder, but it works just as well with the `local:docker` runner or the Kubernetes `cluster:k8s`runner \(for which you will need to use the  `docker:go` builder!
+Try using different runners. This command executes the plan with the `local:exec` runner and `exec:go`builder, but it works just as well with the `local:docker` runner or the Kubernetes `cluster:k8s`runner \(for which you will need to use the `docker:go` builder!
 {% endhint %}
 

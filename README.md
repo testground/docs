@@ -1,6 +1,6 @@
 # What is Testground?
 
-![](.gitbook/assets/image%20%283%29.png)
+![](.gitbook/assets/image%20%283%29%20%281%29.png)
 
 {% hint style="info" %}
 You are reading the Testground documentation for the [master](https://github.com/testground/testground) branch.
@@ -18,7 +18,7 @@ The Testground project was started at Protocol Labs because we couldn't find a p
 
 ## How does it work?
 
-### 1. **You develop distributed test plans as if you were writing unit tests against local APIs**
+### 1. **You develop distributed test plans as if you were writing unit tests against local APIs.**
 
 * No puppeteering necessary.
 * No need to package and ship the system as a separate daemon with an external API in order to puppeteer it.
@@ -26,11 +26,11 @@ The Testground project was started at Protocol Labs because we couldn't find a p
 
 ### **2. Your test plan calls out to the coordination API to...**
 
-* communicate out-of-band information \(such as endpoint addresses, peer ids, etc.\)
-* leverage synchronization and ordering primitives such as signals and barriers to model a distributed state machine.
-* programmatically apply network traffic shaping policies, which you can alter during the execution of a test to simulate various network conditions.
+* Communicate out-of-band information \(such as endpoint addresses, peer ids, etc.\).
+* Leverage synchronization and ordering primitives such as signals and barriers to model a distributed state machine.
+* Programmatically apply network traffic shaping policies, which you can alter during the execution of a test to simulate various network conditions.
 
-### **3. There is no special "conductor" node telling instances what to do when**
+### **3. There is no special "conductor" node telling instances what to do when...**
 
 * The choreography and sequencing emerges from within the test plan itself.
 
@@ -51,8 +51,8 @@ The Testground project was started at Protocol Labs because we couldn't find a p
 
 ### **7. You collect the outputs of the test plan for analysis...**
 
-* with a single command...
-* using data processing scripts and platforms \(such as the upcoming Jupyter notebooks integration\) to draw conclusions.
+* With a single command...
+* Using data processing scripts and platforms \(such as the upcoming Jupyter notebooks integration\) to draw conclusions.
 
 ## Features
 
