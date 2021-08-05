@@ -60,85 +60,86 @@ This question is left up to the plan writer, and certainly different situations 
 package main
 
 import (
-  "context"
-  "fmt"
-  "math/rand"
-  "time"
+	"context"
+	"fmt"
+	"math/rand"
+	"time"
 
-  "github.com/testground/sdk-go/runtime"
-  "github.com/testground/sdk-go/sync"
+	"github.com/testground/sdk-go/run"
+	"github.com/testground/sdk-go/runtime"
+	"github.com/testground/sdk-go/sync"
 )
 
 type Sport int
 
 const (
-  football Sport = iota
-  tennis
-  hockey
-  golf
+	football Sport = iota
+	tennis
+	hockey
+	golf
 )
 
 func (s Sport) String() string {
-  return [...]string{"football", "tennis", "hockey", "golf"}[s]
+	return [...]string{"football", "tennis", "hockey", "golf"}[s]
 }
 
 type Transferrable struct {
-  Name          string
-  FavoriteSport Sport
-  CareWhoKnows  bool
+	Name          string
+	FavoriteSport Sport
+	CareWhoKnows  bool
 }
 
 func (t *Transferrable) String() string {
-  msg := fmt.Sprintf("%s: I like %s", t.Name, t.FavoriteSport)
-  if t.CareWhoKnows {
-    return msg + " and I really care!"
-  }
-  return msg + " and I don't care who knows!"
+	msg := fmt.Sprintf("%s: I like %s", t.Name, t.FavoriteSport)
+	if t.CareWhoKnows {
+		return msg + " and I really care!"
+	}
+	return msg + " and I don't care who knows!"
 }
 
 func main() {
-  runtime.Invoke(run)
+	run.Invoke(test)
 }
 
-func run(runenv *runtime.RunEnv) error {
-  rand.Seed(time.Now().UnixNano())
+func test(runenv *runtime.RunEnv) error {
+	rand.Seed(time.Now().UnixNano())
 
-  ctx := context.Background()
-  client := sync.MustBoundClient(ctx, runenv)
-  defer client.Close()
+	ctx := context.Background()
+	client := sync.MustBoundClient(ctx, runenv)
+	defer client.Close()
 
-  st := sync.NewTopic("transfer-key", &Transferrable{})
+	st := sync.NewTopic("transfer-key", &Transferrable{})
 
-  // Configure the test
-  myName := fmt.Sprintf("Guy#%d", rand.Int()%100)
-  mySport := Sport(rand.Int() % 4)
-  howMany := runenv.TestInstanceCount
+	// Configure the test
+	myName := fmt.Sprintf("Guy#%d", rand.Int()%100)
+	mySport := Sport(rand.Int() % 4)
+	howMany := runenv.TestInstanceCount
 
-  // Publish my entry
-  client.Publish(ctx, st, &Transferrable{myName, mySport, false})
+	// Publish my entry
+	client.Publish(ctx, st, &Transferrable{myName, mySport, false})
 
-  // Wait until all instances have published entries
-  readyState := sync.State("ready")
-  client.MustSignalEntry(ctx, readyState)
-  <-client.MustBarrier(ctx, readyState, howMany).C
+	// Wait until all instances have published entries
+	readyState := sync.State("ready")
+	client.MustSignalEntry(ctx, readyState)
+	<-client.MustBarrier(ctx, readyState, howMany).C
 
-  // Subscribe to the `transfer-key` topic
-  tch := make(chan *Transferrable)
-  client.Subscribe(ctx, st, tch)
+	// Subscribe to the `transfer-key` topic
+	tch := make(chan *Transferrable)
+	client.Subscribe(ctx, st, tch)
 
-  for i := 0; i < howMany; i++ {
-    t := <-tch
-    runenv.RecordMessage("%s", t)
-  }
+	for i := 0; i < howMany; i++ {
+		t := <-tch
+		runenv.RecordMessage("%s", t)
+	}
 
-  return nil
+	return nil
 }
 ```
 
 Run with multiple instances:
 
 ```text
-$ testground run single -p quickstart -t quickstart -b exec:go -r local:exec -i 4
+$ testground run single -p quickstart -t quickstart -b exec:go -r local:exec -i 4 --wait
 ```
 
 {% hint style="info" %}

@@ -53,32 +53,33 @@ As you can see, a test plan a simple executable that conforms to the [simple Tes
 package main
 
 import (
-  "github.com/ipfs/testground/sdk/runtime"
+	"github.com/testground/sdk-go/run"
+	"github.com/testground/sdk-go/runtime"
 )
 
 func main() {
-  runtime.InvokeMap(map[string]interface{}{
-    "bigbrain":   run,
-    "smallbrain": run,
-  })
+	run.InvokeMap(map[string]interface{}{
+		"bigbrain":   test,
+		"smallbrain": test,
+	})
 }
 
-func run(runenv *runtime.RunEnv) error {
-  var (
-    num     = runenv.IntParam("num")
-    word    = runenv.StringParam("word")
-    feature = runenv.BooleanParam("feature")
-  )
+func test(runenv *runtime.RunEnv) error {
+	var (
+		num     = runenv.IntParam("num")
+		word    = runenv.StringParam("word")
+		feature = runenv.BooleanParam("feature")
+	)
 
-  runenv.RecordMessage("I am a %s test case.", runenv.TestCase)
-  runenv.RecordMessage("I store my files on %d servers.", num)
-  runenv.RecordMessage("I %s run tests on my P2P code.", word)
+	runenv.RecordMessage("I am a %s test case.", runenv.TestCase)
+	runenv.RecordMessage("I store my files on %d servers.", num)
+	runenv.RecordMessage("I %s run tests on my P2P code.", word)
 
-  if feature {
-    runenv.RecordMessage("I use IPFS!")
-  }
+	if feature {
+		runenv.RecordMessage("I use IPFS!")
+	}
 
-  return nil
+	return nil
 }
 ```
 {% endcode %}
@@ -90,7 +91,8 @@ $ testground run single --plan quickstart \
                         --testcase smallbrain \
                         --builder exec:go \
                         --run local:exec \
-                        --instances 1
+                        --instances 1 \
+                        --wait
 ```
 
 {% hint style="info" %}

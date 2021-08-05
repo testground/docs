@@ -69,12 +69,12 @@ func ExampleSync(runenv *runtime.RunEnv) error {
 		client.MustSignalEntry(ctx, releasedState)
 		return nil
 	}
-	
+
 	rand.Seed(time.Now().UnixNano())
 	sleep := rand.Intn(5)
 	runenv.RecordMessage("i'm a follower; signalling ready after %d seconds", sleep)
 	time.Sleep(time.Duration(sleep) * time.Second)
-	runenv.RecordMessage("follower signalling now", sleep)
+	runenv.RecordMessage("follower signalling now")
 
 	// signal entry in the 'ready' state.
 	client.MustSignalEntry(ctx, readyState)
@@ -106,6 +106,7 @@ $ testground run single --plan example \
                         --builder exec:go \
                         --runner local:exec \
                         --instances 10 \
+                        --wait \
                         --collect
 
 [...]

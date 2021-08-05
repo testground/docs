@@ -9,7 +9,7 @@ description: 'How to install Testground, and run your first test plan'
 ### Prerequisites
 
 * [Docker](https://www.docker.com/products/docker-desktop)
-* [Go 1.14](https://golang.org/), or higher
+* [Go 1.16](https://golang.org/), or higher
 
 ### Installation
 
@@ -87,7 +87,8 @@ $ testground run single \
          --testcase=ping-pong \
          --builder=docker:go \
          --runner=local:docker \
-         --instances=2
+         --instances=2 \
+         --wait
 ```
 
 {% hint style="info" %}
@@ -137,6 +138,18 @@ listen = ":8080"
 
 [client]
 endpoint = "http://localhost:8080"
+```
+{% endcode %}
+
+### Customize asynchrony
+
+You can customize the number of asynchronous workers, as well as the maximum queue capacity, i.e., the maximum number of pending tasks at a moment in time.
+
+{% code title=".env.toml" %}
+```text
+[daemon]
+workers = 2
+queue_size = 100
 ```
 {% endcode %}
 
