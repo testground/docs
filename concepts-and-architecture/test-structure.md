@@ -9,7 +9,7 @@ A test plan is a collection of test cases that exercise, benchmark, or verify a 
 Each test plan is a world of its own. ****In other words, ****test plans are _opaque_ to Testground: __they behave like black boxes.
 
 {% hint style="info" %}
-Testground does not care what the test plan actually does, the language it's written in, nor the runtime it targets. As long as the source code is accessible, and a builder exists to compile that code into a runnable artefact, such as an executable or a Docker image, you're good to go 🚀 
+Testground does not care what the test plan actually does, the language it's written in, nor the runtime it targets. As long as the source code is accessible, and a builder exists to compile that code into a runnable artifact, such as an executable or a Docker image, you're good to go 🚀 
 
 At the time of writing, Testground offers two builders:
 
@@ -46,7 +46,11 @@ For more information on the format of the manifest, see [Writing test plans &gt;
 
 Test plans can be hosted and version anywhere—either on the local filesystem, or on public or private Git repositories: Testground does not care.
 
-What's important is that **the source is available to the Testground client during runtime**, under the `$TESTGROUND_HOME/plans` directory, where `$TESTGROUND_HOME` defaults to `$HOME/testground` if not set.
+What's important is that **the test plans source is available to the Testground client during runtime**, under the `$TESTGROUND_HOME/plans` directory, where `$TESTGROUND_HOME` defaults to `$HOME/testground` if not set.
+
+{% hint style="warning" %}
+Please note that `$TESTGROUND_HOME`is not the same place where you clone the Testground [git repository](https://github.com/testground/testground).
+{% endhint %}
 
 The Testground client CLI offers a series of simple commands to manage test plan sources. Refer to the [Managing test plans](../managing-test-plans.md) section for more information.
 
@@ -72,7 +76,8 @@ Testground offers first-class support for dealing with test cases inside test pl
                     --testcase=ping-pong \
                     --builder=docker:go \
                     --runner=local:docker \
-                    --instances=2
+                    --instances=2 \
+                    --wait
    ```
 
 3. When developing a test plan, the Testground SDK allows you to select the test case that will run, based on an environment variable.

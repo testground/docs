@@ -66,7 +66,7 @@ The Testground project was started at Protocol Labs because we couldn't find a p
 * Comparative testing 🌖
 * Backwards/forward-compatibility testing 🌖
 * Interoperability testing 🌑
-* Continuous integration 🌑
+* Continuous integration 🌑 
 * Stakeholder/acceptance testing 🌑
 
 ### 📄 Simple, normalized, formal runtime environment for tests

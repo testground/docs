@@ -1,7 +1,7 @@
 ---
 description: >-
   This is an advanced section for those curious about the communication between
-  client and server. This section is not needed to use testground, but to
+  client and server. This section is not needed to use Testground, but to
   understand the protocol between client and server.
 ---
 

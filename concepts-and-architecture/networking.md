@@ -17,7 +17,7 @@ The `local:exec` runner will use your machine's local network interfaces.
 
 ### Control Network
 
-The `control` network is used to be communicate with Testground services, such as the [sync service](sync-service.md) or InfluxDB. You don't need to do anything special to configure or use this network: the [sidecar](sidecar.md) will do it for you automatically.
+The `control` network is used to communicate with Testground services, such as the [sync service](sync-service.md) or InfluxDB. You don't need to do anything special to configure or use this network: the [sidecar](sidecar.md) will do it for you automatically.
 
 After the [sidecar](sidecar.md) is finished _initializing the network_, it should be impossible to use the `control` network to communicate with other test plan instances.
 
