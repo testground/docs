@@ -47,6 +47,7 @@ $ testground run single \
                  --builder=docker:go \
                  --runner=local:docker \
                  --instances=2 \
+                 --wait \
                  --collect
 
 ...

@@ -20,15 +20,18 @@ The command above will create a default `planbuggy` test plan. Unfortunately, fo
 ```go
 package main
 
-import "github.com/testground/sdk-go/runtime"
+import (
+	"github.com/testground/sdk-go/run"
+	"github.com/testground/sdk-go/runtime"
+)
 
 func main() {
-	runtime.Invoke(run)
+	run.Invoke(test)
 }
 
-func run(runenv *runtime.RunEnv) error {
+func test(runenv *runtime.RunEnv) error {
 	// No closing quote, will not build.
-	runenv.RecordMessage("Hello Bugs)
+	runenv.RecordMessage("Hello Bugs")
 	return nil
 }
 ```
@@ -117,8 +120,10 @@ In the following plan, five ~~philosophers~~ Ron Swansons sit at a table with fi
 package main
 
 import (
-	"github.com/testground/sdk-go/runtime"
 	"sync"
+
+	"github.com/testground/sdk-go/run"
+	"github.com/testground/sdk-go/runtime"
 )
 
 type Fork struct {
@@ -136,26 +141,26 @@ type Swanson struct {
 func (ron *Swanson) Feast(runenv *runtime.RunEnv) {
 	ron.leftFork.m.Lock()
 	ron.rightFork.m.Lock()
-	r.D().RecordPoint("eats", 1)
-	
+	runenv.D().RecordPoint("eats", 1)
+
 	ron.leftFork.m.Unlock()
 
 	ron.meals = ron.meals - 1
 	if ron.meals > 0 {
-		runenv.Message("Still hungry. %d more meals to fill me up.", ron.meals)
+		runenv.RecordMessage("Still hungry. %d more meals to fill me up.", ron.meals)
 		ron.Feast(runenv)
 	} else {
-		runenv.Message("All done. For now...")
+		runenv.RecordMessage("All done. For now...")
 		ron.wg.Done()
 	}
 }
 
 func main() {
-	runtime.Invoke(run)
+	run.Invoke(test)
 }
 
-func run(runenv *runtime.RunEnv) error {
-  // Five hungry rons eat 10 plates of food each.
+func test(runenv *runtime.RunEnv) error {
+	// Five hungry rons eat 10 plates of food each.
 	countRons := 5
 	countMeals := 10
 	wg := sync.WaitGroup{}
@@ -187,7 +192,6 @@ func run(runenv *runtime.RunEnv) error {
 	runenv.RecordMessage("all rons have eaten")
 	return nil
 }
-
 ```
 {% endtab %}
 

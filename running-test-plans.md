@@ -25,7 +25,12 @@ It is common practice when developing a test plan to use a local runner \(`local
 A `single` run, is one in which a single version of the code is being tested. This is the simplest way to run a test plan. If you have run through the [Writing test plans -&gt; Quick start](writing-test-plans/quickstart.md) tutorial, you have already encountered this:
 
 ```text
-$ testground run single -p <plan> -t <testcase> -r <runner> -b <builder> -i <instances>
+$ testground run single -p <plan> \
+                -t <testcase> \
+                -r <runner> \
+                -b <builder> \
+                -i <instances> \
+                [--wait]
 ```
 
 A single test run can be used to benchmark, validate, or observe the behaviour of a peer-to-peer system.
