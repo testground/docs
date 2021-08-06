@@ -10,7 +10,7 @@ Sometimes the default builder behaviors just aren't flexible enough to do what y
 * Supports any programming language
 * Add assets, files, or whole applications
 * highly customizable
-* Docker arguments in plans `manifest.toml`l file or command-line flags.
+* Docker arguments in plans `manifest.toml`file or command-line flags.
 
 ## Non-features
 
