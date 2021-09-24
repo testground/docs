@@ -1,7 +1,5 @@
 # Docker Settings
 
-
-
 Since the update to Linux Kernel 5.12.2, we can no longer modify the `net.netfilter.nf_conntrack_max` sys config programmatically via the Docker API. If you encounter any network related errors, please increase it to at least 120000.
 
 ### Linux
