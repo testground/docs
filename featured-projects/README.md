@@ -2,14 +2,18 @@
 
 ## Lotus
 Lotus is an implementation of the Filecoin Distributed Storage Network specification.
-You can find the Lotus Testground plans [here](https://github.com/filecoin-project/lotus/).
+You can find the Lotus Testground plans in the [Lotus repository](https://github.com/filecoin-project/lotus/tree/master/testplans).
 
 ## libp2p
 libp2p is an open source networking stack and library modularized out of The IPFS Project, and bundled separately for other tools to use.
-You can find the libp2p Testground plans [here](https://github.com/libp2p).
+You can find the libp2p Testground plans in the [Testground Plans Repository](https://github.com/libp2p/test-plans/).
 
 ## Testground learning example
 This project is intended as a practical example of a "real" project, with its own internal business logic, dependencies, etc. The logic and behaviors are intended to be as straightforward as possible, acting as a reference / guide on how to implement these behaviors and test them using Testground.
+
+You can find the project in the following Github repositories:
+ - [Learning project](https://github.com/testground/learning-example)
+ - [Testground plans](https://github.com/testground/learning-example-tg)
 
 ##### Featured test cases
 - Running a build with the `docker:generic` builder, a custom `Dockerfile` and `manifest.toml`
