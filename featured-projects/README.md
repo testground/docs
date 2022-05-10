@@ -1,9 +1,5 @@
 # Featured projects
 
-## Lotus
-Lotus is an implementation of the Filecoin Distributed Storage Network specification.
-You can find the Lotus Testground plans in the [Lotus repository](https://github.com/filecoin-project/lotus/tree/master/testplans).
-
 ## libp2p
 libp2p is an open source networking stack and library modularized out of The IPFS Project, and bundled separately for other tools to use.
 You can find the libp2p Testground plans in the [Testground Plans Repository](https://github.com/libp2p/test-plans/).
