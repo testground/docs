@@ -26,6 +26,7 @@
   * [Capturing profiles](analyzing-the-results/capturing-profiles.md)
 * [Debugging test plans](debugging-test-plans.md)
 * [Docker Settings](docker-settings.md)
+* [Featured projects](featured-projects/README.md)
 
 ## Runner library
 
