@@ -141,6 +141,13 @@ endpoint = "http://localhost:8080"
 ```
 {% endcode %}
 
+The endpoint refers to the `testground-daemon` service, so depending on your setup, this could be, for example, a Load Balancer fronting the kubernetes cluster and forwarding proper requests to the `tg-daemon` service, or a simple port forward to your local workstation:
+
+```
+[client]
+endpoint = "http://localhost:28015" # in case we use port forwarding, like this one here: kubectl port-forward service/testground-daemon 28015:8042
+```
+
 ### Customize asynchrony
 
 You can customize the number of asynchronous workers, as well as the maximum queue capacity, i.e., the maximum number of pending tasks at a moment in time.
