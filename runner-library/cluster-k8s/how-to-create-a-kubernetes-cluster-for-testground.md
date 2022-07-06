@@ -16,6 +16,7 @@ Next, download and install all required software:
 2. [terraform](https://terraform.io/) &gt;= 0.12.21
 3. [AWS CLI](https://aws.amazon.com/cli)
 4. [helm](https://github.com/helm/helm) &gt;= 3.0
+5. [kubectl](https://kubernetes.io/docs/tasks/tools/)
 
 ## Setup AWS cloud credentials
 
@@ -89,7 +90,15 @@ $ helm repo update
 
 ## Configure the Testground client
 
-Create a `.env.toml` file in your `$TESTGROUND_HOME` and add your AWS region to the `["aws"]` section.
+Create a `.env.toml` file in your `$TESTGROUND_HOME` and add your AWS region to the `["aws"]` section, as well as the correct endpoint.
+The endpoint refers to the `testground-daemon` service, so depending on your setup, this could be, for example, a Load Balancer fronting the kubernetes cluster and forwarding proper requests to the `tg-daemon` service, or a simple port forward to your local workstation:
+
+```
+["aws"]
+region = "eu-central-1"  # edit to match your region
+[client]
+endpoint = "http://localhost:28015" # in case we use port forwarding, like this one here: kubectl port-forward service/testground-daemon 28015:8042
+```
 
 ## Create cloud resources for the Kubernetes cluster
 
