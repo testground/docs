@@ -95,7 +95,7 @@ instances = { min = 1, max = 5, default = 1 }
 # [[testcases]]
 # name = "another"
 # instances = { min = 1, max = 1, default = 1 }
-#   [testcase.params]
+#   [testcases.params]
 #   param1 = { type = "int", desc = "an integer", unit = "units", default = 3 }
 
 ```
