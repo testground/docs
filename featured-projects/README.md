@@ -1,13 +1,15 @@
 # Featured projects
 
 ## libp2p
-libp2p is an open source networking stack and library modularized out of The IPFS Project, and bundled separately for other tools to use.
-You can find the libp2p Testground plans in the [Testground Plans Repository](https://github.com/libp2p/test-plans/).
+libp2p is an open source networking stack and library modularized out of the IPFS Project, and bundled separately for other tools to use.
+
+It features [Testground plans](https://github.com/libp2p/test-plans/) for the overall project, and also [further Testplans](https://github.com/sigp/gossipsub-testground) specifically for the GossipSub pubsub system.
+
 
 ## Testground learning example
-This project is intended as a practical example of a "real" project, with its own internal business logic, dependencies, etc. The logic and behaviors are intended to be as straightforward as possible, acting as a reference / guide on how to implement these behaviors and test them using Testground.
+This is a pratical example of a "realistic" project, with its own internal business logic, dependencies, etc. The logic and behaviors are intended to be as straightforward as possible, acting as a reference and guide on how to implement behaviors and test them using Testground.
 
-You can find the project in the following Github repositories:
+Find the project in the following Github repositories:
  - [Learning project](https://github.com/testground/learning-example)
  - [Testground plans](https://github.com/testground/learning-example-tg)
 
