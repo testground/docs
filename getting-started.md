@@ -151,12 +151,14 @@ endpoint = "http://localhost:28015" # in case we use port forwarding, like this 
 ### Customize asynchrony
 
 You can customize the number of asynchronous workers, as well as the maximum queue capacity, i.e., the maximum number of pending tasks at a moment in time.
+In addition, you can adjust the workers' task time execution limit. This is a handy option, if you have long-running tests
 
 {% code title=".env.toml" %}
 ```text
-[daemon]
+[daemon.scheduler]
 workers = 2
 queue_size = 100
+task_timeout_min = 40
 ```
 {% endcode %}
 
