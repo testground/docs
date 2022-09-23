@@ -129,12 +129,16 @@ Testground tries to load this file from `$TESTGROUND_HOME/.env.toml`, where `$TE
 
 ### Changing default daemon bind addresses
 
-You can change the default bind addresses by configuring `daemon.listen` and `client.endpoint`
+You can change the default values by configuring `daemon.listen`, `client.endpoint` and `daemon.scheduler`
 
 {% code title=".env.toml" %}
 ```text
 [daemon]
 listen = ":8080"
+
+[daemon.scheduler]
+task_timeout_min          = 5
+task_repo_type            = "disk"
 
 [client]
 endpoint = "http://localhost:8080"
