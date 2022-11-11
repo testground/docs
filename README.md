@@ -80,7 +80,7 @@ A test plan is a blackbox with a formal contract. Testground promises to inject 
 
 For running test plans written in different languages, targeted for different runtimes, and levels of scale:
 
-* `exec:go` and `docker:go` builders: compile test plans written in Go into executables or containers.
+* `exec:go` and `docker:go`, `docker:generic` builders: compile test plans into executables or containers.
 * `local:exec`, `local:docker`, `cluster:k8s` runners: run executables or containers locally \(suitable for 2-300 instances\), or in a Kubernetes cloud environment \(300-10k instances\).
 
 > Got some spare cycles and would like to add support for writing test plans Rust, Python or X? It's easy! Open an issue, and the community will guide you!

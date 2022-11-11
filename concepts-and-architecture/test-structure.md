@@ -11,10 +11,11 @@ Each test plan is a world of its own. ****In other words, ****test plans are _op
 {% hint style="info" %}
 Testground does not care what the test plan actually does, the language it's written in, nor the runtime it targets. As long as the source code is accessible, and a builder exists to compile that code into a runnable artifact, such as an executable or a Docker image, you're good to go 🚀 
 
-At the time of writing, Testground offers two builders:
+At the time of writing, Testground offers three builders:
 
 * **`exec:go`**compiles a Go test plan into a platform executable using the system Go installation.
 * **`docker:go`** compiles a Go test plan into a Docker image.
+* **`docker:generic`** compiles a generic test plan provided via Dockerfile into a Docker image.
 {% endhint %}
 
 ## The test plan &lt;&gt; Testground contract

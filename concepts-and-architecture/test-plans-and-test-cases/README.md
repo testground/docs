@@ -64,6 +64,7 @@ Language, library choices and testing methodology must be opaque to the test inf
 \*\*\*\*
 
 Triggered by GitHub automation, manual action, or a schedule \(e.g. nightly\), the test pipeline will:
+* `exec:go` and `docker:go`, `docker:generic` builders: compile test plans into executables or containers.
 
 1. Check out a specific commit of go-ipfs and js-ipfs \(although our immediate priority is go-ipfs\). We call these **test targets**.
 2. Build it if necessary.
