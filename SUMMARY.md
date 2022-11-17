@@ -28,7 +28,7 @@
 * [Docker Settings](docker-settings.md)
 * [Featured projects](featured-projects/README.md)
 
-## Runner library
+# Runner library
 
 * [local:exec](runner-library/local-exec.md)
 * [local:docker](runner-library/local-docker/README.md)
@@ -42,7 +42,7 @@
   * [Understanding Testground performance on Kubernetes](runner-library/cluster-k8s/understanding-testground-performance-on-kubernetes.md)
   * [Troubleshooting](runner-library/cluster-k8s/troubleshooting.md)
 
-## BUILDER LIBRARY
+# BUILDER LIBRARY
 
 * [docker:go](builder-library/docker-go.md)
 * [exec:go](builder-library/exec-go.md)
