@@ -1,8 +1,6 @@
----
-description: Writing your first test plan
----
-
 # Quickstart
+
+_Writing your first test plan_
 
 ## Hello, Test Plans!
 
@@ -14,8 +12,8 @@ Create a manifest in the `manifests` directory. This file is used to inform the 
 
 <!-- tabs:start -->
 #### **local docker**
-{% code title="manifests/quickstart.toml" %}
-```yaml
+###### manifests/quickstart.toml
+```toml
 name = "quickstart"
 source_path = "file://${TESTGROUND_SRCDIR}/plans/quickstart"
 
@@ -41,10 +39,9 @@ instances = { min = 1, max = 200, default = 1 }
 
 
 ```
-{% endcode %}
 
 #### **local exec**
-{% code title="manifests/quickstart.toml" %}
+###### manifests/quickstart.toml
 ```
 name = "quickstart"
 source_path = "file://${TESTGROUND_SRCDIR}/plans/quickstart"
@@ -65,7 +62,6 @@ instances = { min = 1, max = 200, default = 1 }
   [testcases.params]
   who = { type = "string", default="world" }
 ```
-{% endcode %}
 <!-- tabs:end -->
 
 ?> You can enable multiple runners and builders in the same file!
@@ -85,7 +81,7 @@ popd
 
 Fire up your favorite editor and input the following
 
-{% code title="plans/quickstart/main.go" %}
+###### plans/quickstart/main.go
 ```go
 package main
 
@@ -103,7 +99,6 @@ func run(runenv *runtime.RunEnv) error {
     return nil
 }
 ```
-{% endcode %}
 
 ### execute the plan
 

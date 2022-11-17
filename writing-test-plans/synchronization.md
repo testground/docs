@@ -16,7 +16,7 @@ Notice the use of:
 
 In this test case, the instance with `seq==1` will act as the coordinator and all the others will follow.
 
-{% code title="plans/example/sync.go" %}
+###### plans/example/sync.go
 ```go
 func ExampleSync(runenv *runtime.RunEnv) error {
 	var (
@@ -87,7 +87,6 @@ func ExampleSync(runenv *runtime.RunEnv) error {
 	return nil
 }
 ```
-{% endcode %}
 
 When we run this, we need to add more than one instance. For testing, let's run it with 10 instances and have a look at the output.
 

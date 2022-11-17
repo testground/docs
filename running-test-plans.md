@@ -45,7 +45,7 @@ Here is how we go about creating a composition test run. The following is a simp
 
 ### Example composition
 
-{% code title="composition.toml" %}
+###### composition.toml
 ```text
 [metadata]
 name    = "quickstart"
@@ -81,7 +81,6 @@ instances = { count = 3 }
   [groups.run]
   test_params = { }
 ```
-{% endcode %}
 
 * Code is divided into two groups. These groups can have any name. In this example, the groups are called **group1** and **group2**.
 * Both groups will execute the same plan, which is defined in the global section of this file.

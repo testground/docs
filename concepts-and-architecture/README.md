@@ -8,21 +8,12 @@ To help you situate yourself, this architecture diagram provides a bird's-eye vi
 
 **Read on to learn more about the individual components:**
 
-{% page-ref page="test-structure.md" %}
-
-{% page-ref page="daemon-and-client.md" %}
-
-{% page-ref page="sync-service.md" %}
-
-{% page-ref page="networking.md" %}
-
-{% page-ref page="sidecar.md" %}
-
-{% page-ref page="builders-1.md" %}
-
-{% page-ref page="runners.md" %}
-
-{% page-ref page="runtime.md" %}
-
-
-
+* [Test plans and test cases](test-structure.md)
+* [Daemon and client](daemon-and-client.md)
+* [Synchronization service](sync-service.md)
+* [Networking](networking.md)
+* [Sidecar](sidecar.md)
+* [Builders](builders-1.md)
+* [Runners](runners.md)
+* [Runtime environment \(runenv\)](runtime.md)
+* [Client-Server communication](client-server-communication.md)

@@ -6,13 +6,13 @@ A test plan is a collection of test cases that exercise, benchmark, or verify a 
 
 **Test plans are the unit of deployment that Testground deals with.**
 
-Each test plan is a world of its own. ****In other words, ****test plans are _opaque_ to Testground: __they behave like black boxes.
+Each test plan is a world of its own. In other words, test plans are _opaque_ to Testground: they behave like black boxes.
 
 > Testground does not care what the test plan actually does, the language it's written in, nor the runtime it targets. As long as the source code is accessible, and a builder exists to compile that code into a runnable artifact, such as an executable or a Docker image, you're good to go 🚀
 >
 > At the time of writing, Testground offers two builders:
 >
-> * **`exec:go`**compiles a Go test plan into a platform executable using the system Go installation.
+> * **`exec:go`** compiles a Go test plan into a platform executable using the system Go installation.
 > * **`docker:go`** compiles a Go test plan into a Docker image.
 
 ## The test plan &lt;&gt; Testground contract

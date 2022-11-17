@@ -1,12 +1,10 @@
----
-description: Interacting with the environment.
----
-
 # Environment Variables
+
+_Interacting with the environment._
 
 ## Getting information about the test run
 
-Following the [https://12factor.net/config](https://12factor.net/config) methodology, variable information and configuration is stored in the environment. Information about the plan being run as well as any parameters passed just one `os.Getenv()` away. 
+Following the [https://12factor.net/config](https://12factor.net/config) methodology, variable information and configuration is stored in the environment. Information about the plan being run as well as any parameters passed just one `os.Getenv()` away.
 
 Lets have a look at the information available to us as environment variables. Edit the quickstart plan so it looks like the following:
 
@@ -54,7 +52,6 @@ TEST_INSTANCE_PARAMS=who="world"
 
 As a convenience, these environment variables are added to the RunParams struct, For example, if you want to find out how many instances of a plan are running, it's as easy as this:
 
-{% code title="" %}
 ```go
 select runenv.TestInstanceCount {
 case 1:
@@ -67,7 +64,3 @@ default:
   // Now this is a party!
 }
 ```
-{% endcode %}
-
-
-

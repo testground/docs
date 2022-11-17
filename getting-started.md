@@ -1,8 +1,6 @@
----
-description: 'How to install Testground, and run your first test plan'
----
-
 # Getting started
+
+_How to install Testground, and run your first test plan_
 
 ## Installing Testground
 
@@ -127,7 +125,7 @@ Testground tries to load this file from `$TESTGROUND_HOME/.env.toml`, where `$TE
 
 You can change the default bind addresses by configuring `daemon.listen` and `client.endpoint`
 
-{% code title=".env.toml" %}
+###### .env.toml
 ```toml
 [daemon]
 listen = ":8080"
@@ -135,7 +133,6 @@ listen = ":8080"
 [client]
 endpoint = "http://localhost:8080"
 ```
-{% endcode %}
 
 The endpoint refers to the `testground-daemon` service, so depending on your setup, this could be, for example, a Load Balancer fronting the kubernetes cluster and forwarding proper requests to the `tg-daemon` service, or a simple port forward to your local workstation:
 
@@ -149,25 +146,23 @@ endpoint = "http://localhost:28015" # in case we use port forwarding, like this 
 You can customize the number of asynchronous workers, as well as the maximum queue capacity, i.e., the maximum number of pending tasks at a moment in time.
 In addition, you can adjust the workers' task time execution limit. This is a handy option, if you have long-running tests
 
-{% code title=".env.toml" %}
+###### .env.toml
 ```text
 [daemon.scheduler]
 workers = 2
 queue_size = 100
 task_timeout_min = 40
 ```
-{% endcode %}
 
 ### AWS integration
 
 When using a remote runner such as `cluster:k8s`, you should configure the default region:
 
-{% code title=".env.toml" %}
+###### .env.toml
 ```text
 ["aws"]
 region = "aws region, such as eu-central-1"
 ```
-{% endcode %}
 
 The AWS configuration is also used if you push Docker images to AWS ECR from the `docker:go` builder using the `--build-cfg push_registry=true` and `--build-cfg registry_type=aws` flags.
 
@@ -175,11 +170,10 @@ The AWS configuration is also used if you push Docker images to AWS ECR from the
 
 If you want to push Docker images from the `docker:go` builder to a DockerHub registry, you can configure it.
 
-{% code title=".env.toml" %}
+###### .env.toml
 ```text
 ["dockerhub"]
 repo = "repo to be used for testground"
 username = "username"
 access_token = "docker hub access token"
 ```
-{% endcode %}

@@ -1,10 +1,6 @@
----
-description: >-
-  This document explains a few options available for finding bugs in test plans
-  and troubleshooting failures
----
-
 # Debugging test plans
+
+_This document explains a few options available for finding bugs in test plans and troubleshooting failures_
 
 While writing a test plan, there are a few ways to troubleshoot. On this page I will introduce bugs intentionally so we can see how the system behaves and troubleshoot it.
 
@@ -16,7 +12,7 @@ $ testground plan create --plan planbuggy
 
 The command above will create a default `planbuggy` test plan. Unfortunately, for our purposes, the plan has no bugs. Edit `main.go` so it contains the following buggier code:
 
-{% code title="main.go" %}
+###### main.go
 ```go
 package main
 
@@ -35,7 +31,6 @@ func test(runenv *runtime.RunEnv) error {
 	return nil
 }
 ```
-{% endcode %}
 
 ### How it looks in terminal output
 

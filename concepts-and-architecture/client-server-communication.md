@@ -1,11 +1,6 @@
----
-description: >-
-  This is an advanced section for those curious about the communication between
-  client and server. This section is not needed to use Testground, but to
-  understand the protocol between client and server.
----
-
 # Client-Server communication
+
+_This is an advanced section for those curious about the communication between client and server. This section is not needed to use Testground, but to understand the protocol between client and server._
 
 ## Build
 
@@ -91,4 +86,3 @@ A Run request consists of a composition json \(see below\)
   "fix": bool,
 }
 ```
-

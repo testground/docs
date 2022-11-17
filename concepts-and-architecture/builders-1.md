@@ -1,8 +1,6 @@
----
-description: Building plans
----
-
 # Builders
+
+_Building Plans_
 
 A **builder** is a component that takes a plan source code, and optionally the SDK's source code, and compiles it into a _**build artifact**_, ready to be used by compatible [Runners](runners.md) to schedule test workloads on Testground.
 
@@ -93,4 +91,3 @@ $ testground build composition --file=compositions/barrier-local.toml \
                                --write-artifacts \
                                --wait
 ```
-
