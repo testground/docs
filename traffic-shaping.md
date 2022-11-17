@@ -52,25 +52,21 @@ config := network.Config{
     // Enable this network. Setting this to false will disconnect this test
     // instance from this network. You probably don't want to do that.
     Enable:  true,
-    
+
     // Set the traffic shaping characteristics.
     Default: network.LinkShape{
         Latency:   100 * time.Millisecond,
         Bandwidth: 1 << 20, // 1Mib
     },
-    
+
     // Set what state the sidecar should signal back to you when it's done.
     CallbackState: "network-configured",
 }
 ```
 
-{% hint style="info" %}
-This sets _egress_ \(outbound\) properties on the link. These settings must be symmetric \(applied on both sides of the connection\) to work properly \(unless asymmetric bandwidth/latency/etc. is desired\).
-{% endhint %}
+?> This sets _egress_ \(outbound\) properties on the link. These settings must be symmetric \(applied on both sides of the connection\) to work properly \(unless asymmetric bandwidth/latency/etc. is desired\).
 
-{% hint style="info" %}
-Per-subnet traffic shaping is a desired but unimplemented feature. The sidecar will reject configs with per-subnet rules set in `network.Config.Rules`
-{% endhint %}
+?> Per-subnet traffic shaping is a desired but unimplemented feature. The sidecar will reject configs with per-subnet rules set in `network.Config.Rules`
 
 ### **\(Optional\) Changing your IP address**
 
@@ -103,9 +99,7 @@ You cannot currently set an IPv6 address.
 
 Applying the network configuration will post the configuration to the sync service, from where the appropriate instance of sidecar will consume it to apply the rules via Netlink. Once it is done, it will signal back on the `CallbackState`.
 
-{% hint style="info" %}
-The network API will, by default, wait for `runenv.TestInstanceCount` instances to have signalled on the `CallbackState`. If you want to wait for a different number of instances, such as if only a subset of instances actually apply traffic shaping rules, you can set the `CallbackTarget` value in the configuration.
-{% endhint %}
+?> The network API will, by default, wait for `runenv.TestInstanceCount` instances to have signalled on the `CallbackState`. If you want to wait for a different number of instances, such as if only a subset of instances actually apply traffic shaping rules, you can set the `CallbackTarget` value in the configuration.
 
 ```go
 err := netclient.ConfigureNetwork(ctx, config)
@@ -120,4 +114,3 @@ if err != nil {
 1. The sidecar reads the network configuration from the sync service.
 2. The sidecar applies network configurations requested by test plan instances.
 3. The sidecar signals the configured `CallbackState` when done.
-

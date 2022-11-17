@@ -2,11 +2,9 @@
 
 ![](.gitbook/assets/image%20%283%29%20%281%29.png)
 
-{% hint style="info" %}
-You are reading the Testground documentation for the [master](https://github.com/testground/testground) branch.
-
-The Testground team maintains documentation for the `master` branch and for the latest stable release.
-{% endhint %}
+> You are reading the Testground documentation for the [master](https://github.com/testground/testground) branch.
+>
+> The Testground team maintains documentation for the `master` branch and for the latest stable release.
 
 ## Overview
 
@@ -66,7 +64,7 @@ The Testground project was started at Protocol Labs because we couldn't find a p
 * Comparative testing 🌖
 * Backwards/forward-compatibility testing 🌖
 * Interoperability testing 🌑
-* Continuous integration 🌑 
+* Continuous integration 🌑
 * Stakeholder/acceptance testing 🌑
 
 ### 📄 Simple, normalized, formal runtime environment for tests
@@ -121,7 +119,4 @@ Emit and collect/export/download test outputs \(logs, assets, event trails, run 
 
 ## Documentation issues
 
-{% hint style="warning" %}
-**This docs site is work-in-progress!** You're bound to find dragons 🐉 in some sections, so please bear with us! If something looks wrong, please [open a docs issue](https://github.com/testground/testground/issues/new?assignees=&labels=docs&template=DOCS.md&title=docs%20site:%20%3Cdescribe%20the%20problem%3E) on our main repo.
-{% endhint %}
-
+!> **This docs site is work-in-progress!** You're bound to find dragons 🐉 in some sections, so please bear with us! If something looks wrong, please [open a docs issue](https://github.com/testground/testground/issues/new?assignees=&labels=docs&template=DOCS.md&title=docs%20site:%20%3Cdescribe%20the%20problem%3E) on our main repo.

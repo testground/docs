@@ -41,14 +41,14 @@ $TESTGROUND_HOME
  |
  |__ plans              >>> [c] contains test plans, can be git checkouts, symlinks to local dirs, or the source itself
  |    |__ suite-a       >>> test plans can be grouped in suites (which in turn can be nested); this enables you to host many test plans in a single repo / directory.
- |    |    |__ plan-1   >>> source of a test plan identified by suite-a/plan-1 (relative to $TESTGROUND_HOME/plans) 
+ |    |    |__ plan-1   >>> source of a test plan identified by suite-a/plan-1 (relative to $TESTGROUND_HOME/plans)
  |    |    |__ plan-2
  |    |__ plan-3        >>> source of a test plan identified by plan-3 (relative to $TESTGROUND_HOME/plans)
  |
  |__ sdks               >>> [c] hosts the test development SDKs that the client knows about, so they can be used with the --link-sdk option.
  |    |__ sdk-go
  |
- |__ data               >>> [d] data directory  
+ |__ data               >>> [d] data directory
       |__ outputs
       |__ work
 
@@ -77,9 +77,7 @@ network ping-pong
 
 Run the `network`testplan and the `ping-pong` test case with the `docker:go` builder and the `local:docker` runner.
 
-{% hint style="info" %}
-Make sure you have `testground daemon` running in another terminal window.
-{% endhint %}
+?> Make sure you have `testground daemon` running in another terminal window.
 
 ```bash
 $ testground run single \
@@ -91,9 +89,7 @@ $ testground run single \
          --wait
 ```
 
-{% hint style="info" %}
-During the first run the Testground daemon sets up the builder and runner environments. Subsequent runs will be faster.
-{% endhint %}
+?> During the first run the Testground daemon sets up the builder and runner environments. Subsequent runs will be faster.
 
 You should see a flurry of activity, including measurements, messages, and runtime events. When the execution concludes, you will see something like:
 
@@ -132,7 +128,7 @@ Testground tries to load this file from `$TESTGROUND_HOME/.env.toml`, where `$TE
 You can change the default bind addresses by configuring `daemon.listen` and `client.endpoint`
 
 {% code title=".env.toml" %}
-```text
+```toml
 [daemon]
 listen = ":8080"
 
@@ -187,4 +183,3 @@ username = "username"
 access_token = "docker hub access token"
 ```
 {% endcode %}
-

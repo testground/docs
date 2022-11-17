@@ -28,9 +28,7 @@ name = "bigbrain"
 ```
 {% endcode %}
 
-{% hint style="info" %}
-Feel free to add your own `galaxybrain` test case as well!
-{% endhint %}
+?> Feel free to add your own `galaxybrain` test case as well!
 
 You can confirm that the [testground client](../concepts-and-architecture/daemon-and-client.md#testground-client) is able to parse the manifest, and enumerate the cases it declares:
 
@@ -42,9 +40,7 @@ quickstart    bigbrain
 
 We would like to take these two cases out for a spin. First, let's prepare our code. Open our `quickstart` plan program and deal with these parameters!
 
-{% hint style="warning" %}
-This snippet is routing both test cases to the same function. In practice, you will want to run different logic for each test case!
-{% endhint %}
+!> This snippet is routing both test cases to the same function. In practice, you will want to run different logic for each test case!
 
 As you can see, a test plan a simple executable that conforms to the [simple Testground contract](../concepts-and-architecture/test-structure.md#the-test-plan-less-than-greater-than-testground-contract), which the SDK facilitates. This makes it super easy to debug and develop. There's beauty in simplicity!
 
@@ -95,7 +91,4 @@ $ testground run single --plan quickstart \
                         --wait
 ```
 
-{% hint style="info" %}
-Try using different runners. This command executes the plan with the `local:exec` runner and `exec:go`builder, but it works just as well with the `local:docker` runner or the Kubernetes `cluster:k8s`runner \(for which you will need to use the `docker:go` builder!
-{% endhint %}
-
+?> Try using different runners. This command executes the plan with the `local:exec` runner and `exec:go`builder, but it works just as well with the `local:docker` runner or the Kubernetes `cluster:k8s`runner \(for which you will need to use the `docker:go` builder!

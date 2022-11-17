@@ -10,7 +10,7 @@ Writing new test plans from scratch is covered elsewhere in this tutorial, for n
 
 Testground provides some basic functionality to assist importing and creating of test plans.
 
-During execution, an archive of the plan is sent to the Testground daemon, where it is built and executed. Any code or files inside the plan's directory will be available when the plan is built. 
+During execution, an archive of the plan is sent to the Testground daemon, where it is built and executed. Any code or files inside the plan's directory will be available when the plan is built.
 
 ## Location of test plans
 
@@ -54,9 +54,7 @@ testground
 └── sdks
 ```
 
-{% hint style="info" %}
-You can modify the behaviour of `plan create`using command-line flags to change the module or add a git remote.
-{% endhint %}
+?> You can modify the behaviour of `plan create`using command-line flags to change the module or add a git remote.
 
 ### Importing existing plans
 
@@ -187,6 +185,3 @@ $ testground plan rm -p myplans/example
 
 $ testground plan rm -p myplans/example --yes
 ```
-
-
-

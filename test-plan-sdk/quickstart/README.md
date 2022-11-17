@@ -12,8 +12,8 @@ In this quickstart tutorial you will get up and running with a simple test plan.
 
 Create a manifest in the `manifests` directory. This file is used to inform the testground about your plan.   This file describes the location of the plan, options specific to particular runners/builders, and any parameters that should be passed to the plan to control execution.
 
-{% tabs %}
-{% tab title="local docker" %}
+<!-- tabs:start -->
+#### **local docker**
 {% code title="manifests/quickstart.toml" %}
 ```yaml
 name = "quickstart"
@@ -42,9 +42,8 @@ instances = { min = 1, max = 200, default = 1 }
 
 ```
 {% endcode %}
-{% endtab %}
 
-{% tab title="local exec" %}
+#### **local exec**
 {% code title="manifests/quickstart.toml" %}
 ```
 name = "quickstart"
@@ -67,14 +66,11 @@ instances = { min = 1, max = 200, default = 1 }
   who = { type = "string", default="world" }
 ```
 {% endcode %}
-{% endtab %}
-{% endtabs %}
+<!-- tabs:end -->
 
-{% hint style="info" %}
-You can enable multiple runners and builders in the same file! 
-{% endhint %}
+?> You can enable multiple runners and builders in the same file!
 
-### create a new test plan module 
+### create a new test plan module
 
 ```bash
 mkdir plans/quickstart
@@ -103,7 +99,7 @@ func run(runenv *runtime.RunEnv) error {
     runenv.RecordMessage("All this work just to do this?")
     who := runenv.TestInstanceParams["who"]
     runenv.RecordMessage("Hello, %s", who)
-    
+
     return nil
 }
 ```
@@ -141,4 +137,3 @@ This will start a flurry of activity that will leave you wondering "what gives? 
 6. A number of containers are created based on your image \( --instances controls this\)
 7. your code is executed in each of the containers
 8. The outputs of the plan run is collected for analysis.
-

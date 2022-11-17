@@ -2,24 +2,22 @@
 
 ## Test plans
 
-A **test plan** contains the logic to exercise a particular component, subsystem, or API of the system under test. 
+A **test plan** contains the logic to exercise a particular component, subsystem, or API of the system under test.
 
 **Test plans are the unit of deployment that Testground deals with.**
 
 Each test plan is a world of its own. ****In other words, **test plans are** _**opaque**_ **to Testground:** _****_**they behave like black boxes.**
 
-{% hint style="info" %}
-Testground does not care what the test plan actually does, the language it's written in, nor the runtime it targets. As long as the source code is accessible, and a builder exists to compile that code into a runnable artefact, such as an executable or a Docker image, you're good to go 🚀 
-
-At the time of writing, Testground offers two builders:
-
-* **`exec:go,`**compiles a Go test plan into a platform executable using the system Go installation.
-* **`docker:go,`** compiles a Go test plan into a Docker image.
-{% endhint %}
+> Testground does not care what the test plan actually does, the language it's written in, nor the runtime it targets. As long as the source code is accessible, and a builder exists to compile that code into a runnable artefact, such as an executable or a Docker image, you're good to go 🚀
+>
+> At the time of writing, Testground offers two builders:
+>
+> * **`exec:go,`**compiles a Go test plan into a platform executable using the system Go installation.
+> * **`docker:go,`** compiles a Go test plan into a Docker image.
 
 ### Test plan contract
 
-In exchange for the above flexibility, **test plans do promise to satisfy a contract**. That contract is inspired by the [12-factor principles](https://12factor.net/), and facilitates deployment on cloud infrastructure when it's time to scale. 
+In exchange for the above flexibility, **test plans do promise to satisfy a contract**. That contract is inspired by the [12-factor principles](https://12factor.net/), and facilitates deployment on cloud infrastructure when it's time to scale.
 
 The contract is as follows:
 
@@ -27,9 +25,7 @@ The contract is as follows:
 2. **Input:** Test plans consume a [formal, standardised runtime environment](../runtime-environment-runenv.md), in the form of environment variables.
 3. **Output:** Test plans record events, results, and optional diagnostics in a predefined JSON schema on stdout and specific files. Any additional output assets they want harvested \(e.g. event trails, traces, generated files, etc.\) are written to a path received in the runtime environment.
 
-{% hint style="success" %}
-The Testground community offers SDKs that make it easy for user-written test plans to adhere to the test plan contract, as well as facilitating interactions with the sync service and the emission of metrics.
-{% endhint %}
+?> **Success** The Testground community offers SDKs that make it easy for user-written test plans to adhere to the test plan contract, as well as facilitating interactions with the sync service and the emission of metrics.
 
 ## Test cases
 
@@ -37,7 +33,7 @@ While the unit of deployment in Testground is the test plan—and a test plan ex
 
 Test cases evaluate concrete use cases that we wish to reproduce consistently, in order to capture variations in the observed behaviour, as the source of the component under test changes over time.
 
-**That's why test plans can host one or multiple test cases within it.** 
+**That's why test plans can host one or multiple test cases within it.**
 
 Testground offers first-class support for dealing with test cases inside test plans:
 
@@ -81,16 +77,13 @@ Deliver a **concrete set of inputs** via env variables, following [12-factor](ht
 
 Test plans can live anywhere.
 
-Test plans are the unit of deployment that the Testground platform deals 
+Test plans are the unit of deployment that the Testground platform deals
 
 ## Example test plans
 
 in the libp2p project, we have built test plans for these components:
 
-* Distributed Hashtable \(DHT\) 
+* Distributed Hashtable \(DHT\)
 * NAT
 
-A test plan is the 
-
-
-
+A test plan is the

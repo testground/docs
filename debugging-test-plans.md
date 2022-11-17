@@ -82,9 +82,7 @@ $ go test
 ./main.go:11:2: syntax error: unexpected return at end of statement
 ```
 
-{% hint style="info" %}
-If your plan relies on knowledge of the test plan or test case, this can be passed as an environment variable.
-{% endhint %}
+?> If your plan relies on knowledge of the test plan or test case, this can be passed as an environment variable.
 
 Now that output is much more readable!
 
@@ -114,8 +112,11 @@ To see how this works, let's use [ron swanson's classic dilemma](http://adit.io/
 
 In the following plan, five ~~philosophers~~ Ron Swansons sit at a table with five forks between them. Unfortunately, there is an implementation bug and these Ron Swansons will be be here forever. Add some debugging messages using `runenv.RecordMessage` to see if you can straighten this whole thing out \(hint: answer is in the second tab\)
 
-{% tabs %}
-{% tab title="exercise" %}
+
+<!-- tabs:start -->
+
+#### **excersise**
+
 ```go
 package main
 
@@ -193,9 +194,9 @@ func test(runenv *runtime.RunEnv) error {
 	return nil
 }
 ```
-{% endtab %}
 
-{% tab title="Solution" %}
+#### **solution**
+
 ```
 Line 24.
 Ron puts down his left fork, but forgets to put down his right fork!
@@ -205,8 +206,8 @@ Line 58.
 We think there are an equal number of Rons and forks, but we are off
 by one. Two Rons are sharing the same seat! this will not do.
 ```
-{% endtab %}
-{% endtabs %}
+
+<!-- tabs:end -->
 
 If you can successfully debug this code, you will see each ron finish his meals and finally the  end message "**all rons have eaten**"
 
@@ -224,8 +225,8 @@ For information about using Go's `pprof` and generating graphs and reports, I re
 
 On Testground gaining access to the `pprof` port can sometimes be non-obvious. Allow me to explain how to get access to port 6060 on each of our runners:
 
-{% tabs %}
-{% tab title="local:exec" %}
+<!-- tabs:start -->
+#### **local:exec**
 ```bash
 # Plans in the local:exec runner operate in the default namespace.
 # the first plan will grab port 6060 and the any additional will listen
@@ -266,9 +267,8 @@ Entering interactive mode (type "help" for commands, "o" for options)
          0     0%   100%   544.67kB   100%  net.readHosts
 
 ```
-{% endtab %}
 
-{% tab title="local:docker" %}
+#### **local:docker**
 ```bash
 # local:docker runner has isolated networking for each container.
 # An ephemeral port is assigned in the host network namespace which maps
@@ -285,7 +285,7 @@ $ docker ps -f 'name=tg-' --format "{{.Ports}}"
 0.0.0.0:33280->6060/tcp
 
 
-$ echo top | go tool pprof http://localhost:33279/debug/pprof/heap 
+$ echo top | go tool pprof http://localhost:33279/debug/pprof/heap
 
 Fetching profile over HTTP from http://localhost:33279/debug/pprof/heap
 Saved profile in /home/cory/pprof/pprof.testplan.alloc_objects.alloc_space.inuse_objects.inuse_space.001.pb.gz
@@ -308,9 +308,8 @@ Showing top 10 nodes out of 11
          0     0%   100%   512.44kB 49.92%  runtime.startm
 
 ```
-{% endtab %}
 
-{% tab title="cluster:k8s" %}
+#### **cluster:k8s**
 ```bash
 # When using the Kubernetes cluster:k8s runner, each container runs in a
 # separate pod. Access the profiling port throught the Kubernetes API using
@@ -342,8 +341,4 @@ Showing top 10 nodes out of 21
          0     0%   100%  2052.02kB 65.92%  regexp.Compile (inline)
 
 ```
-{% endtab %}
-{% endtabs %}
-
-
-
+<!-- tabs:end -->

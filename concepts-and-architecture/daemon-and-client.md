@@ -4,11 +4,9 @@ The Testground runtime revolves around a traditional daemon/client architecture,
 
 This architecture is flexible enough to run the daemon within a shared cluster, with many users, developers, and integrations \(e.g. GitHub Actions\) hitting the same daemon to schedule build and run jobs.
 
-{% hint style="info" %}
-At the moment, we do not run Testground in shared-cluster deployments; most developers spin up personal Kubernetes clusters, and run both the daemon and the client on their own development machines, pointing the local daemon to the remote k8s API.
-
-However, as of Testground v0.5, **we do support running the daemon within a Kubernetes cluster as a pod.** This capability is vital to pave the way for shared-cluster deployments, which will enable much more efficient resource utilization and CI workflows.
-{% endhint %}
+> At the moment, we do not run Testground in shared-cluster deployments; most developers spin up personal Kubernetes clusters, and run both the daemon and the client on their own development machines, pointing the local daemon to the remote k8s API.
+>
+> However, as of Testground v0.5, **we do support running the daemon within a Kubernetes cluster as a pod.** This capability is vital to pave the way for shared-cluster deployments, which will enable much more efficient resource utilization and CI workflows.
 
 ## Testground Daemon
 
@@ -63,4 +61,3 @@ You can also wait for the task completion when building or running by appending 
 ```text
 $ testground build single --plan=example --builder=exec:go --wait
 ```
-

@@ -83,7 +83,7 @@ instances = { count = 3 }
 ```
 {% endcode %}
 
-* Code is divided into two groups. These groups can have any name. In this example, the groups are called **group1** and **group2**. 
+* Code is divided into two groups. These groups can have any name. In this example, the groups are called **group1** and **group2**.
 * Both groups will execute the same plan, which is defined in the global section of this file.
 * Dependencies can be explicitly versioned. To force **group1** to use a specific software version, override the dependencies.
 
@@ -97,9 +97,7 @@ $ testground plan create -p mycomposition
 
 Copy the file above and into a file called `composition.toml`. Because of the way this file is written, plans will use the `local:docker` runner.
 
-{% hint style="info" %}
-Be aware that the composition file will be overwritten to include the names of built artifacts!
-{% endhint %}
+?> Be aware that the composition file will be overwritten to include the names of built artifacts!
 
 ```bash
 # build the artifacts and update the composition file
@@ -114,6 +112,3 @@ $ cat composition.toml
 ```text
 $ testground run composition -f composition.toml
 ```
-
-
-
