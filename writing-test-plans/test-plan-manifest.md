@@ -6,7 +6,7 @@ If you have created the `quickstart` plan in the previous article, let's have a 
 
 ### Test plan name
 
-the name of the test plan is a top-level of the file's schema. 
+the name of the test plan is a top-level of the file's schema.
 
 ```text
 name = "quickstart"
@@ -24,9 +24,9 @@ runner = "local:exec"
 
 ### Builder and runner options
 
-The next few sections are options passed to each builder and runner when they are selected. Make sure to enable any [builders](../concepts-and-architecture/builders-1.md#supported-builders) and [runners](../concepts-and-architecture/runners.md#supported-runners) you want to use! The following section enables all runners and passes configurations. Of particular interest is the module path. Make sure this is correct to ensure code can be correctly imported.
+The next few sections are options passed to each builder and runner when they are selected. Make sure to enable any [builders](../concepts-and-architecture/builders.md#supported-builders) and [runners](../concepts-and-architecture/runners.md#supported-runners) you want to use! The following section enables all runners and passes configurations. Of particular interest is the module path. Make sure this is correct to ensure code can be correctly imported.
 
-```yaml
+```toml
 [builders."docker:go"]
 enabled = true
 go_version = "1.14"
@@ -51,7 +51,7 @@ enabled = true
 
 Finally, we have [test cases](../concepts-and-architecture/test-structure.md#test-cases). Test cases are defined in an [array of tables](https://github.com/toml-lang/toml#array-of-tables) which specify the name of the test case, boundaries for the number of instances and the values of any parameters being tested in a particular test case.
 
-```yaml
+```toml
 [[testcases]]
 name= "quickstart"
 instances = { min = 1, max = 5, default = 1 }
@@ -61,7 +61,7 @@ instances = { min = 1, max = 5, default = 1 }
 
 Putting it all together:
 
-```yaml
+```toml
 name = "quickstart"
 
 [defaults]
@@ -99,6 +99,3 @@ instances = { min = 1, max = 5, default = 1 }
 #   param1 = { type = "int", desc = "an integer", unit = "units", default = 3 }
 
 ```
-
-
-

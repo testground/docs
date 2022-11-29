@@ -1,8 +1,6 @@
----
-description: 'How to install Testground, and run your first test plan'
----
-
 # Getting started
+
+_How to install Testground, and run your first test plan_
 
 ## Installing Testground
 
@@ -41,14 +39,14 @@ $TESTGROUND_HOME
  |
  |__ plans              >>> [c] contains test plans, can be git checkouts, symlinks to local dirs, or the source itself
  |    |__ suite-a       >>> test plans can be grouped in suites (which in turn can be nested); this enables you to host many test plans in a single repo / directory.
- |    |    |__ plan-1   >>> source of a test plan identified by suite-a/plan-1 (relative to $TESTGROUND_HOME/plans) 
+ |    |    |__ plan-1   >>> source of a test plan identified by suite-a/plan-1 (relative to $TESTGROUND_HOME/plans)
  |    |    |__ plan-2
  |    |__ plan-3        >>> source of a test plan identified by plan-3 (relative to $TESTGROUND_HOME/plans)
  |
  |__ sdks               >>> [c] hosts the test development SDKs that the client knows about, so they can be used with the --link-sdk option.
  |    |__ sdk-go
  |
- |__ data               >>> [d] data directory  
+ |__ data               >>> [d] data directory
       |__ outputs
       |__ work
 
@@ -77,9 +75,7 @@ network ping-pong
 
 Run the `network`testplan and the `ping-pong` test case with the `docker:go` builder and the `local:docker` runner.
 
-{% hint style="info" %}
-Make sure you have `testground daemon` running in another terminal window.
-{% endhint %}
+?> Make sure you have `testground daemon` running in another terminal window.
 
 ```bash
 $ testground run single \
@@ -91,9 +87,7 @@ $ testground run single \
          --wait
 ```
 
-{% hint style="info" %}
-During the first run the Testground daemon sets up the builder and runner environments. Subsequent runs will be faster.
-{% endhint %}
+?> During the first run the Testground daemon sets up the builder and runner environments. Subsequent runs will be faster.
 
 You should see a flurry of activity, including measurements, messages, and runtime events. When the execution concludes, you will see something like:
 
@@ -119,7 +113,7 @@ INFO    created file: 5222e5df793b.tgz
 
 Open the bundle and you will find the outputs from the test in there:
 
-![](.gitbook/assets/image%20%282%29%20%282%29.png)
+![](assets/test-outputs-directory.png)
 
 ## Configuration \(.env.toml\)
 
@@ -131,15 +125,14 @@ Testground tries to load this file from `$TESTGROUND_HOME/.env.toml`, where `$TE
 
 You can change the default bind addresses by configuring `daemon.listen` and `client.endpoint`
 
-{% code title=".env.toml" %}
-```text
+###### .env.toml
+```toml
 [daemon]
 listen = ":8080"
 
 [client]
 endpoint = "http://localhost:8080"
 ```
-{% endcode %}
 
 The endpoint refers to the `testground-daemon` service, so depending on your setup, this could be, for example, a Load Balancer fronting the kubernetes cluster and forwarding proper requests to the `tg-daemon` service, or a simple port forward to your local workstation:
 
@@ -153,25 +146,23 @@ endpoint = "http://localhost:28015" # in case we use port forwarding, like this 
 You can customize the number of asynchronous workers, as well as the maximum queue capacity, i.e., the maximum number of pending tasks at a moment in time.
 In addition, you can adjust the workers' task time execution limit. This is a handy option, if you have long-running tests
 
-{% code title=".env.toml" %}
+###### .env.toml
 ```text
 [daemon.scheduler]
 workers = 2
 queue_size = 100
 task_timeout_min = 40
 ```
-{% endcode %}
 
 ### AWS integration
 
 When using a remote runner such as `cluster:k8s`, you should configure the default region:
 
-{% code title=".env.toml" %}
+###### .env.toml
 ```text
 ["aws"]
 region = "aws region, such as eu-central-1"
 ```
-{% endcode %}
 
 The AWS configuration is also used if you push Docker images to AWS ECR from the `docker:go` builder using the `--build-cfg push_registry=true` and `--build-cfg registry_type=aws` flags.
 
@@ -179,12 +170,10 @@ The AWS configuration is also used if you push Docker images to AWS ECR from the
 
 If you want to push Docker images from the `docker:go` builder to a DockerHub registry, you can configure it.
 
-{% code title=".env.toml" %}
+###### .env.toml
 ```text
 ["dockerhub"]
 repo = "repo to be used for testground"
 username = "username"
 access_token = "docker hub access token"
 ```
-{% endcode %}
-

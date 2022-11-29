@@ -1,10 +1,6 @@
----
-description: >-
-  Testground is not coupled with AWS, but the infrastructure playbooks described
-  in this section are targeted at AWS.
----
-
 # How to create a Kubernetes cluster for Testground
+
+_Testground is not coupled with AWS, but the infrastructure playbooks described in this section are targeted at AWS._
 
 ## Requirements
 
@@ -28,7 +24,7 @@ Next, download and install all required software:
 It is used for the Kubernetes master and worker nodes
 
 ```bash
-# generate ~/.ssh/testground_rsa    
+# generate ~/.ssh/testground_rsa
 #          ~/.ssh/testground_rsa.pub
 
 $ ssh-keygen -t rsa -b 4096 -C "your_email@example.com" \
@@ -66,7 +62,8 @@ Where:
 You might want to add them to your `rc` file \(`.zshrc`, `.bashrc`, etc.\), or to an `.env.sh` file that you source.
 
 ```bash
-export NAME=<desired kubernetes cluster name (e.g. mycluster.k8s.local)>
+export CLUSTER_NAME=<desired kubernetes cluster name (e.g. mycluster.k8s.local)>
+export DEPLOYMENT_NAME=<desired kubernetes deployment name>
 export KOPS_STATE_STORE=s3://<kops state s3 bucket>
 export AWS_REGION=<aws region, for example eu-central-1>
 export ZONE_A=<aws availability zone, for example eu-central-1a>
@@ -171,4 +168,3 @@ If you want to let other people on your team connect to your Kubernetes cluster,
 ```text
 $ kops export kubecfg --state $KOPS_STATE_STORE --name=$NAME
 ```
-

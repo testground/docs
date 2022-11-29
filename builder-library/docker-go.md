@@ -30,9 +30,7 @@ Most build failures are caused by a problem with the plan code rather than the b
 
 when using the `docker:go` builder, plans are build using a standard template. This template is typically all that is needed, but for some plans, the default docker build may be too inflexible. For cases such as this, the Dockerfile can be extended to include custom directives.
 
-{% hint style="info" %}
-If you want to just provide your own Dockerfile, use the `docker:generic` builder instead.
-{% endhint %}
+?> If you want to just provide your own Dockerfile, use the `docker:generic` builder instead.
 
 This feature is best explained by showing how it works. This is the default Dockerfile the `docker:go` builder will use to build plans. Notice that this is a go template. The template has a few points where customizations can be added.
 
@@ -112,6 +110,3 @@ post_runtime_copy   = "RUN echo 'at post_runtime_copy'"
 See an example plan which uses a customized Dockerfile, see [here](https://github.com/testground/testground/tree/master/plans/dockercustomize)
 
 Interested in how this works? All the Testground builders can be seen [here](https://github.com/testground/testground/tree/master/pkg/build)
-
-
-

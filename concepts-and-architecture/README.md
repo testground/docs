@@ -4,25 +4,16 @@ This chapter walks you through the high-level concepts in Testground. Each secti
 
 To help you situate yourself, this architecture diagram provides a bird's-eye view of the system, emphasizing the circuitry of the observability pipeline:
 
-![](../.gitbook/assets/testground-observability-architecture.png)
+![](../assets/observability-architecture.png)
 
 **Read on to learn more about the individual components:**
 
-{% page-ref page="test-structure.md" %}
-
-{% page-ref page="daemon-and-client.md" %}
-
-{% page-ref page="sync-service.md" %}
-
-{% page-ref page="networking.md" %}
-
-{% page-ref page="sidecar.md" %}
-
-{% page-ref page="builders-1.md" %}
-
-{% page-ref page="runners.md" %}
-
-{% page-ref page="runtime.md" %}
-
-
-
+* [Test plans and test cases](test-structure.md)
+* [Daemon and client](daemon-and-client.md)
+* [Synchronization service](sync-service.md)
+* [Networking](networking.md)
+* [Sidecar](sidecar.md)
+* [Builders](builders.md)
+* [Runners](runners.md)
+* [Runtime environment \(runenv\)](runtime.md)
+* [Client-Server communication](client-server-communication.md)

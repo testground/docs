@@ -1,8 +1,6 @@
----
-description: Writing your first test plan
----
-
 # Quick start
+
+_Writing your first test plan_
 
 In this quick start tutorial you will get up and running with a simple test plan. Later tutorials will go deeper into features of the Testground SDK and how to use it to simulate P2P network environments. For now, let's get your hands dirty writing your first test plan.
 
@@ -68,4 +66,3 @@ Here is a list of what you have just witnessed:
 6. A number of containers are created based on your image \(`--instances` controls this\).
 7. Your code is executed in each of the containers.
 8. The `outputs` of the test run are collected for analysis.
-

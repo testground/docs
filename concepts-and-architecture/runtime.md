@@ -1,8 +1,6 @@
----
-description: Interacting with the test plan runtime environment
----
-
 # Runtime environment \(runenv\)
+
+_Interacting with the test plan runtime environment_
 
 Information about the test plan being run is sent to every test instance and available through the `runtime.RunEnv` value - the **runtime environment**.
 
@@ -83,4 +81,3 @@ default:
 Additionally a `logger` is initialized as part of the `RunEnv` run environment, so that every time you call `runenv.RecordMessage("my message")` in your test plan, messages include additional metadata such as the current run identifier, group, timestamp, etc.
 
 For more information, check the [Observability, assets and metrics](../writing-test-plans/observability-assets-and-metrics.md).
-

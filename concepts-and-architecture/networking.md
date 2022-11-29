@@ -5,15 +5,9 @@ All Testground runners _except_ for the `local:exec` runner have two networks: a
 * Test plan instances communicate with each other over the `data`network.
 * Test plan instances communicate with infrastructure services such as the [sync service](sync-service.md) and InfluxDB over the `control` network.
 
-{% hint style="info" %}
-This separation allows test instances to simulate disconnected scenarios; intermittent, failing connectivity; or high-latency scenarios without affecting other infrastructural comms.
-{% endhint %}
+?> This separation allows test instances to simulate disconnected scenarios; intermittent, failing connectivity; or high-latency scenarios without affecting other infrastructural comms.
 
-{% hint style="warning" %}
-The `local:exec` runner will use your machine's local network interfaces.
-
-**For now, this runner doesn't support traffic shaping.**
-{% endhint %}
+!> The `local:exec` runner will use your machine's local network interfaces. **For now, this runner doesn't support traffic shaping.**
 
 ### Control Network
 
@@ -29,7 +23,4 @@ The `data` network, used for communication between test plan instances, will be 
 
 The subnet used will be passed to the test instance via the runtime environment \(as `TestSubnet`\).
 
-{% hint style="success" %}
-From the Go SDK, you can use the [`network.GetDataNetworkIP()`](https://pkg.go.dev/github.com/testground/sdk-go@v0.2.1/network?tab=doc#Client.GetDataNetworkIP) function to acquire your data network IP address.
-{% endhint %}
-
+?> **Success** From the Go SDK, you can use the [`network.GetDataNetworkIP()`](https://pkg.go.dev/github.com/testground/sdk-go@v0.2.1/network?tab=doc#Client.GetDataNetworkIP) function to acquire your data network IP address.

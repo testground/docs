@@ -142,7 +142,4 @@ Run with multiple instances:
 $ testground run single -p quickstart -t quickstart -b exec:go -r local:exec -i 4 --wait
 ```
 
-{% hint style="info" %}
-Notice that instances is set to 4. Four instances will run at the same time.
-{% endhint %}
-
+?> Notice that instances is set to 4. Four instances will run at the same time.
