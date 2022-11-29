@@ -1,10 +1,6 @@
----
-description: >-
-  Testground is not coupled with AWS, but the infrastructure playbooks described
-  in this section are targeted at AWS.
----
-
 # How to create a Kubernetes cluster for Testground
+
+_Testground is not coupled with AWS, but the infrastructure playbooks described in this section are targeted at AWS._
 
 ## Requirements
 
@@ -16,6 +12,7 @@ Next, download and install all required software:
 2. [terraform](https://terraform.io/) &gt;= 0.12.21
 3. [AWS CLI](https://aws.amazon.com/cli)
 4. [helm](https://github.com/helm/helm) &gt;= 3.0
+5. [kubectl](https://kubernetes.io/docs/tasks/tools/)
 
 ## Setup AWS cloud credentials
 
@@ -27,7 +24,7 @@ Next, download and install all required software:
 It is used for the Kubernetes master and worker nodes
 
 ```bash
-# generate ~/.ssh/testground_rsa    
+# generate ~/.ssh/testground_rsa
 #          ~/.ssh/testground_rsa.pub
 
 $ ssh-keygen -t rsa -b 4096 -C "your_email@example.com" \
@@ -90,7 +87,15 @@ $ helm repo update
 
 ## Configure the Testground client
 
-Create a `.env.toml` file in your `$TESTGROUND_HOME` and add your AWS region to the `["aws"]` section.
+Create a `.env.toml` file in your `$TESTGROUND_HOME` and add your AWS region to the `["aws"]` section, as well as the correct endpoint.
+The endpoint refers to the `testground-daemon` service, so depending on your setup, this could be, for example, a Load Balancer fronting the kubernetes cluster and forwarding proper requests to the `tg-daemon` service, or a simple port forward to your local workstation:
+
+```
+["aws"]
+region = "eu-central-1"  # edit to match your region
+[client]
+endpoint = "http://localhost:28015" # in case we use port forwarding, like this one here: kubectl port-forward service/testground-daemon 28015:8042
+```
 
 ## Create cloud resources for the Kubernetes cluster
 
@@ -101,17 +106,37 @@ Once you run this command, take some time to walk the dog, clean up around the o
 ```bash
 $ git clone https://github.com/testground/infra
 
-$ cd infra
+$ cd infra/k8s
 
-$ ./k8s/install.sh ./k8s/cluster.yaml
+# Install AWS cloud resources with `kops`
+$ ./01_install_k8s.sh cluster.yaml
+
+# Install EFS file system and mount it to the cluster
+$ ./02_efs.sh cluster.yaml
+
+# Add EBS storage class to the cluster
+$ ./03_ebs.sh cluster.yaml
+
+# Install the remote Testground daemon
+$ ./04_testground_daemon.sh cluster.yaml
 ```
 
 ## Destroy the cluster when you're done working on it
 
 Do not forget to delete the cluster once you are done running test plans.
 
-```text
-$ ./k8s/delete.sh
+```bash
+$ cd infra/k8s
+
+# Remove EBS volumes
+$ ./delete_ebs.sh
+
+# Remove EFS file system
+$ ./delete_efs.sh
+
+# Remove AWS cloud resources created by `kops` - EC2 VMs, security groups,
+# auto-scaling groups, etc.
+$ ./delete_kops.sh
 ```
 
 ## Resizing the cluster
@@ -143,4 +168,3 @@ If you want to let other people on your team connect to your Kubernetes cluster,
 ```text
 $ kops export kubecfg --state $KOPS_STATE_STORE --name=$NAME
 ```
-

@@ -1,12 +1,10 @@
 # What is Testground?
 
-![](.gitbook/assets/image%20%283%29.png)
+![](assets/hero.png)
 
-{% hint style="info" %}
-You are reading the Testground documentation for the [stable release v0.5.3](https://github.com/testground/testground/releases/tag/v0.5.3)
-
-The Testground team maintains documentation for the `master` branch and for the latest stable release.
-{% endhint %}
+> You are reading the Testground documentation for the [stable release v0.5.3](https://github.com/testground/testground/releases/tag/v0.5.3) branch.
+>
+> The Testground team maintains documentation for the `master` branch and for the latest stable release.
 
 ## Overview
 
@@ -14,45 +12,45 @@ Testground is a platform for testing, benchmarking, and simulating distributed a
 
 The Testground project was started at Protocol Labs because we couldn't find a platform that would allow us to reliably and reproducibly test and measure how changes to the IPFS and libp2p codebases would impact the performance and health of large networks \(as well as individual nodes\), so we decided to invent it.
 
-![](.gitbook/assets/testground-demo.gif)
+![](assets/demo.gif)
 
 ## How does it work?
 
-### 1. **You develop distributed test plans as if you were writing unit tests against local APIs**
+### 1. You develop distributed test plans as if you were writing unit tests against local APIs
 
 * No puppeteering necessary.
 * No need to package and ship the system as a separate daemon with an external API in order to puppeteer it.
 * No need to expose every internal setting over an external API, just for the sake of testing.
 
-### **2. Your test plan calls out to the coordination API to...**
+### 2. Your test plan calls out to the coordination API to
 
-* communicate out-of-band information \(such as endpoint addresses, peer ids, etc.\)
-* leverage synchronization and ordering primitives such as signals and barriers to model a distributed state machine.
-* programmatically apply network traffic shaping policies, which you can alter during the execution of a test to simulate various network conditions.
+* Communicate out-of-band information \(such as endpoint addresses, peer ids, etc.\).
+* Leverage synchronization and ordering primitives such as signals and barriers to model a distributed state machine.
+* Programmatically apply network traffic shaping policies, which you can alter during the execution of a test to simulate various network conditions.
 
-### **3. There is no special "conductor" node telling instances what to do when**
+### 3. There is no special "conductor" node telling instances what to do when
 
 * The choreography and sequencing emerges from within the test plan itself.
 
-### **4. You decide what versions of the upstream software you want to exercise your test against.**
+### 4. You decide what versions of the upstream software you want to exercise your test against
 
 * Benchmark, simulate, experiment, run attacks, etc. against versions v1.1 and v1.2 of the components under test in order to compare results, or test compatibility.
 * Assemble hybrid test runs mixing various versions of the dependency graph.
 
-### **5. Inside your test plan...**
+### 5. Inside your test plan
 
 * You record observations, metrics, success/failure statuses.
 * You emit structured or unstructured assets you want collected, such as event logs, dumps, snapshots, binary files, etc.
 
-### **6. Via a TOML-based** _**composition**_ **file, you instruct Testground to...**
+### 6. Via a TOML-based _composition_ file, you instruct Testground to
 
 * Assemble a test run comprising groups of 2, 200, or 10000 test instances, each with different test parameters, or built against different dependency sets.
 * Schedule them for run locally \(executable or Docker\), or in a cluster \(Kubernetes\).
 
-### **7. You collect the outputs of the test plan for analysis...**
+### 7. You collect the outputs of the test plan for analysis
 
-* with a single command...
-* using data processing scripts and platforms \(such as the upcoming Jupyter notebooks integration\) to draw conclusions.
+* With a single command...
+* Using data processing scripts and platforms \(such as the upcoming Jupyter notebooks integration\) to draw conclusions.
 
 ## Features
 
@@ -121,7 +119,4 @@ Emit and collect/export/download test outputs \(logs, assets, event trails, run 
 
 ## Documentation issues
 
-{% hint style="warning" %}
-**This docs site is work-in-progress!** You're bound to find dragons 🐉 in some sections, so please bear with us! If something looks wrong, please [open a docs issue](https://github.com/testground/testground/issues/new?assignees=&labels=docs&template=DOCS.md&title=docs%20site:%20%3Cdescribe%20the%20problem%3E) on our main repo.
-{% endhint %}
-
+!> **This docs site is work-in-progress!** You're bound to find dragons 🐉 in some sections, so please bear with us! If something looks wrong, please [open a docs issue](https://github.com/testground/testground/issues/new?assignees=&labels=docs&template=DOCS.md&title=docs%20site:%20%3Cdescribe%20the%20problem%3E) on our main repo.

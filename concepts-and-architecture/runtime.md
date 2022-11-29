@@ -1,8 +1,6 @@
----
-description: Interacting with the test plan runtime environment
----
-
 # Runtime environment \(runenv\)
+
+_Interacting with the test plan runtime environment_
 
 Information about the test plan being run is sent to every test instance and available through the `runtime.RunEnv` value - the **runtime environment**.
 
@@ -29,6 +27,7 @@ type RunParams struct {
 	TestTag    string `json:"tag,omitempty"`
 
 	TestOutputsPath string `json:"outputs_path,omitempty"`
+	TestTempPath    string `json:"temp_path,omitempty"`
 
 	TestInstanceCount  int               `json:"instances"`
 	TestInstanceRole   string            `json:"role,omitempty"`
@@ -44,10 +43,20 @@ type RunParams struct {
 	//
 	// The test instance can use this to pick an IP address and/or determine
 	// the "data" network interface.
-	TestSubnet    *IPNet    `json:"network,omitempty"`
-	TestStartTime time.Time `json:"start_time,omitempty"`
-}
+	//
+	// This will be 127.1.0.0/16 when using the local exec runner.
+	TestSubnet    *ptypes.IPNet `json:"network,omitempty"`
+	TestStartTime time.Time     `json:"start_time,omitempty"`
 
+	// TestCaptureProfiles lists the profile types to capture. These are
+	// SDK-dependent. The Go SDK supports these profiles:
+	//
+	// * cpu => value ignored; CPU profile spans the entire life of the test.
+	// * any supported profile type https://golang.org/pkg/runtime/pprof/#Profile =>
+	//   value is a string representation of time.Duration, referring to
+	//   the frequency at which profiles will be captured.
+	TestCaptureProfiles map[string]string `json:"capture_profiles,omitempty"`
+}
 ```
 
 The runtime environment is propagated on any runner to the test instances via environment variables and then deserialized in the `runtime` package of the SDK upon start.
@@ -72,4 +81,3 @@ default:
 Additionally a `logger` is initialized as part of the `RunEnv` run environment, so that every time you call `runenv.RecordMessage("my message")` in your test plan, messages include additional metadata such as the current run identifier, group, timestamp, etc.
 
 For more information, check the [Observability, assets and metrics](../writing-test-plans/observability-assets-and-metrics.md).
-

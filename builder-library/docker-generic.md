@@ -2,7 +2,7 @@
 
 ## Background
 
-Sometimes the default builder behaviors just aren't flexible enough to do what you want. For those situations, we have the `docker:generic` builder. Linking and SDK replacement features in the other builders are missing here. To use this builder, you must provide your own Dockerfile and specify all the appropriate build activities yourself. 
+Sometimes the default builder behaviors just aren't flexible enough to do what you want. For those situations, we have the `docker:generic` builder. Linking and SDK replacement features in the other builders are missing here. To use this builder, you must provide your own Dockerfile and specify all the appropriate build activities yourself.
 
 ## Features
 
@@ -10,7 +10,7 @@ Sometimes the default builder behaviors just aren't flexible enough to do what y
 * Supports any programming language
 * Add assets, files, or whole applications
 * highly customizable
-* Docker arguments in plans `manifest.toml`l file or command-line flags.
+* Docker arguments in plans `manifest.toml`file or command-line flags.
 
 ## Non-features
 
@@ -41,7 +41,10 @@ This example runs a  test case which depends on an additional file being added t
 
 ```text
 testground plan import --from $GOPATH/src/github.com/testground/testground/plans/example
-testground run single --builder docker:generic --runner local:docker --plan example --testcase artifact
+testground run single --builder docker:generic \
+                --runner local:docker \
+                --plan example \
+                --testcase artifact
 ```
 
 ## Are you using `docker:generic`?
@@ -50,9 +53,8 @@ If you are using this, we think that's awesome! Maybe there are cool features wh
 
 * Are you using an unsupported language?
 * Are you testing with frameworks that aren't easily achievable using the other language-specific builders? \(I'm looking at you, headless web browsers!\)
-* Are there bugs in the other builders you are circumventing? Definitely let us know if this is the case.
+* Are there any bugs in the other builders you are circumventing? Definitely let us know if this is the case.
 
 ## Learn More
 
 Interested in how this works? All the Testground builders can be seen [here](https://github.com/testground/testground/tree/master/pkg/build)
-

@@ -1,10 +1,6 @@
----
-description: >-
-  The synchronization service offers simple, but powerful and composable
-  primitives to coordinate and choreograph distributed test workloads.
----
-
 # Synchronization service
+
+_The synchronization service offers simple, but powerful and composable primitives to coordinate and choreograph distributed test workloads._
 
 ## Context
 
@@ -34,7 +30,7 @@ In Testground, test plans hit the APIs of the components under test directly, an
 
 Our **sync API** is extensively inspired by Apache ZooKeeper and the Apache Curator recipes, but we have chosen a non-durable, memory-only Redis instance for simplicity and performance reasons. Therefore, the **sync API** is a lightweight wrapper around a Redis client. All Testground runners deploy a Redis instance \(as a Docker container, or as a k8s pod\), and inject the address into test workloads.
 
-The **sync API** offers simple, but powerful and composable synchronization primitives to coordinate and choreograph distributed test workloads. 
+The **sync API** offers simple, but powerful and composable synchronization primitives to coordinate and choreograph distributed test workloads.
 
 We have implemented the following primitives so far, and more are to come, such as locks, semaphores, leader election, etc. Take a look at the [Apache Curator recipes](https://curator.apache.org/curator-recipes/index.html) and the [Redisson project](https://github.com/redisson/redisson/wiki/8.-distributed-locks-and-synchronizers) to understand where our thinking is.
 
@@ -84,4 +80,3 @@ cancel()
 ```
 
 For more information, refer to the [godocs for the sync package of the Go SDK](https://pkg.go.dev/github.com/testground/sdk-go@v0.2.1/sync?tab=doc).
-

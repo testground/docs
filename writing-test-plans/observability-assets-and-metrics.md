@@ -1,15 +1,13 @@
----
-description: Gathering data about your test run
----
-
 # Observability, assets and metrics
+
+_Gathering data about your test run_
 
 In the [Getting Started](../getting-started.md) section, we showed you how to `collect` test run `outputs`, i.e. the events outputted by individual test run instances during the test run, for example:
 
 ```go
 	// emit a metric
 	runenv.R().RecordPoint("time-to-find", elapsed.Seconds())
-	
+
 	c := "some GUID"
 	// emit a message
 	runenv.RecordMessage("provided content ID: %s", c)
@@ -32,14 +30,13 @@ They are inserted immediately into the metrics database via direct call to the I
 
 ### API
 
-{% code title="sdk-go/runtime/runtime\_events.go" %}
+###### sdk-go/runtime/runtime\_events.go
 ```text
 runenv.RecordStart()
 runenv.RecordFailure(reason)
 runenv.RecordCrash(err)
 runenv.RecordSuccess()
 ```
-{% endcode %}
 
 ## Diagnostics
 
@@ -47,7 +44,7 @@ Diagnostics are inserted immediately into the metrics store via direct call to t
 
 ### API
 
-{% code title="sdk-go/runtime/metrics\_api.go" %}
+###### sdk-go/runtime/metrics\_api.go
 ```text
 runenv.D().RecordPoint(name, value, unit)
 runenv.D().Counter()
@@ -60,7 +57,6 @@ runenv.D().Timer()
 runenv.D().SetFrequency()
 runenv.D().Disable()
 ```
-{% endcode %}
 
 ## Results
 
@@ -72,7 +68,7 @@ They are batch-inserted into InfluxDB when the test run concludes.
 
 ### API
 
-{% code title="sdk-go/runtime/metrics\_api.go" %}
+###### sdk-go/runtime/metrics\_api.go
 ```text
 runenv.R().RecordPoint(name, value, unit)
 runenv.R().Counter()
@@ -84,7 +80,6 @@ runenv.R().Meter()
 runenv.R().Timer()
 runenv.R().SetFrequency()
 ```
-{% endcode %}
 
 ## Assets
 
@@ -92,12 +87,10 @@ Output assets will be saved when the test terminates. You can also manually crea
 
 ### API
 
-{% code title="sdk-go/runtime/runenv\_assets.go" %}
+###### sdk-go/runtime/runenv\_assets.go
 ```text
 runenv.CreateRandomDirectory(directoryPath string, depth uint)
 runenv.CreateRandomFile(directoryPath string, size int64)
 runenv.CreateRawAsset(name string)
 runenv.CreateStructuredAsset(name string, config zap.Config)
 ```
-{% endcode %}
-
