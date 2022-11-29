@@ -1,6 +1,6 @@
 # What is Testground?
 
-![](assets/image%20%283%29%20%281%29.png)
+![](assets/hero.png)
 
 > You are reading the Testground documentation for the [master](https://github.com/testground/testground) branch.
 >
@@ -12,7 +12,7 @@ Testground is a platform for testing, benchmarking, and simulating distributed a
 
 The Testground project was started at Protocol Labs because we couldn't find a platform that would allow us to reliably and reproducibly test and measure how changes to the IPFS and libp2p codebases would impact the performance and health of large networks \(as well as individual nodes\), so we decided to invent it.
 
-![](assets/testground-demo.gif)
+![](assets/demo.gif)
 
 ## How does it work?
 
