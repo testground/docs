@@ -210,7 +210,7 @@ If you can successfully debug this code, you will see each ron finish his meals 
 
 When using the local runners, with a relatively small number of plan instances it is fairly easy to view outputs in the terminal runner. I recommend troubleshooting the plan with a small number of instances. The same messages you can see in your terminal are also available in outputs collections.
 
-For more information about this, see [Analyzing the results](https://app.gitbook.com/@protocol-labs/s/testground/~/drafts/-M6X2x7PG-JL0LAa-bnw/analyzing-the-results).
+For more information about this, see [Analyzing the results](analyzing-the-results/README.md).
 
 ## Accessing profile data
 
