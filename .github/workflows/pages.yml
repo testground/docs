@@ -4,7 +4,7 @@ name: Deploy static content to Pages
 on:
   # Runs on pushes targeting selected branches
   push:
-    branches: ["gh-pages"] # TODO: change to ["master", "v0.5.3"]
+    branches: ["master"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -31,12 +31,12 @@ jobs:
       - name: Checkout master
         uses: actions/checkout@v3
         with:
-          ref: gh-pages # TODO: change to master
+          ref: master
           path: master
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: gh-pages # TODO: change to v0.5.3
+          ref: v0.5.3
           path: v0.5.3
       - run: |
           touch .nojekyll
