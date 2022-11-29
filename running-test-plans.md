@@ -29,8 +29,7 @@ $ testground run single -p <plan> \
                 -t <testcase> \
                 -r <runner> \
                 -b <builder> \
-                -i <instances> \
-                [--wait]
+                -i <instances>
 ```
 
 A single test run can be used to benchmark, validate, or observe the behaviour of a peer-to-peer system.

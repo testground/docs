@@ -139,7 +139,7 @@ func test(runenv *runtime.RunEnv) error {
 Run with multiple instances:
 
 ```text
-$ testground run single -p quickstart -t quickstart -b exec:go -r local:exec -i 4 --wait
+$ testground run single -p quickstart -t quickstart -b exec:go -r local:exec -i 4
 ```
 
 ?> Notice that instances is set to 4. Four instances will run at the same time.

@@ -55,9 +55,3 @@ To visualize all the running tasks:
 ```text
 $ testground tasks
 ```
-
-You can also wait for the task completion when building or running by appending the flag `--wait`. This way, you will not only wait for the completion of the task, but also receive all the logs live:
-
-```text
-$ testground build single --plan=example --builder=exec:go --wait
-```

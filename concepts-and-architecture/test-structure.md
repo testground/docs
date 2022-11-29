@@ -70,8 +70,7 @@ Testground offers first-class support for dealing with test cases inside test pl
                     --testcase=ping-pong \
                     --builder=docker:go \
                     --runner=local:docker \
-                    --instances=2 \
-                    --wait
+                    --instances=2
    ```
 
 3. When developing a test plan, the Testground SDK allows you to select the test case that will run, based on an environment variable.

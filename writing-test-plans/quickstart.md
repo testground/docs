@@ -42,8 +42,7 @@ $ testground run single --plan=quickstart \
                         --testcase=quickstart \
                         --runner=local:docker \
                         --builder=docker:go \
-                        --instances=1 \
-                        --wait
+                        --instances=1
 ```
 
 ### You did it!

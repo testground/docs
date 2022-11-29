@@ -83,8 +83,7 @@ $ testground run single \
          --testcase=ping-pong \
          --builder=docker:go \
          --runner=local:docker \
-         --instances=2 \
-         --wait
+         --instances=2
 ```
 
 ?> During the first run the Testground daemon sets up the builder and runner environments. Subsequent runs will be faster.

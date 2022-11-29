@@ -2,7 +2,7 @@
 
 ## Background
 
-Sometimes the default builder behaviors just aren't flexible enough to do what you want. For those situations, we have the `docker:generic` builder. Linking and SDK replacement features in the other builders are missing here. To use this builder, you must provide your own Dockerfile and specify all the appropriate build activities yourself. 
+Sometimes the default builder behaviors just aren't flexible enough to do what you want. For those situations, we have the `docker:generic` builder. Linking and SDK replacement features in the other builders are missing here. To use this builder, you must provide your own Dockerfile and specify all the appropriate build activities yourself.
 
 ## Features
 
@@ -44,8 +44,7 @@ testground plan import --from $GOPATH/src/github.com/testground/testground/plans
 testground run single --builder docker:generic \
                 --runner local:docker \
                 --plan example \
-                --testcase artifact \
-                --wait
+                --testcase artifact
 ```
 
 ## Are you using `docker:generic`?
@@ -59,4 +58,3 @@ If you are using this, we think that's awesome! Maybe there are cool features wh
 ## Learn More
 
 Interested in how this works? All the Testground builders can be seen [here](https://github.com/testground/testground/tree/master/pkg/build)
-

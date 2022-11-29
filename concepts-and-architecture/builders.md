@@ -66,13 +66,13 @@ None of these options are required and need only be edited if the defaults do no
 Single build for a single test for the example/output plan using the exec:go builder. This command will produce a binary which you can find in `~/testground/` on Linux and macOS systems.
 
 ```bash
-$ testground build single --plan=example --builder=exec:go --wait
+$ testground build single --plan=example --builder=exec:go
 ```
 
 Same, using the `docker:go` builder. This command will produce a Docker image.
 
 ```bash
-$ testground build single --plan=example --builder=docker:go --wait
+$ testground build single --plan=example --builder=docker:go
 ```
 
 Use the `docker:go` builder to build an image and then push the image to DockerHub \(configure credentials in [env.toml file](../getting-started.md)\).
@@ -80,14 +80,12 @@ Use the `docker:go` builder to build an image and then push the image to DockerH
 ```bash
 $ testground build single --plan=example --builder=docker:go \
                                          --build-cfg push_registry=true \
-                                         --build-cfg registry_type=dockerhub \
-                                         --wait
+                                         --build-cfg registry_type=dockerhub
 ```
 
 Build a composition defined in `barrier-local.toml`. Note that the composition file will contain the builder and runner so specifying the builder on the command-line is not used in this example.
 
 ```bash
 $ testground build composition --file=compositions/barrier-local.toml \
-                               --write-artifacts \
-                               --wait
+                               --write-artifacts
 ```

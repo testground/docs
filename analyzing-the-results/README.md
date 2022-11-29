@@ -46,8 +46,7 @@ $ testground run single \
                  --testcase=ping-pong \
                  --builder=docker:go \
                  --runner=local:docker \
-                 --instances=2 \
-                 --wait \
+                 --instances=2
                  --collect
 
 ...
@@ -72,4 +71,3 @@ $ cd <run-id>
 
 $ find . | grep run.out | xargs awk '{print FILENAME, " >>> ", $0 }'
 ```
-

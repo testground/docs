@@ -100,8 +100,7 @@ $ testground run single --plan example \
                         --testcase sync \
                         --builder exec:go \
                         --runner local:exec \
-                        --instances 10 \
-                        --wait \
+                        --instances 10
                         --collect
 
 [...]
