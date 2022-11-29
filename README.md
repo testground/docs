@@ -2,7 +2,7 @@
 
 ![](assets/hero.png)
 
-> You are reading the Testground documentation for the [master](https://github.com/testground/testground) branch.
+> You are reading the Testground documentation for the [stable release v0.5.3](https://github.com/testground/testground/releases/tag/v0.5.3) branch.
 >
 > The Testground team maintains documentation for the `master` branch and for the latest stable release.
 
