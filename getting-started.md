@@ -113,7 +113,7 @@ INFO    created file: 5222e5df793b.tgz
 
 Open the bundle and you will find the outputs from the test in there:
 
-![](.gitbook/assets/image%20%282%29%20%282%29.png)
+![](assets/image%20%282%29%20%282%29.png)
 
 ## Configuration \(.env.toml\)
 

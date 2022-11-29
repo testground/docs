@@ -4,7 +4,7 @@ This chapter walks you through the high-level concepts in Testground. Each secti
 
 To help you situate yourself, this architecture diagram provides a bird's-eye view of the system, emphasizing the circuitry of the observability pipeline:
 
-![](../.gitbook/assets/testground-observability-architecture.png)
+![](../assets/testground-observability-architecture.png)
 
 **Read on to learn more about the individual components:**
 
