@@ -40,7 +40,7 @@ jobs:
           path: v0.5.3
       - run: |
           touch .nojekyll
-          echo -e '<html><head><meta http-equiv="refresh" content="0; url=./v0.5.3" /></head></html>' > index.html
+          echo -e '<html><head><meta http-equiv="refresh" content="0; url=./master" /></head></html>' > index.html
           echo -e "* master\n  * <a href=\"../master\">**master**</a>\n  * <a href=\"../v0.5.3\">v0.5.3</a>\n$(cat master/NAV.md)" > master/NAV.md
           echo -e "* v0.5.3\n  * <a href=\"../master\">master</a>\n  * <a href=\"../v0.5.3\">**v0.5.3**</a>\n$(cat v0.5.3/NAV.md)" > v0.5.3/NAV.md
           cp master/assets/favicon.ico .
