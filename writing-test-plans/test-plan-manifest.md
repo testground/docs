@@ -24,7 +24,7 @@ runner = "local:exec"
 
 ### Builder and runner options
 
-The next few sections are options passed to each builder and runner when they are selected. Make sure to enable any [builders](../concepts-and-architecture/builders-1.md#supported-builders) and [runners](../concepts-and-architecture/runners.md#supported-runners) you want to use! The following section enables all runners and passes configurations. Of particular interest is the module path. Make sure this is correct to ensure code can be correctly imported.
+The next few sections are options passed to each builder and runner when they are selected. Make sure to enable any [builders](../concepts-and-architecture/builders.md#supported-builders) and [runners](../concepts-and-architecture/runners.md#supported-runners) you want to use! The following section enables all runners and passes configurations. Of particular interest is the module path. Make sure this is correct to ensure code can be correctly imported.
 
 ```toml
 [builders."docker:go"]

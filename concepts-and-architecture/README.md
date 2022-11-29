@@ -13,7 +13,7 @@ To help you situate yourself, this architecture diagram provides a bird's-eye vi
 * [Synchronization service](sync-service.md)
 * [Networking](networking.md)
 * [Sidecar](sidecar.md)
-* [Builders](builders-1.md)
+* [Builders](builders.md)
 * [Runners](runners.md)
 * [Runtime environment \(runenv\)](runtime.md)
 * [Client-Server communication](client-server-communication.md)

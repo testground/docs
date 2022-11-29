@@ -6,7 +6,7 @@
     * [Synchronization service](concepts-and-architecture/sync-service.md)
     * [Networking](concepts-and-architecture/networking.md)
     * [Sidecar](concepts-and-architecture/sidecar.md)
-    * [Builders](concepts-and-architecture/builders-1.md)
+    * [Builders](concepts-and-architecture/builders.md)
     * [Runners](concepts-and-architecture/runners.md)
     * [Runtime environment \(runenv\)](concepts-and-architecture/runtime.md)
     * [Client-Server communication](concepts-and-architecture/client-server-communication.md)
