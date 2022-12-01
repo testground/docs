@@ -1,5 +1,6 @@
 * Table of contents
   * [What is Testground?](README.md)
+    * [Community](community.md)
   * [Concepts and architecture](concepts-and-architecture/README.md)
     * [Test plans and test cases](concepts-and-architecture/test-structure.md)
     * [Daemon and client](concepts-and-architecture/daemon-and-client.md)
