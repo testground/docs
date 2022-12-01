@@ -41,13 +41,12 @@ enabled = true
 
 [runners."cluster:k8s"]
 enabled = true
-
 ```
 
 ### Test cases
 
 Finally, we have [test cases](../concepts-and-architecture/test-structure.md#test-cases). Test cases are defined in an [array of tables](https://github.com/toml-lang/toml#array-of-tables) which specify the name of the test case, boundaries for the number of instances and the values of any parameters being tested in a particular test case.
-Be carefull, if your testplan requires integer number, and you do not provide it, neither the 'default' value, testcase will fail.
+If your plan requires an integer param without a default value, the test will fail if you do not provide it.
 
 ```yaml
 [[testcases]]
