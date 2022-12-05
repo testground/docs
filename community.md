@@ -8,7 +8,7 @@ No matter your area of specialty or level of expertise, there are many ways to c
 
 ## Chat
 
-In general, our Testground channels are bridged to Discord and Matrix. As a result, you can usually use your preferred chat application to engage with the community.
+Our Testground Slack channel is bridged to Discord and Matrix. As a result, you can usually use your preferred chat application to engage with the community.
 
 ### Discord
 
