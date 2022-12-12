@@ -14,10 +14,10 @@ Go through the [Getting started](../getting-started.md) page and follow the inst
 
 ### 2. Create a test plan
 
-Testground stores plans in the `$TESTGROUND_HOME` directory. This directory is created for you in your `home` directory, but if you prefer to store plans in another location, you can adjust the location using the environment variable.
+Testground stores plans in the `$TESTGROUND_HOME` directory. This directory is created for you in `~/.config/testground` (linux) or ` ~/Library/Application Support/testground` (mac), but if you prefer to store plans in another location, you can adjust the location using the environment variable.
 
 ```bash
-# OPTIONAL - adjust TESTGROUND_HOME, default is ~/testground
+# OPTIONAL - adjust TESTGROUND_HOME, default is ~/.config/testground or ~/Library/Application Support/testground on mac
 $ export TESTGROUND_HOME=/path/to/testground/home
 
 # create your first test plan

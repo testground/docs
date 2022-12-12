@@ -63,7 +63,7 @@ Configure `$TESTGROUND_HOME` and copy the example `network` test plan into the `
 
 ```bash
 # assuming you already started your Testground daemon (as instructed above)
-# there should be a `testground` directory in your home folder, i.e. `~/testground`
+# there should be a `testground` directory in your home folder, i.e. `~/.config/testground` or ~/Library/Application Support/testground
 #
 # from your testground/testground Git checkout, run:
 $ testground plan import --from ./plans/network
