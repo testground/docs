@@ -212,6 +212,24 @@ When using the local runners, with a relatively small number of plan instances i
 
 For more information about this, see [Analyzing the results](analyzing-the-results/README.md).
 
+## Debugging testground problems
+
+### **local:docker**
+
+> Help! When starting a testplan (e.g. using `testground run single`) I get an error such a the following:
+>
+> ```
+>  Pool overlaps with other one on this address space
+> ```
+
+Solution: Most likely you have a conflicting (docker) network from a previous run of one of your testground runs:
+
+1. You can find any related testground plan network on your (docker) system using the command `docker network ls`;
+2. In that output you should see some networks whom have your testplan or testcase referenced in its name;
+3. Copy the linked network ids so you can remove them using the `docker network rm <id>` cmd.
+
+Once you completed these steps you should be able to run your testground plan without seeing the error above.
+
 ## Accessing profile data
 
 All Go test plans have profiling enabled by default.
