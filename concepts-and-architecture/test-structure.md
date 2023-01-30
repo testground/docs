@@ -46,7 +46,7 @@ What's important is that **the test plans source is available to the Testground 
 
 !> Please note that `$TESTGROUND_HOME`is not the same place where you clone the Testground [git repository](https://github.com/testground/testground).
 
-The Testground client CLI offers a series of simple commands to manage test plan sources. Refer to the [Managing test plans](../managing-test-plans.md) section for more information.
+The Testground client CLI offers a series of simple commands to manage test plan sources. Refer to the [Managing test plans](managing-test-plans.md) section for more information.
 
 ## Test cases
 
